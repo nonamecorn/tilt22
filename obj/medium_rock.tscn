@@ -13,3 +13,14 @@ texture = ExtResource("1_udt8e")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-1, -27, 26, -12, 27, 17, -12, 26, -24, -9)
+
+[node name="children" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="children"]
+position = Vector2(-11, -10)
+
+[node name="Marker2D2" type="Marker2D" parent="children"]
+position = Vector2(14, -10)
+
+[node name="Marker2D3" type="Marker2D" parent="children"]
+position = Vector2(5, 9)

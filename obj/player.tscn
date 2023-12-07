@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c1bqgv0i3byic"]
+[gd_scene load_steps=23 format=3 uid="uid://c1bqgv0i3byic"]
 
 [ext_resource type="Script" path="res://obj/player.gd" id="1_tlux8"]
 [ext_resource type="Texture2D" uid="uid://c1ae2myj2p6tg" path="res://img/playership.png" id="2_due4w"]
@@ -7,11 +7,12 @@
 [ext_resource type="Texture2D" uid="uid://dg8h761vel14l" path="res://img/mainenginefire.png" id="4_pwyxm"]
 [ext_resource type="Texture2D" uid="uid://da5xc1oc65sjk" path="res://img/truster_anim.png" id="5_acp8x"]
 [ext_resource type="Texture2D" uid="uid://ydglk0ma4x0m" path="res://img/turret1.png" id="6_yjbop"]
+[ext_resource type="Script" path="res://obj/Area2D.gd" id="8_ik6ul"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_q8ogj"]
-vertices = PackedVector2Array(2290, -1147, 2602, 1782, -1893, 1614, -1716, -1162)
+vertices = PackedVector2Array(3878, 2797, -3141, 2741, -3255, -1919, 3784, -2090)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-1726, -1173, -1904, 1624, 2614, 1793, 2300, -1157)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-3266, -1929, -3151, 2751, 3889, 2808, 3794, -2101)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_48fug"]
@@ -125,7 +126,7 @@ visible = false
 position = Vector2(19, 13)
 sprite_frames = SubResource("SpriteFrames_gf8ad")
 autoplay = "default"
-frame_progress = 0.96477
+frame_progress = 0.984915
 
 [node name="damp2" type="AnimatedSprite2D" parent="Playership"]
 visible = false
@@ -133,21 +134,21 @@ position = Vector2(-19, 13)
 scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_gf8ad")
 autoplay = "default"
-frame_progress = 0.96477
+frame_progress = 0.984915
 
 [node name="engine" type="AnimatedSprite2D" parent="Playership"]
 visible = false
 position = Vector2(0, 27)
 sprite_frames = SubResource("SpriteFrames_rkkv0")
 autoplay = "default"
-frame_progress = 0.0545168
+frame_progress = 0.343846
 
 [node name="torque1" type="AnimatedSprite2D" parent="Playership"]
 visible = false
 position = Vector2(17, -15)
 sprite_frames = SubResource("SpriteFrames_p8iht")
 autoplay = "default"
-frame_progress = 0.96477
+frame_progress = 0.984915
 
 [node name="torque2" type="AnimatedSprite2D" parent="Playership"]
 visible = false
@@ -155,7 +156,7 @@ position = Vector2(-17, -15)
 scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_p8iht")
 autoplay = "default"
-frame_progress = 0.96477
+frame_progress = 0.984915
 
 [node name="hand" type="Node2D" parent="."]
 position = Vector2(-8, -12)
@@ -169,3 +170,66 @@ texture = ExtResource("6_yjbop")
 position = Vector2(0, -19)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("8_ik6ul")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(-3306, -2179, 3957, -2358, 4110, 2874, -3281, 2874, -3319, -2722, -3820, -2687, -3752, 3135, 4520, 3231, 4296, -2833, -3313, -2681)
+
+[node name="children" type="Node2D" parent="Area2D"]
+
+[node name="Marker2D" type="Marker2D" parent="Area2D/children"]
+position = Vector2(-1536, 1572)
+
+[node name="Marker2D2" type="Marker2D" parent="Area2D/children"]
+position = Vector2(-513, 1940)
+
+[node name="Marker2D3" type="Marker2D" parent="Area2D/children"]
+position = Vector2(475, 1841)
+
+[node name="Marker2D4" type="Marker2D" parent="Area2D/children"]
+position = Vector2(1561, 1482)
+
+[node name="Marker2D5" type="Marker2D" parent="Area2D/children"]
+position = Vector2(2069, 988)
+
+[node name="Marker2D6" type="Marker2D" parent="Area2D/children"]
+position = Vector2(2353, 272)
+
+[node name="Marker2D7" type="Marker2D" parent="Area2D/children"]
+position = Vector2(2299, -583)
+
+[node name="Marker2D8" type="Marker2D" parent="Area2D/children"]
+position = Vector2(1933, -1173)
+
+[node name="Marker2D9" type="Marker2D" parent="Area2D/children"]
+position = Vector2(1373, -1544)
+
+[node name="Marker2D10" type="Marker2D" parent="Area2D/children"]
+position = Vector2(591, -1615)
+
+[node name="Marker2D11" type="Marker2D" parent="Area2D/children"]
+position = Vector2(-397, -1444)
+
+[node name="Marker2D12" type="Marker2D" parent="Area2D/children"]
+position = Vector2(-1331, -1228)
+
+[node name="Marker2D13" type="Marker2D" parent="Area2D/children"]
+position = Vector2(-1825, -645)
+
+[node name="Marker2D14" type="Marker2D" parent="Area2D/children"]
+position = Vector2(-1831, -48)
+
+[node name="Marker2D15" type="Marker2D" parent="Area2D/children"]
+position = Vector2(-1799, 633)
+
+[node name="Marker2D16" type="Marker2D" parent="Area2D/children"]
+position = Vector2(-1602, 1042)
+
+[node name="Timer" type="Timer" parent="Area2D"]
+wait_time = 3.0
+autostart = true
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="timeout" from="Area2D/Timer" to="Area2D" method="_on_timer_timeout"]

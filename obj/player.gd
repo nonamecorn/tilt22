@@ -45,3 +45,4 @@ func hurt():
 	hp -= 1;
 	if hp == 0:
 		state = DEAD;
+
