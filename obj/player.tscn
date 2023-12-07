@@ -1,10 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://c1bqgv0i3byic"]
+[gd_scene load_steps=22 format=3 uid="uid://c1bqgv0i3byic"]
 
 [ext_resource type="Script" path="res://obj/player.gd" id="1_tlux8"]
+[ext_resource type="Texture2D" uid="uid://c1ae2myj2p6tg" path="res://img/playership.png" id="2_due4w"]
 [ext_resource type="Script" path="res://obj/dehand.gd" id="2_e0ofg"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_48fug"]
-size = Vector2(26, 38)
+[ext_resource type="Texture2D" uid="uid://d2ubeqcafy8a2" path="res://img/dampanim.png" id="3_xl10k"]
+[ext_resource type="Texture2D" uid="uid://dg8h761vel14l" path="res://img/mainenginefire.png" id="4_pwyxm"]
+[ext_resource type="Texture2D" uid="uid://da5xc1oc65sjk" path="res://img/truster_anim.png" id="5_acp8x"]
+[ext_resource type="Texture2D" uid="uid://ydglk0ma4x0m" path="res://img/turret1.png" id="6_yjbop"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_q8ogj"]
 vertices = PackedVector2Array(2290, -1147, 2602, 1782, -1893, 1614, -1716, -1162)
@@ -12,33 +14,158 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-1726, -1173, -1904, 1624, 2614, 1793, 2300, -1157)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_48fug"]
+size = Vector2(26, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dlima"]
+atlas = ExtResource("3_xl10k")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q8stm"]
+atlas = ExtResource("3_xl10k")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0pqnq"]
+atlas = ExtResource("3_xl10k")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gf8ad"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dlima")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q8stm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0pqnq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i12fe"]
+atlas = ExtResource("4_pwyxm")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iancr"]
+atlas = ExtResource("4_pwyxm")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5nhav"]
+atlas = ExtResource("4_pwyxm")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rkkv0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i12fe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iancr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5nhav")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_58pd0"]
+atlas = ExtResource("5_acp8x")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iigwg"]
+atlas = ExtResource("5_acp8x")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_avw68"]
+atlas = ExtResource("5_acp8x")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p8iht"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_58pd0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iigwg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_avw68")
+}],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}]
+
 [node name="player" type="RigidBody2D"]
 collision_layer = 2
 collision_mask = 3
 mass = 80.0
 script = ExtResource("1_tlux8")
 
-[node name="Polygon2D2" type="Polygon2D" parent="."]
-color = Color(0.741176, 0.741176, 0.741176, 1)
-polygon = PackedVector2Array(-23, -27, -25, -13, -10, -11, -8, -28)
-
-[node name="Polygon2D" type="Polygon2D" parent="."]
-polygon = PackedVector2Array(-14, -21, 15, -21, 15, 20, -15, 20)
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_q8ogj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_48fug")
 
+[node name="Playership" type="Sprite2D" parent="."]
+position = Vector2(0, -2)
+texture = ExtResource("2_due4w")
+
+[node name="damp1" type="AnimatedSprite2D" parent="Playership"]
+visible = false
+position = Vector2(19, 13)
+sprite_frames = SubResource("SpriteFrames_gf8ad")
+autoplay = "default"
+frame_progress = 0.96477
+
+[node name="damp2" type="AnimatedSprite2D" parent="Playership"]
+visible = false
+position = Vector2(-19, 13)
+scale = Vector2(-1, 1)
+sprite_frames = SubResource("SpriteFrames_gf8ad")
+autoplay = "default"
+frame_progress = 0.96477
+
+[node name="engine" type="AnimatedSprite2D" parent="Playership"]
+visible = false
+position = Vector2(0, 27)
+sprite_frames = SubResource("SpriteFrames_rkkv0")
+autoplay = "default"
+frame_progress = 0.0545168
+
+[node name="torque1" type="AnimatedSprite2D" parent="Playership"]
+visible = false
+position = Vector2(17, -15)
+sprite_frames = SubResource("SpriteFrames_p8iht")
+autoplay = "default"
+frame_progress = 0.96477
+
+[node name="torque2" type="AnimatedSprite2D" parent="Playership"]
+visible = false
+position = Vector2(-17, -15)
+scale = Vector2(-1, 1)
+sprite_frames = SubResource("SpriteFrames_p8iht")
+autoplay = "default"
+frame_progress = 0.96477
+
 [node name="hand" type="Node2D" parent="."]
-position = Vector2(-17, -20)
+position = Vector2(-8, -12)
 script = ExtResource("2_e0ofg")
 
-[node name="Polygon2D" type="Polygon2D" parent="hand"]
-polygon = PackedVector2Array(-2, -4, -3, 2, 16, 1, 16, -5)
+[node name="Turret1" type="Sprite2D" parent="hand"]
+position = Vector2(0, -9)
+texture = ExtResource("6_yjbop")
 
 [node name="Marker2D" type="Marker2D" parent="hand"]
-position = Vector2(21, -2)
-
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-navigation_polygon = SubResource("NavigationPolygon_q8ogj")
+position = Vector2(0, -19)
 
 [node name="Camera2D" type="Camera2D" parent="."]

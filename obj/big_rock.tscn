@@ -1,22 +1,29 @@
 [gd_scene load_steps=3 format=3 uid="uid://yuy1qsp1j3mu"]
 
 [ext_resource type="Script" path="res://obj/big_rock.gd" id="1_jsasq"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ewdeo"]
-radius = 86.093
+[ext_resource type="Texture2D" uid="uid://bse8x6et2voqn" path="res://img/bigrock.png" id="2_x80e5"]
 
 [node name="big_rock" type="RigidBody2D"]
 mass = 500.0
 linear_damp = -0.1
 script = ExtResource("1_jsasq")
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-position = Vector2(-11.4189, -18.3068)
-scale = Vector2(0.608108, 0.685259)
-polygon = PackedVector2Array(-86, -92, 108, -109, 175, 53, 77, 142, -80, 129, -103.515, 63.5625, -121, 3)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2, -5)
-shape = SubResource("CircleShape2D_ewdeo")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-21, -51, 8, -52, 41, -43, 53, -9, 48, 21, 28, 37, -9, 44, -43, 22, -49, -6, -36, -40)
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+
+[node name="Bigrock" type="Sprite2D" parent="."]
+position = Vector2(1, -6)
+texture = ExtResource("2_x80e5")
+
+[node name="children" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="children"]
+position = Vector2(-22, -17)
+
+[node name="Marker2D2" type="Marker2D" parent="children"]
+position = Vector2(27, -19)
+
+[node name="Marker2D3" type="Marker2D" parent="children"]
+position = Vector2(6, 18)

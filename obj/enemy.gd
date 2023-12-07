@@ -7,6 +7,7 @@ var player;
 var target;
 var turn_speed: float = 100000.0;
 var hp = 20;
+var dead = false
 @export var nav_agent: NavigationAgent2D
 
 enum stt {
@@ -42,6 +43,7 @@ func _process(_delta):
 			face_point(target_pos);
 
 func _on_area_2d_body_entered(body):
+	if dead: return
 	$makepath.start()
 	player = body;
 	set_movement_target(body.position)	
@@ -51,7 +53,7 @@ func face_point(point: Vector2):
 	var l_point = to_local(point)
 	var turn_dir = sign(l_point.x)
 	var turn_amnt = turn_speed
-	var angle = Vector2.UP.angle_to(l_point)
+	#var angle = Vector2.UP.angle_to(l_point)
 #	if angle < turn_amnt:
 #		turn_amnt = angle
 	apply_torque(turn_amnt * turn_dir)
@@ -59,9 +61,10 @@ func face_point(point: Vector2):
 func hurt():
 	hp -= 1;
 	if hp == 0:
+		$hand.dead = true
+		dead = true
 		state = stt.IDLE;
 
 
 func _on_makepath_timeout():
-	print("asds")
 	set_movement_target(player.position)
