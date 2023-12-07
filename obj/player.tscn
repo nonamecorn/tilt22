@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1bqgv0i3byic"]
+
+[ext_resource type="Script" path="res://obj/player.gd" id="1_tlux8"]
+[ext_resource type="Script" path="res://obj/dehand.gd" id="2_e0ofg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_48fug"]
+size = Vector2(26, 38)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_q8ogj"]
+vertices = PackedVector2Array(2290, -1147, 2602, 1782, -1893, 1614, -1716, -1162)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-1726, -1173, -1904, 1624, 2614, 1793, 2300, -1157)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+
+[node name="player" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 3
+mass = 80.0
+script = ExtResource("1_tlux8")
+
+[node name="Polygon2D2" type="Polygon2D" parent="."]
+color = Color(0.741176, 0.741176, 0.741176, 1)
+polygon = PackedVector2Array(-23, -27, -25, -13, -10, -11, -8, -28)
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-14, -21, 15, -21, 15, 20, -15, 20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_48fug")
+
+[node name="hand" type="Node2D" parent="."]
+position = Vector2(-17, -20)
+script = ExtResource("2_e0ofg")
+
+[node name="Polygon2D" type="Polygon2D" parent="hand"]
+polygon = PackedVector2Array(-2, -4, -3, 2, 16, 1, 16, -5)
+
+[node name="Marker2D" type="Marker2D" parent="hand"]
+position = Vector2(21, -2)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_q8ogj")
+
+[node name="Camera2D" type="Camera2D" parent="."]

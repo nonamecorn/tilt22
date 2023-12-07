@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://yuy1qsp1j3mu"]
+
+[ext_resource type="Script" path="res://obj/big_rock.gd" id="1_jsasq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ewdeo"]
+radius = 86.093
+
+[node name="big_rock" type="RigidBody2D"]
+mass = 500.0
+linear_damp = -0.1
+script = ExtResource("1_jsasq")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(-11.4189, -18.3068)
+scale = Vector2(0.608108, 0.685259)
+polygon = PackedVector2Array(-86, -92, 108, -109, 175, 53, 77, 142, -80, 129, -103.515, 63.5625, -121, 3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, -5)
+shape = SubResource("CircleShape2D_ewdeo")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]

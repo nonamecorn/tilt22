@@ -1,0 +1,71 @@
+[gd_scene load_steps=6 format=3 uid="uid://byjsltkqygf35"]
+
+[ext_resource type="Script" path="res://obj/enemy.gd" id="1_snbf3"]
+[ext_resource type="Script" path="res://obj/hand.gd" id="2_ee7cd"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8kbwr"]
+radius = 15.5
+height = 43.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6f314"]
+radius = 140.032
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0i227"]
+radius = 286.175
+
+[node name="enemy" type="RigidBody2D" node_paths=PackedStringArray("nav_agent")]
+collision_layer = 5
+mass = 80.0
+linear_damp = 0.75
+script = ExtResource("1_snbf3")
+nav_agent = NodePath("NavigationAgent2D")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.905882, 0, 0.0352941, 1)
+polygon = PackedVector2Array(-14, -21, 15, -21, 15, 20, -15, 20)
+
+[node name="Polygon2D2" type="Polygon2D" parent="."]
+color = Color(0.603922, 0, 0.0901961, 1)
+polygon = PackedVector2Array(-12, -11, -35, -14, -25, -34, -2, -32, -6, -14)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -1.5)
+shape = SubResource("CapsuleShape2D_8kbwr")
+
+[node name="hand" type="Node2D" parent="."]
+position = Vector2(-18, -24)
+script = ExtResource("2_ee7cd")
+
+[node name="Polygon2D" type="Polygon2D" parent="hand"]
+position = Vector2(0, 1)
+polygon = PackedVector2Array(-2, -4, -3, 2, 16, 1, 16, -5)
+
+[node name="Marker2D" type="Marker2D" parent="hand"]
+position = Vector2(21, -2)
+
+[node name="Area2D" type="Area2D" parent="hand"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hand/Area2D"]
+shape = SubResource("CircleShape2D_6f314")
+
+[node name="Timer" type="Timer" parent="hand"]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_0i227")
+
+[node name="makepath" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="body_entered" from="hand/Area2D" to="hand" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="hand/Area2D" to="hand" method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="hand/Timer" to="hand" method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="makepath" to="." method="_on_makepath_timeout"]

@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://7hlgyyosjg53"]
+
+[ext_resource type="Script" path="res://obj/bullet.gd" id="1_en8r4"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yujiv"]
+radius = 5.0
+height = 20.0
+
+[node name="bullet" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("1_en8r4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_yujiv")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.921569, 0.368627, 0.592157, 1)
+polygon = PackedVector2Array(-7, 0, 6, -3, 6, 3)

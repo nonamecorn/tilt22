@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://jtesh1ni1jmd"]
+
+[ext_resource type="PackedScene" uid="uid://c1bqgv0i3byic" path="res://obj/player.tscn" id="1_c6jsy"]
+[ext_resource type="Texture2D" uid="uid://cd4qoowomh6kn" path="res://img/spaceholder.png" id="1_n3ckk"]
+[ext_resource type="PackedScene" uid="uid://yuy1qsp1j3mu" path="res://obj/big_rock.tscn" id="2_hnh3m"]
+[ext_resource type="PackedScene" uid="uid://byjsltkqygf35" path="res://obj/enemy.tscn" id="4_0my7x"]
+
+[node name="world" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(524, 267)
+texture = ExtResource("1_n3ckk")
+region_enabled = true
+region_rect = Rect2(-1419.17, -703.787, 3607.63, 1819)
+
+[node name="player" parent="." instance=ExtResource("1_c6jsy")]
+position = Vector2(524, 302)
+linear_damp = 0.75
+
+[node name="big_rock" parent="." instance=ExtResource("2_hnh3m")]
+position = Vector2(213, 154)
+
+[node name="big_rock2" parent="." instance=ExtResource("2_hnh3m")]
+position = Vector2(922, 450)
+
+[node name="big_rock3" parent="." instance=ExtResource("2_hnh3m")]
+position = Vector2(892, 68)
+
+[node name="big_rock4" parent="." instance=ExtResource("2_hnh3m")]
+position = Vector2(394, 542)
+
+[node name="enemy" parent="." instance=ExtResource("4_0my7x")]
+position = Vector2(763, 279)
+
+[node name="enemy2" parent="." instance=ExtResource("4_0my7x")]
+position = Vector2(296, 306)
