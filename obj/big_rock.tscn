@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://obj/big_rock.gd" id="1_jsasq"]
 [ext_resource type="Texture2D" uid="uid://bse8x6et2voqn" path="res://img/bigrock.png" id="2_x80e5"]
 
-[node name="big_rock" type="RigidBody2D"]
-mass = 500.0
+[node name="big_rock" type="RigidBody2D" groups=["attachable"]]
+mass = 200.0
 linear_damp = -0.1
 script = ExtResource("1_jsasq")
 

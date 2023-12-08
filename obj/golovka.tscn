@@ -1,0 +1,136 @@
+[gd_scene load_steps=10 format=3 uid="uid://cees3233t45jo"]
+
+[ext_resource type="Script" path="res://obj/golovka.gd" id="1_kgwr8"]
+[ext_resource type="PackedScene" uid="uid://d1tj1gnbf55cb" path="res://obj/chain.tscn" id="2_a3m0l"]
+[ext_resource type="Texture2D" uid="uid://bws5dgdwjym2v" path="res://img/grap.png" id="2_e1uog"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n8q3s"]
+atlas = ExtResource("2_e1uog")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qg5r4"]
+atlas = ExtResource("2_e1uog")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skirj"]
+atlas = ExtResource("2_e1uog")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pjdlq"]
+atlas = ExtResource("2_e1uog")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l8d6i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n8q3s")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qg5r4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skirj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pjdlq")
+}],
+"loop": true,
+"name": &"fire",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_li4mw"]
+radius = 5.0
+height = 16.0
+
+[node name="golovka" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 5
+max_contacts_reported = 1
+contact_monitor = true
+angular_damp = 1.0
+script = ExtResource("1_kgwr8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_l8d6i")
+animation = &"fire"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_li4mw")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+node_a = NodePath("..")
+
+[node name="chain" parent="." instance=ExtResource("2_a3m0l")]
+visible = false
+position = Vector2(0, 19)
+
+[node name="PinJoint2D" parent="chain" index="1"]
+node_a = NodePath("../..")
+
+[node name="chain2" parent="." instance=ExtResource("2_a3m0l")]
+visible = false
+position = Vector2(-9, 22)
+rotation = 2.4226
+
+[node name="PinJoint2D" parent="chain2" index="1"]
+node_a = NodePath("../../chain")
+
+[node name="chain3" parent="." instance=ExtResource("2_a3m0l")]
+visible = false
+position = Vector2(-15, 26)
+rotation = -0.176016
+
+[node name="PinJoint2D" parent="chain3" index="1"]
+node_a = NodePath("../../chain2")
+
+[node name="chain4" parent="." instance=ExtResource("2_a3m0l")]
+visible = false
+position = Vector2(-2, 41)
+rotation = -1.21071
+
+[node name="PinJoint2D" parent="chain4" index="1"]
+node_a = NodePath("../../chain3")
+
+[node name="chain5" parent="." instance=ExtResource("2_a3m0l")]
+visible = false
+position = Vector2(17, 37)
+rotation = -2.39443
+
+[node name="PinJoint2D" parent="chain5" index="1"]
+node_a = NodePath("../../chain4")
+
+[node name="chain6" parent="." instance=ExtResource("2_a3m0l")]
+visible = false
+position = Vector2(16, 20)
+rotation = -3.99208
+
+[node name="PinJoint2D" parent="chain6" index="1"]
+node_a = NodePath("../../chain5")
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="."]
+position = Vector2(9, 14)
+node_a = NodePath("../chain6")
+
+[node name="PinJoint2D3" type="PinJoint2D" parent="."]
+position = Vector2(0, -7)
+node_b = NodePath("..")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 6.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+
+[editable path="chain"]
+[editable path="chain2"]
+[editable path="chain3"]
+[editable path="chain4"]
+[editable path="chain5"]
+[editable path="chain6"]

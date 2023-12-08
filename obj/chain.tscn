@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1tj1gnbf55cb"]
+
+[ext_resource type="Script" path="res://obj/chain.gd" id="1_u5v3y"]
+[ext_resource type="Texture2D" uid="uid://cnvjh6lmd21qp" path="res://img/chainimg.png" id="2_m8ypc"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_phw3s"]
+radius = 2.0
+height = 10.0
+
+[node name="chain" type="RigidBody2D"]
+collision_layer = 8
+collision_mask = 13
+max_contacts_reported = 2
+contact_monitor = true
+script = ExtResource("1_u5v3y")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+position = Vector2(0, -7)
+node_b = NodePath("..")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_m8ypc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_phw3s")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

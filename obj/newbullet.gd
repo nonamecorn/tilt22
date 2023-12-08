@@ -1,11 +1,12 @@
 extends RigidBody2D
 
-
+var rng = RandomNumberGenerator.new()
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	rng.randomize()
+	
 func init(vec: Vector2):
-	apply_impulse(Vector2(0,-1000).rotated(global_rotation) + vec)
+	apply_impulse(Vector2(0,-1000).rotated(global_rotation + rng.randf_range(-0.02,0.02)) + vec)
 
 
 

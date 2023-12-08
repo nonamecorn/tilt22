@@ -6,7 +6,8 @@ var bullet_objs = [
 	"res://obj/smallrock.tscn",
 	"res://obj/medium_rock.tscn",
 	"res://obj/enemy.tscn",
-	"res://obj/big_rock.tscn"
+	"res://obj/big_rock.tscn",
+	"res://obj/cruiser.tscn"
 ]
 
 var rng = RandomNumberGenerator.new()

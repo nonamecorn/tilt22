@@ -1,12 +1,11 @@
-[gd_scene load_steps=23 format=3 uid="uid://c1bqgv0i3byic"]
+[gd_scene load_steps=22 format=3 uid="uid://c1bqgv0i3byic"]
 
 [ext_resource type="Script" path="res://obj/player.gd" id="1_tlux8"]
 [ext_resource type="Texture2D" uid="uid://c1ae2myj2p6tg" path="res://img/playership.png" id="2_due4w"]
-[ext_resource type="Script" path="res://obj/dehand.gd" id="2_e0ofg"]
 [ext_resource type="Texture2D" uid="uid://d2ubeqcafy8a2" path="res://img/dampanim.png" id="3_xl10k"]
 [ext_resource type="Texture2D" uid="uid://dg8h761vel14l" path="res://img/mainenginefire.png" id="4_pwyxm"]
 [ext_resource type="Texture2D" uid="uid://da5xc1oc65sjk" path="res://img/truster_anim.png" id="5_acp8x"]
-[ext_resource type="Texture2D" uid="uid://ydglk0ma4x0m" path="res://img/turret1.png" id="6_yjbop"]
+[ext_resource type="PackedScene" uid="uid://cn7kxpcbnvp8m" path="res://obj/hand.tscn" id="7_r03ct"]
 [ext_resource type="Script" path="res://obj/Area2D.gd" id="8_ik6ul"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_q8ogj"]
@@ -105,7 +104,7 @@ animations = [{
 "speed": 30.0
 }]
 
-[node name="player" type="RigidBody2D"]
+[node name="player" type="RigidBody2D" groups=["attachable", "player"]]
 collision_layer = 2
 collision_mask = 3
 mass = 80.0
@@ -126,7 +125,7 @@ visible = false
 position = Vector2(19, 13)
 sprite_frames = SubResource("SpriteFrames_gf8ad")
 autoplay = "default"
-frame_progress = 0.984915
+frame_progress = 0.42834
 
 [node name="damp2" type="AnimatedSprite2D" parent="Playership"]
 visible = false
@@ -134,21 +133,21 @@ position = Vector2(-19, 13)
 scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_gf8ad")
 autoplay = "default"
-frame_progress = 0.984915
+frame_progress = 0.42834
 
 [node name="engine" type="AnimatedSprite2D" parent="Playership"]
 visible = false
 position = Vector2(0, 27)
 sprite_frames = SubResource("SpriteFrames_rkkv0")
 autoplay = "default"
-frame_progress = 0.343846
+frame_progress = 0.285451
 
 [node name="torque1" type="AnimatedSprite2D" parent="Playership"]
 visible = false
 position = Vector2(17, -15)
 sprite_frames = SubResource("SpriteFrames_p8iht")
 autoplay = "default"
-frame_progress = 0.984915
+frame_progress = 0.42834
 
 [node name="torque2" type="AnimatedSprite2D" parent="Playership"]
 visible = false
@@ -156,18 +155,7 @@ position = Vector2(-17, -15)
 scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_p8iht")
 autoplay = "default"
-frame_progress = 0.984915
-
-[node name="hand" type="Node2D" parent="."]
-position = Vector2(-8, -12)
-script = ExtResource("2_e0ofg")
-
-[node name="Turret1" type="Sprite2D" parent="hand"]
-position = Vector2(0, -9)
-texture = ExtResource("6_yjbop")
-
-[node name="Marker2D" type="Marker2D" parent="hand"]
-position = Vector2(0, -19)
+frame_progress = 0.42834
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -177,7 +165,12 @@ script = ExtResource("8_ik6ul")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PackedVector2Array(-3306, -2179, 3957, -2358, 4110, 2874, -3281, 2874, -3319, -2722, -3820, -2687, -3752, 3135, 4520, 3231, 4296, -2833, -3313, -2681)
 
+[node name="Timer" type="Timer" parent="Area2D"]
+wait_time = 2.0
+autostart = true
+
 [node name="children" type="Node2D" parent="Area2D"]
+scale = Vector2(0.5, 0.5)
 
 [node name="Marker2D" type="Marker2D" parent="Area2D/children"]
 position = Vector2(-1536, 1572)
@@ -227,9 +220,8 @@ position = Vector2(-1799, 633)
 [node name="Marker2D16" type="Marker2D" parent="Area2D/children"]
 position = Vector2(-1602, 1042)
 
-[node name="Timer" type="Timer" parent="Area2D"]
-wait_time = 3.0
-autostart = true
+[node name="hand" parent="." instance=ExtResource("7_r03ct")]
+position = Vector2(-8, -12)
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
 [connection signal="timeout" from="Area2D/Timer" to="Area2D" method="_on_timer_timeout"]

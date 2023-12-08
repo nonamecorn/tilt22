@@ -6,8 +6,8 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_o0b2b"]
 radius = 13.0384
 
-[node name="smallrock" type="RigidBody2D"]
-mass = 50.0
+[node name="smallrock" type="RigidBody2D" groups=["attachable"]]
+mass = 30.0
 script = ExtResource("1_1i7in")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
