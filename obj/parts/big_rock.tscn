@@ -1,0 +1,73 @@
+[gd_scene load_steps=6 format=3 uid="uid://yuy1qsp1j3mu"]
+
+[ext_resource type="Script" path="res://obj/parts/big_rock.gd" id="1_jsasq"]
+[ext_resource type="Texture2D" uid="uid://bse8x6et2voqn" path="res://img/bigrock.png" id="2_x80e5"]
+
+[sub_resource type="Animation" id="Animation_tyo6x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bigrock:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_isgni"]
+resource_name = "tryaska"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bigrock:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-2, -2), Vector2(2, 2), Vector2(-2, 2), Vector2(2, -2), Vector2(2, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0qa7b"]
+_data = {
+"RESET": SubResource("Animation_tyo6x"),
+"tryaska": SubResource("Animation_isgni")
+}
+
+[node name="big_rock" type="RigidBody2D" groups=["attachable"]]
+collision_mask = 23
+mass = 200.0
+linear_damp = -0.1
+script = ExtResource("1_jsasq")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-1, 6)
+polygon = PackedVector2Array(-21, -51, 8, -52, 41, -43, 53, -9, 48, 21, 28, 37, -9, 44, -43, 22, -49, -6, -36, -40)
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+
+[node name="Bigrock" type="Sprite2D" parent="."]
+texture = ExtResource("2_x80e5")
+
+[node name="children" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="children"]
+position = Vector2(-22, -17)
+
+[node name="Marker2D2" type="Marker2D" parent="children"]
+position = Vector2(27, -19)
+
+[node name="Marker2D3" type="Marker2D" parent="children"]
+position = Vector2(6, 18)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0qa7b")
+}

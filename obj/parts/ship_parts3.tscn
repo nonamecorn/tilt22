@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://0dg3ni0lap87"]
+
+[ext_resource type="Script" path="res://obj/parts/smallrock.gd" id="1_y5wkk"]
+[ext_resource type="Texture2D" uid="uid://bjd4fysji87mx" path="res://img/mess4.png" id="2_yju0w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o0b2b"]
+radius = 13.0384
+
+[node name="smallrock" type="RigidBody2D" groups=["attachable"]]
+collision_mask = 23
+mass = 30.0
+script = ExtResource("1_y5wkk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_yju0w")
+hframes = 2
+vframes = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_o0b2b")

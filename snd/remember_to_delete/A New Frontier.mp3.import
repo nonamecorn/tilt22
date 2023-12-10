@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c8aqn0iqmugy8"
+path="res://.godot/imported/A New Frontier.mp3-2acbb553d73e6e7838e8fe20d72c74a1.mp3str"
+
+[deps]
+
+source_file="res://snd/remember_to_delete/A New Frontier.mp3"
+dest_files=["res://.godot/imported/A New Frontier.mp3-2acbb553d73e6e7838e8fe20d72c74a1.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

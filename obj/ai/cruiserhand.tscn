@@ -1,0 +1,85 @@
+[gd_scene load_steps=11 format=3 uid="uid://4cjmvwdfjtym"]
+
+[ext_resource type="Script" path="res://obj/ai/cruiserhand.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://ydglk0ma4x0m" path="res://img/turret1.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://dnfsrrw3ce65m" path="res://img/muzzle.png" id="3_62bke"]
+
+[sub_resource type="CircleShape2D" id="1"]
+radius = 285.253
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ixycm"]
+atlas = ExtResource("3_62bke")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1bb4b"]
+atlas = ExtResource("3_62bke")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3erkj"]
+atlas = ExtResource("3_62bke")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34lje"]
+atlas = ExtResource("3_62bke")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c6res"]
+atlas = ExtResource("3_62bke")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_71jr6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ixycm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1bb4b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3erkj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_34lje")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c6res")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 30.0
+}]
+
+[node name="hand" type="Node2D"]
+position = Vector2(-7, -13)
+script = ExtResource("1")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, -18)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("1")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.3
+
+[node name="Turret1" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+texture = ExtResource("2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -34)
+sprite_frames = SubResource("SpriteFrames_71jr6")
+frame = 5
+frame_progress = 1.0
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
