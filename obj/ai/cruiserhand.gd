@@ -17,6 +17,7 @@ func _physics_process(_delta):
 		global_rotation = atan2(look_vec.y, look_vec.x)
 
 func fire():
+	$AnimatedSprite2D.play()
 	var bullet_obj = load(bullet_path)
 	var bullet_inst = bullet_obj.instantiate()
 	bullet_inst.global_position = $Marker2D.global_position

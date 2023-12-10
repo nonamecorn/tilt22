@@ -24,7 +24,7 @@ func fire():
 	var bullet_inst = bullet_obj.instantiate()
 	bullet_inst.global_position = $Marker2D.global_position
 	bullet_inst.global_rotation = $Marker2D.global_rotation
-	bullet_inst.init(get_parent().linear_velocity)
+	bullet_inst.init(get_parent().get_parent().linear_velocity)
 	get_tree().current_scene.add_child(bullet_inst)
 
 

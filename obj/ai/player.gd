@@ -1,8 +1,10 @@
 extends RigidBody2D
 
 var hp = 50;
+var gear1 = preload("res://obj/ai/hand.tscn")
+var gear2 = preload("res://obj/ai/harpoongun.tscn")
 var state = ALIVE;
-var bullet_obj = preload("res://obj/parts/ship_parts3.tscn")
+var bullet_obj = preload("res://obj/parts/ship_parts4.tscn")
 enum {
 	DEAD,
 	ALIVE
@@ -23,7 +25,7 @@ func move():
 		apply_force(Vector2(0, -12000).rotated(rotation));
 		apply_central_force(Vector2(0,0))
 		$Playership/damp1.hide();$Playership/damp2.hide();$Playership/engine.show()
-		linear_damp = 0
+		linear_damp = 0.25
 	else:
 		$Playership/damp1.show();$Playership/damp2.show();$Playership/engine.hide()
 		linear_damp = 0.75
@@ -34,7 +36,7 @@ func move():
 		linear_damp = 0
 	elif !Input.is_action_pressed("ui_up"):
 		$Playership/damp1.hide();$Playership/damp2.hide(); linear_damp = 0.75
-	else: $Playership/damp1.hide();$Playership/damp2.hide(); linear_damp = 0
+	else: $Playership/damp1.hide();$Playership/damp2.hide(); linear_damp = 0.25
 	if Input.is_action_pressed("ui_left"):
 		$Playership/torque1.show()
 		$Playership/torque3.show()
@@ -45,7 +47,14 @@ func move():
 		$Playership/torque2.show()
 		apply_torque(100000);
 	else: $Playership/torque2.hide(); $Playership/torque4.hide()
-	
+	if Input.is_action_just_pressed("ui_1"):
+		if $Marker2D.get_children().size() == 1:
+			$Marker2D.get_child(0).queue_free()
+		$Marker2D.add_child(gear1.instantiate())
+	if Input.is_action_just_pressed("ui_2"):
+		if $Marker2D.get_children().size() == 1:
+			$Marker2D.get_child(0).queue_free()
+		$Marker2D.add_child(gear2.instantiate())
 
 func hurt(_death):
 	$AnimationPlayer.play("tryaska")
@@ -65,9 +74,9 @@ func die():
 		bullet_inst.frame = childmark.get_index()
 		call_deferred("add", bullet_inst)
 	linear_damp = 0
-	$hand.dead = true
+	$Marker2D.get_child(0).dead = true
 	$Playership.hide()
-	$hand.hide()
+	$Marker2D.hide()
 
 func add(de_bullet_inst):
 	get_tree().current_scene.add_child(de_bullet_inst)

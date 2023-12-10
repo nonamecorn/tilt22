@@ -50,7 +50,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"default",
-"speed": 30.0
+"speed": 20.0
 }]
 
 [node name="hand" type="Node2D"]

@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://dchd4oc66lp6g"]
+
+[ext_resource type="Script" path="res://obj/ai/harpoongun.gd" id="1_rrhtg"]
+[ext_resource type="Texture2D" uid="uid://udfs1otg4t74" path="res://img/harpooner.png" id="1_u2y4k"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uimjg"]
+radius = 6.0
+height = 12.0
+
+[node name="harpoongun" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_rrhtg")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+node_a = NodePath("..")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, -16)
+
+[node name="Turret1" type="Sprite2D" parent="."]
+texture = ExtResource("1_u2y4k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_uimjg")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
