@@ -16,6 +16,7 @@ var bullet_objs = [
 	"res://obj/ai/enemy.tscn",
 	"res://obj/ai/enemy2.tscn",
 	"res://obj/ai/enemy2.tscn",
+	"res://obj/ai/tanker.tscn",
 	"res://obj/ai/cruiser.tscn"
 ]
 

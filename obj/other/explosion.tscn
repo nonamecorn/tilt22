@@ -1,0 +1,87 @@
+[gd_scene load_steps=12 format=3 uid="uid://pvcgvcuxic2h"]
+
+[ext_resource type="Texture2D" uid="uid://dpmqhw32gbaff" path="res://img/explosion.png" id="1_4qc3v"]
+[ext_resource type="Script" path="res://obj/other/explosion.gd" id="1_u61it"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ki18t"]
+radius = 57.1402
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7v3ea"]
+atlas = ExtResource("1_4qc3v")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bay3f"]
+atlas = ExtResource("1_4qc3v")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvdl6"]
+atlas = ExtResource("1_4qc3v")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_prvwc"]
+atlas = ExtResource("1_4qc3v")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eqr1q"]
+atlas = ExtResource("1_4qc3v")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8txry"]
+atlas = ExtResource("1_4qc3v")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ginm1"]
+atlas = ExtResource("1_4qc3v")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h72ap"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7v3ea")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bay3f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lvdl6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_prvwc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eqr1q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8txry")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ginm1")
+}],
+"loop": false,
+"name": &"default",
+"speed": 20.0
+}]
+
+[node name="explosion" type="Area2D"]
+collision_layer = 0
+collision_mask = 23
+script = ExtResource("1_u61it")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ki18t")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_h72ap")
+autoplay = "default"
+frame = 6
+frame_progress = 1.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+autostart = true
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

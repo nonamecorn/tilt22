@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://b10wcqhmeuebm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6rdf6"]
+
+[node name="rat_king" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 21
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6rdf6")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(-2, -11, -9, 2, 3, 8, 10, -2)

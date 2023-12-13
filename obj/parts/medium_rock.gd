@@ -17,6 +17,7 @@ func hurt(ded):
 			var bullet_inst = bullet_obj.instantiate()
 			bullet_inst.global_position = childmark.global_position
 			bullet_inst.global_rotation = childmark.global_rotation
+			bullet_inst.frame = childmark.get_index()
 			call_deferred("add", bullet_inst)
 			
 		queue_free()

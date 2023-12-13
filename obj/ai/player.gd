@@ -3,6 +3,7 @@ extends RigidBody2D
 var hp = 50;
 var gear1 = preload("res://obj/ai/hand.tscn")
 var gear2 = preload("res://obj/ai/harpoongun.tscn")
+var gear3 = preload("res://obj/ai/rocket_launcher.tscn")
 var state = ALIVE;
 var bullet_obj = preload("res://obj/parts/ship_parts4.tscn")
 enum {
@@ -55,6 +56,10 @@ func move():
 		if $Marker2D.get_children().size() == 1:
 			$Marker2D.get_child(0).queue_free()
 		$Marker2D.add_child(gear2.instantiate())
+	if Input.is_action_just_pressed("ui_3"):
+		if $Marker2D.get_children().size() == 1:
+			$Marker2D.get_child(0).queue_free()
+		$Marker2D.add_child(gear3.instantiate())
 
 func hurt(_death):
 	$AnimationPlayer.play("tryaska")

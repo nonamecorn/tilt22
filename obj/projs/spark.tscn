@@ -40,6 +40,7 @@ animations = [{
 }]
 
 [node name="spark" type="AnimatedSprite2D"]
+scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_yvnss")
 autoplay = "default"
 frame = 3

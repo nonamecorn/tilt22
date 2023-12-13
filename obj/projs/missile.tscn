@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://buwjblrto3gq4"]
+
+[ext_resource type="Script" path="res://obj/projs/missile.gd" id="1_emsjm"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_perpp"]
+height = 40.0
+
+[node name="missile" type="RigidBody2D" node_paths=PackedStringArray("nav_agent")]
+collision_layer = 8
+collision_mask = 21
+mass = 5.0
+max_contacts_reported = 1
+contact_monitor = true
+linear_damp = 2.0
+angular_damp = 1.0
+script = ExtResource("1_emsjm")
+nav_agent = NodePath("NavigationAgent2D")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-3, -29, 3, -30, 8, -18, 3, -6, 7, 7, -7, 7, -3, -6, -8, -16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -11)
+shape = SubResource("CapsuleShape2D_perpp")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 20
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(0, -1, -197, -413, 187, -417)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
+
+[node name="makepath" type="Timer" parent="."]
+wait_time = 0.3
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+
+[node name="arm" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="makepath" to="." method="_on_makepath_timeout"]
+[connection signal="timeout" from="arm" to="." method="_on_arm_timeout"]

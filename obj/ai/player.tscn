@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://cf2ascm2aqyew"]
+[gd_scene load_steps=36 format=3 uid="uid://cf2ascm2aqyew"]
 
 [ext_resource type="Script" path="res://obj/ai/player.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://c1ae2myj2p6tg" path="res://img/playership.png" id="2"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://obj/ai/Area2D.gd" id="7"]
 [ext_resource type="Script" path="res://obj/ai/playerCamera2D.gd" id="7_84sue"]
 [ext_resource type="PackedScene" uid="uid://cxe7tkk6rycen" path="res://obj/ai/hand.tscn" id="8"]
+[ext_resource type="Script" path="res://obj/ai/Polygon2D.gd" id="10_m71gl"]
 
 [sub_resource type="NavigationPolygon" id="1"]
 vertices = PackedVector2Array(3878, 2797, -3141, 2741, -3255, -1919, 3784, -2090)
@@ -163,6 +164,21 @@ animations = [{
 "speed": 15.0
 }]
 
+[sub_resource type="Animation" id="Animation_gwfnt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Playership:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_malec"]
 resource_name = "tryaska"
 length = 0.3
@@ -180,21 +196,6 @@ tracks/0/keys = {
 "values": [Vector2(0, 0), Vector2(-2, -2), Vector2(2, 2), Vector2(2, 0), Vector2(-2, 2), Vector2(2, -2), Vector2(0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_gwfnt"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Playership:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ddkqm"]
 _data = {
 "RESET": SubResource("Animation_gwfnt"),
@@ -202,8 +203,8 @@ _data = {
 }
 
 [node name="player" type="RigidBody2D" groups=["attachable", "killable", "player"]]
-collision_layer = 2
-collision_mask = 23
+collision_layer = 0
+collision_mask = 21
 mass = 80.0
 max_contacts_reported = 1
 contact_monitor = true
@@ -285,6 +286,8 @@ drag_bottom_margin = 0.03
 script = ExtResource("7_84sue")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 255
 script = ExtResource("7")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
@@ -295,52 +298,53 @@ wait_time = 3.0
 autostart = true
 
 [node name="children" type="Node2D" parent="Area2D"]
-scale = Vector2(0.5, 0.5)
+position = Vector2(-60, -66)
+scale = Vector2(0.7, 0.7)
 
 [node name="Marker2D" type="Marker2D" parent="Area2D/children"]
-position = Vector2(-1536, 1572)
+position = Vector2(-1981.43, 2051.43)
 
 [node name="Marker2D2" type="Marker2D" parent="Area2D/children"]
-position = Vector2(-513, 1940)
+position = Vector2(-804.286, 1802.86)
 
 [node name="Marker2D3" type="Marker2D" parent="Area2D/children"]
-position = Vector2(475, 1841)
+position = Vector2(662.857, 2491.43)
 
 [node name="Marker2D4" type="Marker2D" parent="Area2D/children"]
-position = Vector2(1561, 1482)
+position = Vector2(1252.86, 1635.71)
 
 [node name="Marker2D5" type="Marker2D" parent="Area2D/children"]
-position = Vector2(2069, 988)
+position = Vector2(2342.86, 1312.86)
 
 [node name="Marker2D6" type="Marker2D" parent="Area2D/children"]
 position = Vector2(2353, 272)
 
 [node name="Marker2D7" type="Marker2D" parent="Area2D/children"]
-position = Vector2(2299, -583)
+position = Vector2(3018.57, -737.143)
 
 [node name="Marker2D8" type="Marker2D" parent="Area2D/children"]
 position = Vector2(1933, -1173)
 
 [node name="Marker2D9" type="Marker2D" parent="Area2D/children"]
-position = Vector2(1373, -1544)
+position = Vector2(1595.71, -2194.29)
 
 [node name="Marker2D10" type="Marker2D" parent="Area2D/children"]
 position = Vector2(591, -1615)
 
 [node name="Marker2D11" type="Marker2D" parent="Area2D/children"]
-position = Vector2(-397, -1444)
+position = Vector2(-524.286, -2170)
 
 [node name="Marker2D12" type="Marker2D" parent="Area2D/children"]
 position = Vector2(-1331, -1228)
 
 [node name="Marker2D13" type="Marker2D" parent="Area2D/children"]
-position = Vector2(-1825, -645)
+position = Vector2(-2514.29, -825.714)
 
 [node name="Marker2D14" type="Marker2D" parent="Area2D/children"]
 position = Vector2(-1831, -48)
 
 [node name="Marker2D15" type="Marker2D" parent="Area2D/children"]
-position = Vector2(-1799, 633)
+position = Vector2(-2578.57, 668.571)
 
 [node name="Marker2D16" type="Marker2D" parent="Area2D/children"]
 position = Vector2(-1602, 1042)
@@ -351,6 +355,7 @@ position = Vector2(-8, -10)
 [node name="hand" parent="Marker2D" instance=ExtResource("8")]
 
 [node name="children" type="Node2D" parent="."]
+visible = false
 
 [node name="Marker2D" type="Marker2D" parent="children"]
 position = Vector2(10, -15)
@@ -365,6 +370,21 @@ position = Vector2(0, 10)
 libraries = {
 "": SubResource("AnimationLibrary_ddkqm")
 }
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.862745, 0.862745, 0.862745, 1)
+polygon = PackedVector2Array(46, -16, 61, 0, 46, 14, 50, 0)
+script = ExtResource("10_m71gl")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

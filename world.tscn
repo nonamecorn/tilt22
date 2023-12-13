@@ -43,3 +43,6 @@ position = Vector2(66, 139)
 
 [node name="cruiser" parent="." instance=ExtResource("5_ayamy")]
 position = Vector2(434, 670)
+
+[node name="spawn" type="Marker2D" parent="." groups=["spawn"]]
+position = Vector2(527, 201)

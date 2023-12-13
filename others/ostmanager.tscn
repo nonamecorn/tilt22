@@ -12,23 +12,23 @@ script = ExtResource("1_fepu3")
 
 [node name="A New Frontier" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_mityk")
-volume_db = -15.0
+volume_db = -20.0
 
 [node name="All Systems, Go!" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_awi7l")
-volume_db = -15.0
+volume_db = -20.0
 
 [node name="Base of the Titans" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_2vrav")
-volume_db = -15.0
+volume_db = -20.0
 
 [node name="Every Day Is Night" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_mwh5q")
-volume_db = -15.0
+volume_db = -20.0
 
 [node name="Out of Orbit" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_vs08o")
-volume_db = -15.0
+volume_db = -20.0
 
 [connection signal="finished" from="A New Frontier" to="." method="_on_song_finished"]
 [connection signal="finished" from="All Systems, Go!" to="." method="_on_song_finished"]
