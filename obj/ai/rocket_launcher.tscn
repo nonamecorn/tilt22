@@ -1,53 +1,46 @@
-[gd_scene load_steps=10 format=3 uid="uid://cs8kp3j4b8ful"]
+[gd_scene load_steps=9 format=3 uid="uid://cs8kp3j4b8ful"]
 
 [ext_resource type="Script" path="res://obj/ai/rocket_launcher.gd" id="1_338wo"]
-[ext_resource type="Texture2D" uid="uid://ydglk0ma4x0m" path="res://img/turret1.png" id="2_jo33k"]
-[ext_resource type="Texture2D" uid="uid://dnfsrrw3ce65m" path="res://img/muzzle.png" id="3_wpqjh"]
+[ext_resource type="Texture2D" uid="uid://fvs1baf6kr2v" path="res://img/missile_launcher.png" id="2_chxqx"]
+[ext_resource type="Texture2D" uid="uid://cn0xus0fjtwsb" path="res://img/backblast.png" id="3_8wirh"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_y8wj1"]
-atlas = ExtResource("3_wpqjh")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sstf6"]
-atlas = ExtResource("3_wpqjh")
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7yly"]
+atlas = ExtResource("3_8wirh")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8c1kg"]
-atlas = ExtResource("3_wpqjh")
+[sub_resource type="AtlasTexture" id="AtlasTexture_w0s30"]
+atlas = ExtResource("3_8wirh")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q56cv"]
+atlas = ExtResource("3_8wirh")
 region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vkymx"]
-atlas = ExtResource("3_wpqjh")
+[sub_resource type="AtlasTexture" id="AtlasTexture_rroid"]
+atlas = ExtResource("3_8wirh")
 region = Rect2(96, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mhc1m"]
-atlas = ExtResource("3_wpqjh")
-region = Rect2(128, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_vfm4l"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_t06l2"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_y8wj1")
+"texture": SubResource("AtlasTexture_a7yly")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_sstf6")
+"texture": SubResource("AtlasTexture_w0s30")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8c1kg")
+"texture": SubResource("AtlasTexture_q56cv")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vkymx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mhc1m")
+"texture": SubResource("AtlasTexture_rroid")
 }, {
 "duration": 1.0,
 "texture": null
 }],
 "loop": false,
 "name": &"default",
-"speed": 40.0
+"speed": 20.0
 }]
 
 [node name="rocket_launcher" type="Node2D"]
@@ -58,8 +51,22 @@ position = Vector2(0, -18)
 
 [node name="Turret1" type="Sprite2D" parent="."]
 position = Vector2(0, -8)
-texture = ExtResource("2_jo33k")
+texture = ExtResource("2_chxqx")
+hframes = 2
+frame = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -34)
-sprite_frames = SubResource("SpriteFrames_vfm4l")
+position = Vector2(0, 10)
+sprite_frames = SubResource("SpriteFrames_t06l2")
+frame = 4
+frame_progress = 1.0
+
+[node name="delay" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+
+[connection signal="timeout" from="delay" to="." method="_on_delay_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

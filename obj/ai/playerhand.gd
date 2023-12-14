@@ -14,6 +14,7 @@ func _physics_process(_delta):
 		look_vec = (get_global_mouse_position() - global_position).rotated(PI/2)
 		global_rotation = atan2(look_vec.y, look_vec.x)
 		if Input.is_action_just_pressed("ui_lclick"):
+			fire()
 			$Timer.start()
 		if Input.is_action_just_released("ui_lclick"):
 			$Timer.stop()

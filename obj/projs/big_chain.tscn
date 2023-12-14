@@ -4,11 +4,13 @@
 [ext_resource type="Script" path="res://obj/projs/big_chain.gd" id="1_t6lcb"]
 
 [node name="big_chain" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 21
 script = ExtResource("1_t6lcb")
 
 [node name="chain" parent="." instance=ExtResource("1_rqkk5")]
 position = Vector2(0, 19)
-collision_mask = 31
+collision_mask = 29
 
 [node name="PinJoint2D" parent="chain" index="0"]
 node_a = NodePath("../..")

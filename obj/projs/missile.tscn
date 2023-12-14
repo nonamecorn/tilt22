@@ -1,9 +1,71 @@
-[gd_scene load_steps=3 format=3 uid="uid://buwjblrto3gq4"]
+[gd_scene load_steps=14 format=3 uid="uid://buwjblrto3gq4"]
 
 [ext_resource type="Script" path="res://obj/projs/missile.gd" id="1_emsjm"]
+[ext_resource type="Texture2D" uid="uid://dy7invdyvnrsr" path="res://img/missile.png" id="2_o2u0a"]
+[ext_resource type="Texture2D" uid="uid://da5xc1oc65sjk" path="res://img/truster_anim.png" id="3_kl2kx"]
+[ext_resource type="Texture2D" uid="uid://dw50dojoxmxkb" path="res://img/missileburner.png" id="3_u22ip"]
+
+[sub_resource type="AtlasTexture" id="8"]
+atlas = ExtResource("3_kl2kx")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="9"]
+atlas = ExtResource("3_kl2kx")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="10"]
+atlas = ExtResource("3_kl2kx")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e7xd8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("8")
+}, {
+"duration": 1.0,
+"texture": SubResource("9")
+}, {
+"duration": 1.0,
+"texture": SubResource("10")
+}],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rtrco"]
+atlas = ExtResource("3_u22ip")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v08n6"]
+atlas = ExtResource("3_u22ip")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_detu6"]
+atlas = ExtResource("3_u22ip")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_krbgl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rtrco")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v08n6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_detu6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 20.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_perpp"]
-height = 40.0
+radius = 5.0
+height = 28.0
 
 [node name="missile" type="RigidBody2D" node_paths=PackedStringArray("nav_agent")]
 collision_layer = 8
@@ -11,13 +73,34 @@ collision_mask = 21
 mass = 5.0
 max_contacts_reported = 1
 contact_monitor = true
-linear_damp = 2.0
+linear_damp = 0.25
 angular_damp = 1.0
 script = ExtResource("1_emsjm")
 nav_agent = NodePath("NavigationAgent2D")
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-polygon = PackedVector2Array(-3, -29, 3, -30, 8, -18, 3, -6, 7, 7, -7, 7, -3, -6, -8, -16)
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -10)
+texture = ExtResource("2_o2u0a")
+
+[node name="torque1" type="AnimatedSprite2D" parent="Sprite2D"]
+visible = false
+position = Vector2(3, 1)
+sprite_frames = SubResource("SpriteFrames_e7xd8")
+autoplay = "default"
+
+[node name="torque2" type="AnimatedSprite2D" parent="Sprite2D"]
+visible = false
+position = Vector2(-3, 1)
+scale = Vector2(-1, 1)
+sprite_frames = SubResource("SpriteFrames_e7xd8")
+autoplay = "default"
+
+[node name="engine" type="AnimatedSprite2D" parent="Sprite2D" groups=["killable"]]
+visible = false
+position = Vector2(0, 13)
+sprite_frames = SubResource("SpriteFrames_krbgl")
+autoplay = "default"
+frame_progress = 0.473978
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -11)
@@ -28,7 +111,7 @@ collision_layer = 0
 collision_mask = 20
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-polygon = PackedVector2Array(0, -1, -197, -413, 187, -417)
+polygon = PackedVector2Array(-47, 28, -470, -87, -329, -453, 1, -674, 316, -435, 500, -89, 54, 29)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 debug_enabled = true
@@ -36,10 +119,13 @@ debug_enabled = true
 [node name="makepath" type="Timer" parent="."]
 wait_time = 0.3
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
-
 [node name="arm" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.1
+one_shot = true
+autostart = true
+
+[node name="thump" type="Timer" parent="."]
+wait_time = 0.3
 one_shot = true
 autostart = true
 
@@ -49,3 +135,4 @@ autostart = true
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="timeout" from="makepath" to="." method="_on_makepath_timeout"]
 [connection signal="timeout" from="arm" to="." method="_on_arm_timeout"]
+[connection signal="timeout" from="thump" to="." method="_on_thump_timeout"]

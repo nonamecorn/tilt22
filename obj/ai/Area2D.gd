@@ -12,11 +12,12 @@ var bullet_objs = [
 	"res://obj/parts/big_rock.tscn",
 	"res://obj/parts/medium_rock.tscn",
 	"res://obj/parts/big_rock.tscn",
+	"res://obj/parts/explosive_rock.tscn",
+	"res://obj/parts/explosive_rock.tscn",
 	"res://obj/ai/enemy.tscn",
 	"res://obj/ai/enemy.tscn",
 	"res://obj/ai/enemy2.tscn",
 	"res://obj/ai/enemy2.tscn",
-	"res://obj/ai/tanker.tscn",
 	"res://obj/ai/cruiser.tscn"
 ]
 
@@ -25,7 +26,8 @@ var rng = RandomNumberGenerator.new()
 func _ready():
 	rng.randomize()
 func _on_body_entered(body):
-	body.queue_free()
+	if body.is_in_group("killable"):
+		body.queue_free()
 
 
 func _on_timer_timeout():

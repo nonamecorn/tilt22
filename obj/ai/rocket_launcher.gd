@@ -14,9 +14,15 @@ func _physics_process(_delta):
 		look_vec = (get_global_mouse_position() - global_position).rotated(PI/2)
 		global_rotation = atan2(look_vec.y, look_vec.x)
 		if Input.is_action_just_pressed("ui_lclick"):
-			fire()
+			if $delay.is_stopped():
+				$delay.start()
+				fire()
+			$Timer.start()
+		if Input.is_action_just_released("ui_lclick"):
+			$Timer.stop()
 
 func fire():
+	$Turret1.frame = 0
 	$AnimatedSprite2D.play()
 	var bullet_obj = load(bullet_path)
 	var bullet_inst = bullet_obj.instantiate()
@@ -24,3 +30,11 @@ func fire():
 	bullet_inst.global_rotation = $Marker2D.global_rotation
 	bullet_inst.init(get_parent().get_parent().linear_velocity)
 	get_tree().current_scene.add_child(bullet_inst)
+
+
+func _on_timer_timeout():
+	fire()
+
+
+func _on_delay_timeout():
+	$Turret1.frame = 1

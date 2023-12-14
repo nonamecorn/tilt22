@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://cf2ascm2aqyew"]
+[gd_scene load_steps=37 format=3 uid="uid://cf2ascm2aqyew"]
 
 [ext_resource type="Script" path="res://obj/ai/player.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://c1ae2myj2p6tg" path="res://img/playership.png" id="2"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://obj/ai/playerCamera2D.gd" id="7_84sue"]
 [ext_resource type="PackedScene" uid="uid://cxe7tkk6rycen" path="res://obj/ai/hand.tscn" id="8"]
 [ext_resource type="Script" path="res://obj/ai/Polygon2D.gd" id="10_m71gl"]
+[ext_resource type="Script" path="res://obj/ai/ProgressBar.gd" id="11_w6n1q"]
 
 [sub_resource type="NavigationPolygon" id="1"]
 vertices = PackedVector2Array(3878, 2797, -3141, 2741, -3255, -1919, 3784, -2090)
@@ -203,7 +204,7 @@ _data = {
 }
 
 [node name="player" type="RigidBody2D" groups=["attachable", "killable", "player"]]
-collision_layer = 0
+collision_layer = 2
 collision_mask = 21
 mass = 80.0
 max_contacts_reported = 1
@@ -385,6 +386,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+offset_left = 89.0
+offset_top = 11.0
+offset_right = 457.0
+offset_bottom = 38.0
+script = ExtResource("11_w6n1q")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
