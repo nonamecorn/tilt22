@@ -13,7 +13,7 @@ var locked = false
 var speed = -6000
 
 var explosion = preload("res://obj/other/explosion.tscn")
-var turn_speed: float = 4000.0;
+var turn_speed: float = 6000.0;
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rng.randomize()
@@ -36,6 +36,8 @@ func _physics_process(_delta):
 		stt.STOP:
 			pass
 		stt.IDLE:
+			$Sprite2D/torque2.hide()
+			$Sprite2D/torque1.hide()
 			apply_force(Vector2(0,speed).rotated(rotation));
 		stt.ATTACK:
 			if !$thump.is_stopped():
@@ -74,11 +76,12 @@ func _on_area_2d_body_entered(body):
 		return
 	#$makepath.start()
 	player = body;
+	locked = true
 	if !$thump.is_stopped():
 		return
 	#set_movement_target(body.position)
 	state = stt.ATTACK
-	locked = true
+	
 func hurt(_ded):
 	var bullet_inst = explosion.instantiate()
 	bullet_inst.global_position = global_position

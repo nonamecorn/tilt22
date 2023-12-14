@@ -1,4 +1,7 @@
-[gd_scene format=3 uid="uid://cdcro6fmi27or"]
+[gd_scene load_steps=3 format=3 uid="uid://cdcro6fmi27or"]
+
+[ext_resource type="Texture2D" uid="uid://cy8hn1nkwdcxl" path="res://img/big_art/yes.png" id="1_b3ly3"]
+[ext_resource type="Script" path="res://others/ui/control.gd" id="1_rbedr"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -7,3 +10,193 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_rbedr")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 82.0
+offset_top = 33.0
+offset_right = -126.0
+offset_bottom = -46.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.454902, 0.0352941, 0.247059, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 45.0
+offset_right = 347.0
+offset_bottom = 233.0
+texture = ExtResource("1_b3ly3")
+expand_mode = 1
+
+[node name="cars" type="PanelContainer" parent="."]
+layout_mode = 2
+offset_left = 544.0
+offset_top = 86.0
+offset_right = 994.0
+offset_bottom = 577.0
+
+[node name="cars" type="ScrollContainer" parent="cars"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="cars/cars"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="cars/cars/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="handyman buy" type="Button" parent="cars/cars/VBoxContainer/PanelContainer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+text = "buy"
+
+[node name="Label" type="Label" parent="cars/cars/VBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "4000 credits"
+
+[node name="Label2" type="Label" parent="cars/cars/VBoxContainer/PanelContainer"]
+layout_mode = 2
+text = "handyman"
+
+[node name="PanelContainer2" type="PanelContainer" parent="cars/cars/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="cruise driller" type="Button" parent="cars/cars/VBoxContainer/PanelContainer2"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+text = "buy"
+
+[node name="Label" type="Label" parent="cars/cars/VBoxContainer/PanelContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "7000 credits"
+
+[node name="Label2" type="Label" parent="cars/cars/VBoxContainer/PanelContainer2"]
+layout_mode = 2
+text = "cruise driller"
+
+[node name="uppgrades" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 155.0
+offset_top = 286.0
+offset_right = 495.0
+offset_bottom = 574.0
+
+[node name="Panel" type="Panel" parent="uppgrades"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="upgrades" type="ScrollContainer" parent="uppgrades"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="uppgrades/upgrades"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="uppgrades/upgrades/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="better thrusters" type="Button" parent="uppgrades/upgrades/VBoxContainer/PanelContainer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+text = "buy"
+
+[node name="Label" type="Label" parent="uppgrades/upgrades/VBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "500 credits"
+
+[node name="Label2" type="Label" parent="uppgrades/upgrades/VBoxContainer/PanelContainer"]
+layout_mode = 2
+text = "Better thrusters"
+
+[node name="PanelContainer2" type="PanelContainer" parent="uppgrades/upgrades/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="better armor" type="Button" parent="uppgrades/upgrades/VBoxContainer/PanelContainer2"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+text = "buy"
+
+[node name="Label" type="Label" parent="uppgrades/upgrades/VBoxContainer/PanelContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "500 credits"
+
+[node name="Label2" type="Label" parent="uppgrades/upgrades/VBoxContainer/PanelContainer2"]
+layout_mode = 2
+text = "better armor"
+
+[node name="mons" type="Label" parent="."]
+layout_mode = 0
+offset_left = 163.0
+offset_top = 252.0
+offset_right = 234.0
+offset_bottom = 275.0
+text = "money: 0"
+
+[node name="talk" type="Button" parent="."]
+layout_mode = 0
+offset_left = 352.0
+offset_top = 216.0
+offset_right = 390.0
+offset_bottom = 247.0
+text = "talk"
+
+[node name="repair" type="Button" parent="."]
+layout_mode = 0
+offset_left = 348.0
+offset_top = 174.0
+offset_right = 462.0
+offset_bottom = 205.0
+text = "repair all: 500"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 348.0
+offset_top = 86.0
+offset_right = 499.0
+offset_bottom = 169.0
+text = "hello what can i get you?"
+
+[node name="esc" type="Button" parent="."]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 43.0
+offset_right = 129.0
+offset_bottom = 74.0
+text = "esc"
+
+[connection signal="pressed" from="cars/cars/VBoxContainer/PanelContainer/handyman buy" to="." method="_on_handyman_buy_pressed"]
+[connection signal="pressed" from="cars/cars/VBoxContainer/PanelContainer2/cruise driller" to="." method="_on_cruise_driller_pressed"]
+[connection signal="pressed" from="uppgrades/upgrades/VBoxContainer/PanelContainer/better thrusters" to="." method="_on_better_thrusters_pressed"]
+[connection signal="pressed" from="uppgrades/upgrades/VBoxContainer/PanelContainer2/better armor" to="." method="_on_better_armor_pressed"]
+[connection signal="pressed" from="talk" to="." method="_on_talk_pressed"]
+[connection signal="pressed" from="repair" to="." method="_on_repair_pressed"]
+[connection signal="pressed" from="esc" to="." method="_on_esc_pressed"]

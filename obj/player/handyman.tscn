@@ -1,16 +1,17 @@
-[gd_scene load_steps=37 format=3 uid="uid://cf2ascm2aqyew"]
+[gd_scene load_steps=38 format=3 uid="uid://drywompjgeslb"]
 
-[ext_resource type="Script" path="res://obj/ai/player.gd" id="1"]
-[ext_resource type="Texture2D" uid="uid://c1ae2myj2p6tg" path="res://img/playership.png" id="2"]
-[ext_resource type="Texture2D" uid="uid://d2ubeqcafy8a2" path="res://img/dampanim.png" id="3"]
-[ext_resource type="Texture2D" uid="uid://dg8h761vel14l" path="res://img/mainenginefire.png" id="4"]
-[ext_resource type="Texture2D" uid="uid://da5xc1oc65sjk" path="res://img/truster_anim.png" id="5"]
-[ext_resource type="Texture2D" uid="uid://dpmqhw32gbaff" path="res://img/explosion.png" id="6"]
-[ext_resource type="Script" path="res://obj/ai/Area2D.gd" id="7"]
-[ext_resource type="Script" path="res://obj/ai/playerCamera2D.gd" id="7_84sue"]
-[ext_resource type="PackedScene" uid="uid://cxe7tkk6rycen" path="res://obj/ai/hand.tscn" id="8"]
-[ext_resource type="Script" path="res://obj/ai/Polygon2D.gd" id="10_m71gl"]
-[ext_resource type="Script" path="res://obj/ai/ProgressBar.gd" id="11_w6n1q"]
+[ext_resource type="Script" path="res://obj/player/player.gd" id="1_p0l4y"]
+[ext_resource type="Texture2D" uid="uid://k8yuvuu55wn0" path="res://img/handyman.png" id="2_vom6m"]
+[ext_resource type="Texture2D" uid="uid://d2ubeqcafy8a2" path="res://img/dampanim.png" id="3_m7sge"]
+[ext_resource type="Texture2D" uid="uid://dg8h761vel14l" path="res://img/mainenginefire.png" id="4_4ewe4"]
+[ext_resource type="Texture2D" uid="uid://da5xc1oc65sjk" path="res://img/truster_anim.png" id="5_4wkri"]
+[ext_resource type="Texture2D" uid="uid://dpmqhw32gbaff" path="res://img/explosion.png" id="6_su72p"]
+[ext_resource type="PackedScene" uid="uid://cxe7tkk6rycen" path="res://obj/player/hand.tscn" id="7_fr5r6"]
+[ext_resource type="Script" path="res://obj/player/playerCamera2D.gd" id="8_dw67v"]
+[ext_resource type="Script" path="res://obj/player/Area2D.gd" id="9_i8bqk"]
+[ext_resource type="Script" path="res://obj/player/Polygon2D.gd" id="10_qlhum"]
+[ext_resource type="Script" path="res://obj/player/ProgressBar.gd" id="11_u7fnk"]
+[ext_resource type="PackedScene" uid="uid://cdcro6fmi27or" path="res://others/ui/control.tscn" id="12_bo5aq"]
 
 [sub_resource type="NavigationPolygon" id="1"]
 vertices = PackedVector2Array(3878, 2797, -3141, 2741, -3255, -1919, 3784, -2090)
@@ -22,15 +23,15 @@ source_geometry_group_name = &"navigation_polygon_source_group"
 size = Vector2(26, 38)
 
 [sub_resource type="AtlasTexture" id="3"]
-atlas = ExtResource("3")
+atlas = ExtResource("3_m7sge")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="4"]
-atlas = ExtResource("3")
+atlas = ExtResource("3_m7sge")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="5"]
-atlas = ExtResource("3")
+atlas = ExtResource("3_m7sge")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="6"]
@@ -51,15 +52,15 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="7"]
-atlas = ExtResource("4")
+atlas = ExtResource("4_4ewe4")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="8"]
-atlas = ExtResource("4")
+atlas = ExtResource("4_4ewe4")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="9"]
-atlas = ExtResource("4")
+atlas = ExtResource("4_4ewe4")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="10"]
@@ -80,15 +81,15 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="11"]
-atlas = ExtResource("5")
+atlas = ExtResource("5_4wkri")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="12"]
-atlas = ExtResource("5")
+atlas = ExtResource("5_4wkri")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="13"]
-atlas = ExtResource("5")
+atlas = ExtResource("5_4wkri")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="14"]
@@ -109,31 +110,31 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="15"]
-atlas = ExtResource("6")
+atlas = ExtResource("6_su72p")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="16"]
-atlas = ExtResource("6")
+atlas = ExtResource("6_su72p")
 region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="17"]
-atlas = ExtResource("6")
+atlas = ExtResource("6_su72p")
 region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="18"]
-atlas = ExtResource("6")
+atlas = ExtResource("6_su72p")
 region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="19"]
-atlas = ExtResource("6")
+atlas = ExtResource("6_su72p")
 region = Rect2(256, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="20"]
-atlas = ExtResource("6")
+atlas = ExtResource("6_su72p")
 region = Rect2(320, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="21"]
-atlas = ExtResource("6")
+atlas = ExtResource("6_su72p")
 region = Rect2(384, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="22"]
@@ -209,16 +210,18 @@ collision_mask = 21
 mass = 80.0
 max_contacts_reported = 1
 contact_monitor = true
-script = ExtResource("1")
+script = ExtResource("1_p0l4y")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("1")
+
+[node name="Node2D" type="Node2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("2")
 
 [node name="Playership" type="Sprite2D" parent="."]
-texture = ExtResource("2")
+texture = ExtResource("2_vom6m")
 
 [node name="damp1" type="AnimatedSprite2D" parent="Playership"]
 visible = false
@@ -277,6 +280,23 @@ sprite_frames = SubResource("22")
 frame = 6
 frame_progress = 1.0
 
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(9, -2)
+
+[node name="hand" parent="Marker2D" instance=ExtResource("7_fr5r6")]
+
+[node name="children" type="Node2D" parent="."]
+visible = false
+
+[node name="Marker2D" type="Marker2D" parent="children"]
+position = Vector2(10, -15)
+
+[node name="Marker2D2" type="Marker2D" parent="children"]
+position = Vector2(-8, -12)
+
+[node name="Marker2D3" type="Marker2D" parent="children"]
+position = Vector2(0, 10)
+
 [node name="Camera2D" type="Camera2D" parent="."]
 process_callback = 0
 position_smoothing_enabled = true
@@ -284,12 +304,12 @@ drag_left_margin = 0.03
 drag_top_margin = 0.03
 drag_right_margin = 0.03
 drag_bottom_margin = 0.03
-script = ExtResource("7_84sue")
+script = ExtResource("8_dw67v")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 255
-script = ExtResource("7")
+script = ExtResource("9_i8bqk")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PackedVector2Array(-3306, -2179, 3957, -2358, 4110, 2874, -3281, 2874, -3319, -2722, -3820, -2687, -3752, 3135, 4520, 3231, 4296, -2833, -3313, -2681)
@@ -350,23 +370,6 @@ position = Vector2(-2578.57, 668.571)
 [node name="Marker2D16" type="Marker2D" parent="Area2D/children"]
 position = Vector2(-1602, 1042)
 
-[node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(-8, -10)
-
-[node name="hand" parent="Marker2D" instance=ExtResource("8")]
-
-[node name="children" type="Node2D" parent="."]
-visible = false
-
-[node name="Marker2D" type="Marker2D" parent="children"]
-position = Vector2(10, -15)
-
-[node name="Marker2D2" type="Marker2D" parent="children"]
-position = Vector2(-8, -12)
-
-[node name="Marker2D3" type="Marker2D" parent="children"]
-position = Vector2(0, 10)
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_ddkqm")
@@ -375,7 +378,7 @@ libraries = {
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color(0.862745, 0.862745, 0.862745, 1)
 polygon = PackedVector2Array(46, -16, 61, 0, 46, 14, 50, 0)
-script = ExtResource("10_m71gl")
+script = ExtResource("10_qlhum")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -392,7 +395,17 @@ offset_left = 89.0
 offset_top = 11.0
 offset_right = 457.0
 offset_bottom = 38.0
-script = ExtResource("11_w6n1q")
+script = ExtResource("11_u7fnk")
+
+[node name="shop" parent="CanvasLayer" instance=ExtResource("12_bo5aq")]
+visible = false
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 514.0
+offset_top = 14.0
+offset_right = 576.0
+offset_bottom = 37.0
+text = "money: 0"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://cxe7tkk6rycen"]
 
-[ext_resource type="Script" path="res://obj/ai/playerhand.gd" id="1"]
+[ext_resource type="Script" path="res://obj/player/playerhand.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://ydglk0ma4x0m" path="res://img/turret1.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://dnfsrrw3ce65m" path="res://img/muzzle.png" id="3_45vja"]
 

@@ -1,11 +1,14 @@
 extends RigidBody2D
 
 var hp = 50;
-var gear1 = preload("res://obj/ai/hand.tscn")
-var gear2 = preload("res://obj/ai/harpoongun.tscn")
-var gear3 = preload("res://obj/ai/rocket_launcher.tscn")
+var maxhp = 50;
+var gear1 = preload("res://obj/player/hand.tscn")
+var gear2 = preload("res://obj/player/harpoongun.tscn")
+var gear3 = preload("res://obj/player/rocket_launcher.tscn")
 var state = ALIVE;
 var bullet_obj = preload("res://obj/parts/ship_parts4.tscn")
+var money = 0
+var force = -12000
 enum {
 	DEAD,
 	ALIVE
@@ -23,7 +26,7 @@ func _physics_process(_delta):
 
 func move():
 	if Input.is_action_pressed("ui_up"):
-		apply_force(Vector2(0, -12000).rotated(rotation));
+		apply_force(Vector2(0, force).rotated(rotation));
 		apply_central_force(Vector2(0,0))
 		$Playership/damp1.hide();$Playership/damp2.hide();$Playership/engine.show()
 		linear_damp = 0.25
@@ -32,7 +35,7 @@ func move():
 		linear_damp = 0.75
 	if Input.is_action_pressed("ui_down"):
 		$Playership/damp1.show();$Playership/damp2.show();$Playership/engine.hide()
-		apply_force(Vector2(0, 7000).rotated(rotation));
+		apply_force(Vector2(0, (force * -0.5)).rotated(rotation));
 		apply_central_force(Vector2(0,0))
 		linear_damp = 0
 	elif !Input.is_action_pressed("ui_up"):
@@ -67,6 +70,7 @@ func hurt(_death):
 	hp -= _death;
 	if hp <= 0 and state != DEAD:
 		die()
+	updatehpbar()
 func die():
 	if state == DEAD: return
 	state = DEAD;
@@ -83,9 +87,23 @@ func die():
 	$Playership.hide()
 	$Marker2D.hide()
 
+func repair():
+	hp = maxhp
+	updatehpbar()
+func shop():
+	$CanvasLayer/shop.show()
+func updatehpbar():
+	$CanvasLayer/ProgressBar.max_value = maxhp
+	$CanvasLayer/ProgressBar.value = hp
+
 func add(de_bullet_inst):
 	get_tree().current_scene.add_child(de_bullet_inst)
-
+func add_money(amount):
+	money += amount
+	$CanvasLayer/Label.text = "money: " + str(money)
+func deduct_money(amount):
+	money -= amount
+	$CanvasLayer/Label.text = "money: " + str(money)
 #func _on_body_entered(body):
 	#if state == DEAD or body.is_in_group("prj"): return
 	#if (body.linear_velocity - linear_velocity).length() > 120:

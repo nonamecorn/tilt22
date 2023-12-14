@@ -2,6 +2,7 @@ extends RigidBody2D
 var rng = RandomNumberGenerator.new()
 var hp = 10;
 var bullet_obj = preload("res://obj/parts/medium_rock.tscn")
+var worth = 5
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rng.randomize()

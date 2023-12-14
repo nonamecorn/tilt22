@@ -10,7 +10,10 @@ var turn_speed: float = 60000.0;
 var hp = 30;
 var dead = false
 var bullet_obj = preload("res://obj/parts/ship_parts2.tscn")
-var rem_obj = preload("res://obj/parts/remochka.tscn")
+var loot = [
+	"res://obj/parts/remochka.tscn",
+	"res://obj/parts/money.tscn"
+]
 @export var nav_agent: NavigationAgent2D
 
 enum stt {
@@ -64,10 +67,12 @@ func hurt(ded):
 func die():
 	dead = true
 	$AnimatedSprite2D.play()
-	var rem_inst = rem_obj.instantiate()
-	rem_inst.global_position = global_position
-	rem_inst.global_rotation = global_rotation
-	call_deferred("add", rem_inst)
+	loot.shuffle()
+	var _obj = load(loot[0])
+	var _inst = _obj.instantiate()
+	_inst.global_position = global_position
+	_inst.global_rotation = global_rotation
+	call_deferred("add", _inst)
 	for childmark in $children.get_children():
 		var bullet_inst = bullet_obj.instantiate()
 		bullet_inst.global_position = childmark.global_position

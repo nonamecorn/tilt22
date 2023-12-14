@@ -1,23 +1,23 @@
 [gd_scene load_steps=9 format=3 uid="uid://cs8kp3j4b8ful"]
 
-[ext_resource type="Script" path="res://obj/ai/rocket_launcher.gd" id="1_338wo"]
-[ext_resource type="Texture2D" uid="uid://fvs1baf6kr2v" path="res://img/missile_launcher.png" id="2_chxqx"]
-[ext_resource type="Texture2D" uid="uid://cn0xus0fjtwsb" path="res://img/backblast.png" id="3_8wirh"]
+[ext_resource type="Script" path="res://obj/player/rocket_launcher.gd" id="1_3rj3k"]
+[ext_resource type="Texture2D" uid="uid://fvs1baf6kr2v" path="res://img/missile_launcher.png" id="2_ocn07"]
+[ext_resource type="Texture2D" uid="uid://cn0xus0fjtwsb" path="res://img/backblast.png" id="3_aqayd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a7yly"]
-atlas = ExtResource("3_8wirh")
+atlas = ExtResource("3_aqayd")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w0s30"]
-atlas = ExtResource("3_8wirh")
+atlas = ExtResource("3_aqayd")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q56cv"]
-atlas = ExtResource("3_8wirh")
+atlas = ExtResource("3_aqayd")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rroid"]
-atlas = ExtResource("3_8wirh")
+atlas = ExtResource("3_aqayd")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_t06l2"]
@@ -44,14 +44,14 @@ animations = [{
 }]
 
 [node name="rocket_launcher" type="Node2D"]
-script = ExtResource("1_338wo")
+script = ExtResource("1_3rj3k")
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(0, -18)
 
 [node name="Turret1" type="Sprite2D" parent="."]
 position = Vector2(0, -8)
-texture = ExtResource("2_chxqx")
+texture = ExtResource("2_ocn07")
 hframes = 2
 frame = 1
 
@@ -62,11 +62,11 @@ frame = 4
 frame_progress = 1.0
 
 [node name="delay" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 5.0
 one_shot = true
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 5.0
 
 [connection signal="timeout" from="delay" to="." method="_on_delay_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
