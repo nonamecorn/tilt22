@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cxe7tkk6rycen"]
+[gd_scene load_steps=12 format=3 uid="uid://cxe7tkk6rycen"]
 
 [ext_resource type="Script" path="res://obj/player/playerhand.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://ydglk0ma4x0m" path="res://img/turret1.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://dnfsrrw3ce65m" path="res://img/muzzle.png" id="3_45vja"]
+[ext_resource type="AudioStream" uid="uid://nm2qhehxc66j" path="res://snd/sfx/pew.wav" id="4_egm2f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y8wj1"]
 atlas = ExtResource("3_45vja")
@@ -50,6 +51,9 @@ animations = [{
 "speed": 40.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_wwmm5"]
+radius = 285.253
+
 [node name="hand" type="Node2D"]
 script = ExtResource("1")
 
@@ -69,4 +73,17 @@ sprite_frames = SubResource("SpriteFrames_tog31")
 frame = 5
 frame_progress = 1.0
 
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 20
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_wwmm5")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_egm2f")
+volume_db = -10.0
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

@@ -1,6 +1,6 @@
-[gd_scene load_steps=38 format=3 uid="uid://drywompjgeslb"]
+[gd_scene load_steps=39 format=3 uid="uid://cfpy8yfo8rujf"]
 
-[ext_resource type="Script" path="res://obj/player/player.gd" id="1_p0l4y"]
+[ext_resource type="Script" path="res://obj/player/handyman.gd" id="1_ccee8"]
 [ext_resource type="Texture2D" uid="uid://k8yuvuu55wn0" path="res://img/handyman.png" id="2_vom6m"]
 [ext_resource type="Texture2D" uid="uid://d2ubeqcafy8a2" path="res://img/dampanim.png" id="3_m7sge"]
 [ext_resource type="Texture2D" uid="uid://dg8h761vel14l" path="res://img/mainenginefire.png" id="4_4ewe4"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://obj/player/Polygon2D.gd" id="10_qlhum"]
 [ext_resource type="Script" path="res://obj/player/ProgressBar.gd" id="11_u7fnk"]
 [ext_resource type="PackedScene" uid="uid://cdcro6fmi27or" path="res://others/ui/control.tscn" id="12_bo5aq"]
+[ext_resource type="PackedScene" uid="uid://dchd4oc66lp6g" path="res://obj/player/harpoongun.tscn" id="13_a5obo"]
 
 [sub_resource type="NavigationPolygon" id="1"]
 vertices = PackedVector2Array(3878, 2797, -3141, 2741, -3255, -1919, 3784, -2090)
@@ -206,11 +207,11 @@ _data = {
 
 [node name="player" type="RigidBody2D" groups=["attachable", "killable", "player"]]
 collision_layer = 2
-collision_mask = 21
+collision_mask = 23
 mass = 80.0
 max_contacts_reported = 1
 contact_monitor = true
-script = ExtResource("1_p0l4y")
+script = ExtResource("1_ccee8")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("1")
@@ -280,10 +281,18 @@ sprite_frames = SubResource("22")
 frame = 6
 frame_progress = 1.0
 
-[node name="Marker2D" type="Marker2D" parent="."]
+[node name="markers" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="markers"]
+position = Vector2(-9, -11)
+
+[node name="harpoongun" parent="markers/Marker2D" instance=ExtResource("13_a5obo")]
+
+[node name="Marker2D2" type="Marker2D" parent="markers"]
 position = Vector2(9, -2)
 
-[node name="hand" parent="Marker2D" instance=ExtResource("7_fr5r6")]
+[node name="hand" parent="markers/Marker2D2" instance=ExtResource("7_fr5r6")]
+active = true
 
 [node name="children" type="Node2D" parent="."]
 visible = false
@@ -395,6 +404,8 @@ offset_left = 89.0
 offset_top = 11.0
 offset_right = 457.0
 offset_bottom = 38.0
+max_value = 50.0
+value = 50.0
 script = ExtResource("11_u7fnk")
 
 [node name="shop" parent="CanvasLayer" instance=ExtResource("12_bo5aq")]

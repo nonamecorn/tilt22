@@ -110,7 +110,7 @@ _data = {
 
 [node name="cruiser" type="RigidBody2D" groups=["cruiser", "killable"]]
 collision_layer = 16
-collision_mask = 23
+collision_mask = 31
 mass = 100.0
 linear_damp = 1.0
 angular_damp = 1.0

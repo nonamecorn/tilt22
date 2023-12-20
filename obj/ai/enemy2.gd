@@ -78,6 +78,7 @@ func hurt(ded):
 		die()
 
 func die():
+	$CollisionShape2D.set_deferred("disabled",true)
 	$AnimatedSprite2D.play()
 	for childmark in $children.get_children():
 		var bullet_inst = bullet_obj.instantiate()
@@ -102,12 +103,6 @@ func _on_animated_sprite_2d_animation_finished():
 	queue_free()
 
 
-func _on_body_entered(body):
-	if body.has_method("hurt"):
-		body.hurt(2)
-		state = stt.RUN
-
-
 func _on_area_2d_2_body_entered(body):
 	if dead: return
 	$makepath.start()
@@ -118,3 +113,9 @@ func _on_area_2d_2_body_entered(body):
 
 func _on_area_2d_body_exited(_body):
 	state = stt.ATTACK
+
+
+func _on_area_2d_3_body_entered(body):
+	if body.has_method("hurt"):
+		body.hurt(2)
+		state = stt.RUN

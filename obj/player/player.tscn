@@ -7,8 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://da5xc1oc65sjk" path="res://img/truster_anim.png" id="5"]
 [ext_resource type="Texture2D" uid="uid://dpmqhw32gbaff" path="res://img/explosion.png" id="6"]
 [ext_resource type="Script" path="res://obj/player/Area2D.gd" id="7"]
+[ext_resource type="PackedScene" uid="uid://cxe7tkk6rycen" path="res://obj/player/hand.tscn" id="7_5dgn7"]
 [ext_resource type="Script" path="res://obj/player/playerCamera2D.gd" id="7_84sue"]
-[ext_resource type="PackedScene" uid="uid://cxe7tkk6rycen" path="res://obj/player/hand.tscn" id="8"]
 [ext_resource type="Script" path="res://obj/player/Polygon2D.gd" id="10_m71gl"]
 [ext_resource type="Script" path="res://obj/player/ProgressBar.gd" id="11_w6n1q"]
 [ext_resource type="PackedScene" uid="uid://cdcro6fmi27or" path="res://others/ui/control.tscn" id="12_awe17"]
@@ -206,7 +206,7 @@ _data = {
 
 [node name="player" type="RigidBody2D" groups=["attachable", "killable", "player"]]
 collision_layer = 2
-collision_mask = 21
+collision_mask = 23
 mass = 80.0
 max_contacts_reported = 1
 contact_monitor = true
@@ -280,10 +280,13 @@ sprite_frames = SubResource("22")
 frame = 6
 frame_progress = 1.0
 
-[node name="Marker2D" type="Marker2D" parent="."]
+[node name="markers" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="markers"]
 position = Vector2(-8, -10)
 
-[node name="hand" parent="Marker2D" instance=ExtResource("8")]
+[node name="hand" parent="markers/Marker2D" instance=ExtResource("7_5dgn7")]
+active = true
 
 [node name="children" type="Node2D" parent="."]
 visible = false

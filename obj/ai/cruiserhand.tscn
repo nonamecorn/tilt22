@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://4cjmvwdfjtym"]
+[gd_scene load_steps=12 format=3 uid="uid://4cjmvwdfjtym"]
 
 [ext_resource type="Script" path="res://obj/ai/cruiserhand.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://ydglk0ma4x0m" path="res://img/turret1.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://dnfsrrw3ce65m" path="res://img/muzzle.png" id="3_62bke"]
+[ext_resource type="AudioStream" uid="uid://nm2qhehxc66j" path="res://snd/sfx/pew.wav" id="4_leqkl"]
 
 [sub_resource type="CircleShape2D" id="1"]
 radius = 285.253
@@ -79,6 +80,10 @@ position = Vector2(0, -34)
 sprite_frames = SubResource("SpriteFrames_71jr6")
 frame = 5
 frame_progress = 1.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_leqkl")
+volume_db = -10.0
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

@@ -2,7 +2,7 @@ extends RigidBody2D
 var rng = RandomNumberGenerator.new()
 var hp = 3;
 var frame = 0;
-var worth = 200
+@export var worth = 100
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Sprite2D.frame = frame

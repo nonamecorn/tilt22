@@ -31,8 +31,9 @@ func _on_body_entered(body):
 
 
 func _on_timer_timeout():
+	var rct = Rect2i(548,-536,1000,1000)
 	for child in $children.get_children():
-		if rng.randi_range(0,1) == 0:
+		if rng.randi_range(0,1) == 0 or rct.has_point(child.global_position):
 			continue
 		bullet_objs.shuffle()
 		var bullet_obj = load(bullet_objs[0])

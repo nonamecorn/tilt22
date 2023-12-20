@@ -72,10 +72,8 @@ script = ExtResource("1_ckfmu")
 texture = ExtResource("1_qdxwa")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-visible = false
-position = Vector2(0, 6)
 sprite_frames = SubResource("SpriteFrames_hqlll")
-frame = 5
+frame = 6
 frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

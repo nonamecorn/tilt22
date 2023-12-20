@@ -27,7 +27,6 @@ func _on_body_entered(body):
 		bullet_inst.global_position = global_position
 		get_tree().current_scene.add_child.call_deferred(bullet_inst)
 	$Sprite2D.hide()
-	$AnimatedSprite2D.show()
 	$AnimatedSprite2D.play()
 
 
@@ -37,7 +36,6 @@ func _on_animated_sprite_2d_animation_finished():
 
 func _on_timer_timeout():
 	$Sprite2D.hide()
-	$AnimatedSprite2D.show()
 	$AnimatedSprite2D.play()
 "
 
@@ -109,10 +107,9 @@ script = SubResource("GDScript_vnj15")
 texture = ExtResource("1_s7ejk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-visible = false
 position = Vector2(0, 6)
 sprite_frames = SubResource("SpriteFrames_hqlll")
-frame = 5
+frame = 6
 frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

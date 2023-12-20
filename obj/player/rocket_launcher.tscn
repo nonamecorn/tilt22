@@ -45,6 +45,7 @@ animations = [{
 
 [node name="rocket_launcher" type="Node2D"]
 script = ExtResource("1_3rj3k")
+active = true
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(0, -18)
@@ -62,11 +63,11 @@ frame = 4
 frame_progress = 1.0
 
 [node name="delay" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 3.0
 one_shot = true
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 3.0
 
 [connection signal="timeout" from="delay" to="." method="_on_delay_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

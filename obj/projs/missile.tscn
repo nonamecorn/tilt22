@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://buwjblrto3gq4"]
+[gd_scene load_steps=15 format=3 uid="uid://buwjblrto3gq4"]
 
 [ext_resource type="Script" path="res://obj/projs/missile.gd" id="1_emsjm"]
 [ext_resource type="Texture2D" uid="uid://dy7invdyvnrsr" path="res://img/missile.png" id="2_o2u0a"]
 [ext_resource type="Texture2D" uid="uid://da5xc1oc65sjk" path="res://img/truster_anim.png" id="3_kl2kx"]
 [ext_resource type="Texture2D" uid="uid://dw50dojoxmxkb" path="res://img/missileburner.png" id="3_u22ip"]
+[ext_resource type="AudioStream" uid="uid://d1wflbeu0j6mi" path="res://snd/sfx/rocket.wav" id="5_ek44w"]
 
 [sub_resource type="AtlasTexture" id="8"]
 atlas = ExtResource("3_kl2kx")
@@ -128,6 +129,10 @@ autostart = true
 wait_time = 0.3
 one_shot = true
 autostart = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_ek44w")
+volume_db = -10.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

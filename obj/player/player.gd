@@ -1,22 +1,23 @@
 extends RigidBody2D
 
-var hp = 50;
-var maxhp = 50;
-var gear1 = preload("res://obj/player/hand.tscn")
-var gear2 = preload("res://obj/player/harpoongun.tscn")
-var gear3 = preload("res://obj/player/rocket_launcher.tscn")
+var type = "offender"
+var hp = Global.offhp;
+var maxhp = Global.offmaxhp;
+var force = Global.offforce
 var state = ALIVE;
 var bullet_obj = preload("res://obj/parts/ship_parts4.tscn")
-var money = 0
-var force = -12000
 enum {
 	DEAD,
 	ALIVE
 }
 
+func _ready():
+	$CanvasLayer/Label.text = "money: " + str(Global.money)
+	updatehpbar()
 
 func _physics_process(_delta):
 	if Input.is_action_just_pressed("ui_accept"):
+		Global.restore()
 		get_tree().reload_current_scene()
 	match state:
 		DEAD:
@@ -52,22 +53,17 @@ func move():
 		apply_torque(100000);
 	else: $Playership/torque2.hide(); $Playership/torque4.hide()
 	if Input.is_action_just_pressed("ui_1"):
-		if $Marker2D.get_children().size() == 1:
-			$Marker2D.get_child(0).queue_free()
-		$Marker2D.add_child(gear1.instantiate())
-	if Input.is_action_just_pressed("ui_2"):
-		if $Marker2D.get_children().size() == 1:
-			$Marker2D.get_child(0).queue_free()
-		$Marker2D.add_child(gear2.instantiate())
-	if Input.is_action_just_pressed("ui_3"):
-		if $Marker2D.get_children().size() == 1:
-			$Marker2D.get_child(0).queue_free()
-		$Marker2D.add_child(gear3.instantiate())
+		if $markers/Marker2D.get_child(0).active:
+			$markers/Marker2D.get_child(0).switch()
+		else:
+			$markers/Marker2D.get_child(0).switch()
+		
 
-func hurt(_death):
+func hurt(death):
 	$AnimationPlayer.play("tryaska")
 	hp -= 1;
-	hp -= _death;
+	hp -= death;
+	Global.offhp -= (1 + death)
 	if hp <= 0 and state != DEAD:
 		die()
 	updatehpbar()
@@ -83,12 +79,13 @@ func die():
 		bullet_inst.frame = childmark.get_index()
 		call_deferred("add", bullet_inst)
 	linear_damp = 0
-	$Marker2D.get_child(0).dead = true
+	$markers/Marker2D.get_child(0).dead = true
 	$Playership.hide()
-	$Marker2D.hide()
+	$markers.hide()
 
 func repair():
 	hp = maxhp
+	Global.offhp = Global.offmaxhp
 	updatehpbar()
 func shop():
 	$CanvasLayer/shop.show()
@@ -99,11 +96,11 @@ func updatehpbar():
 func add(de_bullet_inst):
 	get_tree().current_scene.add_child(de_bullet_inst)
 func add_money(amount):
-	money += amount
-	$CanvasLayer/Label.text = "money: " + str(money)
+	Global.money += amount
+	$CanvasLayer/Label.text = "money: " + str(Global.money)
 func deduct_money(amount):
-	money -= amount
-	$CanvasLayer/Label.text = "money: " + str(money)
+	Global.money -= amount
+	$CanvasLayer/Label.text = "money: " + str(Global.money)
 #func _on_body_entered(body):
 	#if state == DEAD or body.is_in_group("prj"): return
 	#if (body.linear_velocity - linear_velocity).length() > 120:

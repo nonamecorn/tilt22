@@ -18,7 +18,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 82.0
-offset_top = 33.0
+offset_top = 79.0
 offset_right = -126.0
 offset_bottom = -46.0
 grow_horizontal = 2
@@ -27,17 +27,17 @@ color = Color(0.454902, 0.0352941, 0.247059, 1)
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 104.0
-offset_top = 45.0
-offset_right = 347.0
-offset_bottom = 233.0
+offset_left = 100.0
+offset_top = 148.0
+offset_right = 343.0
+offset_bottom = 336.0
 texture = ExtResource("1_b3ly3")
 expand_mode = 1
 
 [node name="cars" type="PanelContainer" parent="."]
 layout_mode = 2
 offset_left = 544.0
-offset_top = 86.0
+offset_top = 233.0
 offset_right = 994.0
 offset_bottom = 577.0
 
@@ -49,11 +49,40 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="PanelContainer" type="PanelContainer" parent="cars/cars/VBoxContainer"]
+[node name="PanelContainer3" type="MarginContainer" parent="cars/cars/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="handyman buy" type="Button" parent="cars/cars/VBoxContainer/PanelContainer"]
+[node name="offenderbuy" type="Button" parent="cars/cars/VBoxContainer/PanelContainer3"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+text = "current"
+
+[node name="Label" type="Label" parent="cars/cars/VBoxContainer/PanelContainer3"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "4000 credits"
+
+[node name="Label2" type="Label" parent="cars/cars/VBoxContainer/PanelContainer3"]
+layout_mode = 2
+text = "offender"
+
+[node name="PanelContainer" type="MarginContainer" parent="cars/cars/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="handymanbuy" type="Button" parent="cars/cars/VBoxContainer/PanelContainer"]
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -70,11 +99,15 @@ text = "4000 credits"
 layout_mode = 2
 text = "handyman"
 
-[node name="PanelContainer2" type="PanelContainer" parent="cars/cars/VBoxContainer"]
+[node name="PanelContainer2" type="MarginContainer" parent="cars/cars/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="cruise driller" type="Button" parent="cars/cars/VBoxContainer/PanelContainer2"]
+[node name="cruisedriller" type="Button" parent="cars/cars/VBoxContainer/PanelContainer2"]
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -94,7 +127,7 @@ text = "cruise driller"
 [node name="uppgrades" type="PanelContainer" parent="."]
 layout_mode = 0
 offset_left = 155.0
-offset_top = 286.0
+offset_top = 356.0
 offset_right = 495.0
 offset_bottom = 574.0
 
@@ -111,9 +144,13 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="PanelContainer" type="PanelContainer" parent="uppgrades/upgrades/VBoxContainer"]
+[node name="PanelContainer" type="MarginContainer" parent="uppgrades/upgrades/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="better thrusters" type="Button" parent="uppgrades/upgrades/VBoxContainer/PanelContainer"]
 custom_minimum_size = Vector2(60, 0)
@@ -132,9 +169,13 @@ text = "500 credits"
 layout_mode = 2
 text = "Better thrusters"
 
-[node name="PanelContainer2" type="PanelContainer" parent="uppgrades/upgrades/VBoxContainer"]
+[node name="PanelContainer2" type="MarginContainer" parent="uppgrades/upgrades/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="better armor" type="Button" parent="uppgrades/upgrades/VBoxContainer/PanelContainer2"]
 custom_minimum_size = Vector2(60, 0)
@@ -154,47 +195,49 @@ layout_mode = 2
 text = "better armor"
 
 [node name="mons" type="Label" parent="."]
+visible = false
 layout_mode = 0
-offset_left = 163.0
-offset_top = 252.0
-offset_right = 234.0
-offset_bottom = 275.0
+offset_left = 182.0
+offset_top = 182.0
+offset_right = 253.0
+offset_bottom = 205.0
 text = "money: 0"
 
 [node name="talk" type="Button" parent="."]
 layout_mode = 0
-offset_left = 352.0
-offset_top = 216.0
-offset_right = 390.0
-offset_bottom = 247.0
+offset_left = 544.0
+offset_top = 176.0
+offset_right = 582.0
+offset_bottom = 207.0
 text = "talk"
 
 [node name="repair" type="Button" parent="."]
 layout_mode = 0
-offset_left = 348.0
-offset_top = 174.0
-offset_right = 462.0
-offset_bottom = 205.0
+offset_left = 352.0
+offset_top = 307.0
+offset_right = 466.0
+offset_bottom = 338.0
 text = "repair all: 500"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 348.0
-offset_top = 86.0
-offset_right = 499.0
-offset_bottom = 169.0
+offset_left = 350.0
+offset_top = 178.0
+offset_right = 514.0
+offset_bottom = 297.0
 text = "hello what can i get you?"
 
 [node name="esc" type="Button" parent="."]
 layout_mode = 0
-offset_left = 96.0
-offset_top = 43.0
-offset_right = 129.0
-offset_bottom = 74.0
+offset_left = 104.0
+offset_top = 101.0
+offset_right = 137.0
+offset_bottom = 132.0
 text = "esc"
 
-[connection signal="pressed" from="cars/cars/VBoxContainer/PanelContainer/handyman buy" to="." method="_on_handyman_buy_pressed"]
-[connection signal="pressed" from="cars/cars/VBoxContainer/PanelContainer2/cruise driller" to="." method="_on_cruise_driller_pressed"]
+[connection signal="pressed" from="cars/cars/VBoxContainer/PanelContainer3/offenderbuy" to="." method="_on_offender_buy_pressed"]
+[connection signal="pressed" from="cars/cars/VBoxContainer/PanelContainer/handymanbuy" to="." method="_on_handyman_buy_pressed"]
+[connection signal="pressed" from="cars/cars/VBoxContainer/PanelContainer2/cruisedriller" to="." method="_on_cruise_driller_pressed"]
 [connection signal="pressed" from="uppgrades/upgrades/VBoxContainer/PanelContainer/better thrusters" to="." method="_on_better_thrusters_pressed"]
 [connection signal="pressed" from="uppgrades/upgrades/VBoxContainer/PanelContainer2/better armor" to="." method="_on_better_armor_pressed"]
 [connection signal="pressed" from="talk" to="." method="_on_talk_pressed"]

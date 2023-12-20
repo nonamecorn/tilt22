@@ -1,7 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://uw2bcn3xhr5b"]
+[gd_scene load_steps=13 format=3 uid="uid://uw2bcn3xhr5b"]
 
 [ext_resource type="Texture2D" uid="uid://bvna805kvpuhm" path="res://img/bulletimg.png" id="1_osx4c"]
-[ext_resource type="Script" path="res://obj/projs/newebullet.gd" id="1_tbs1b"]
+[ext_resource type="Script" path="res://obj/projs/piercebullet.gd" id="1_qthvv"]
 [ext_resource type="Texture2D" uid="uid://bdoh468kvymph" path="res://img/bulletexpanim.png" id="2_v5jtw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sodwo"]
@@ -55,15 +55,19 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r1bv0"]
-radius = 5.0
-height = 22.0
+radius = 3.0
+height = 14.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7qlpe"]
+radius = 4.0
+height = 18.0
 
 [node name="bullet" type="RigidBody2D"]
 collision_layer = 0
-collision_mask = 21
+collision_mask = 0
 max_contacts_reported = 1
 contact_monitor = true
-script = ExtResource("1_tbs1b")
+script = ExtResource("1_qthvv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_osx4c")
@@ -74,13 +78,21 @@ position = Vector2(0, 7)
 sprite_frames = SubResource("SpriteFrames_xxsy3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 6)
+position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_r1bv0")
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 autostart = true
 
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 21
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_7qlpe")
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

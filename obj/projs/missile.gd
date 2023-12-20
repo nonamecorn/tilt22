@@ -52,6 +52,7 @@ func _physics_process(_delta):
 			face_point(player.global_position + player.linear_velocity * coef);
 
 func _on_thump_timeout():
+	$AudioStreamPlayer2D.play()
 	linear_damp = 2
 	state = stt.IDLE
 	$Sprite2D/engine.show()
@@ -64,12 +65,7 @@ func _on_body_entered(_body):
 		return
 	if dead: return
 	dead = true
-	var bullet_inst = explosion.instantiate()
-	bullet_inst.global_position = global_position
-	bullet_inst.exp_scale = 1
-	bullet_inst.damage = 19
-	get_tree().current_scene.add_child.call_deferred(bullet_inst)
-	queue_free()
+	hurt(0)
 func _on_area_2d_body_entered(body):
 	if dead: return
 	if locked and body != player:
@@ -83,8 +79,11 @@ func _on_area_2d_body_entered(body):
 	state = stt.ATTACK
 	
 func hurt(_ded):
+	dead = true
 	var bullet_inst = explosion.instantiate()
 	bullet_inst.global_position = global_position
+	bullet_inst.exp_scale = 1
+	bullet_inst.damage = 8
 	get_tree().current_scene.add_child.call_deferred(bullet_inst)
 	queue_free()
 

@@ -1,24 +1,32 @@
-[gd_scene load_steps=7 format=3 uid="uid://jtesh1ni1jmd"]
+[gd_scene load_steps=8 format=3 uid="uid://jtesh1ni1jmd"]
 
 [ext_resource type="PackedScene" uid="uid://cf2ascm2aqyew" path="res://obj/player/player.tscn" id="1_c6jsy"]
-[ext_resource type="Texture2D" uid="uid://cd4qoowomh6kn" path="res://img/spaceholder.png" id="1_n3ckk"]
+[ext_resource type="Texture2D" uid="uid://bc8at8v04v1mq" path="res://img/space2.png" id="1_v2lvr"]
 [ext_resource type="PackedScene" uid="uid://yuy1qsp1j3mu" path="res://obj/parts/big_rock.tscn" id="2_hnh3m"]
 [ext_resource type="PackedScene" uid="uid://rqywnvoceedy" path="res://obj/ai/enemy.tscn" id="4_0my7x"]
 [ext_resource type="PackedScene" uid="uid://cikd7d1tj3wu4" path="res://obj/ai/cruiser.tscn" id="5_ayamy"]
 [ext_resource type="PackedScene" uid="uid://cerx2bpq16yjo" path="res://obj/other/static_station.tscn" id="6_nixmj"]
+[ext_resource type="PackedScene" uid="uid://7vjnl48toxav" path="res://obj/other/exit.tscn" id="7_7w5wf"]
 
 [node name="world" type="Node2D"]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_offset = Vector2(134.949, 100.44)
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_mirroring = Vector2(1281, 640)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 position = Vector2(524, 267)
-texture = ExtResource("1_n3ckk")
+texture = ExtResource("1_v2lvr")
 region_enabled = true
 region_rect = Rect2(-1419.17, -703.787, 3607.63, 1819)
+
+[node name="StaticStation" parent="." instance=ExtResource("6_nixmj")]
+position = Vector2(548, -536)
+
+[node name="Marker2D" type="Marker2D" parent="." groups=["ss"]]
+position = Vector2(548, -557)
 
 [node name="big_rock" parent="." instance=ExtResource("2_hnh3m")]
 position = Vector2(213, 154)
@@ -41,9 +49,7 @@ position = Vector2(66, 139)
 [node name="cruiser" parent="." instance=ExtResource("5_ayamy")]
 position = Vector2(434, 670)
 
-[node name="StaticStation" parent="." instance=ExtResource("6_nixmj")]
-position = Vector2(548, -536)
-
 [node name="player" parent="." instance=ExtResource("1_c6jsy")]
-position = Vector2(524, 302)
-linear_damp = 0.75
+
+[node name="exit" parent="." instance=ExtResource("7_7w5wf")]
+position = Vector2(1761, 22536)

@@ -1,4 +1,7 @@
 extends Camera2D
+
+var camera = Vector2.ZERO
+
 func _physics_process(_delta):
 	if Input.is_action_pressed("ui_rclick"):
 		global_position = Vector2(

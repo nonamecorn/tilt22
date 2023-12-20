@@ -1,12 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://ciwejjal4p8p2"]
+[gd_scene load_steps=4 format=3 uid="uid://ciwejjal4p8p2"]
 
 [ext_resource type="Script" path="res://obj/parts/money.gd" id="1_b7wfi"]
+[ext_resource type="AudioStream" uid="uid://cckkq5egtor8d" path="res://snd/sfx/money.wav" id="2_k6b2b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_npkyw"]
 size = Vector2(34, 31)
 
 [node name="medium_rock" type="RigidBody2D" groups=["attachable"]]
-collision_mask = 23
+collision_mask = 31
 mass = 100.0
 max_contacts_reported = 1
 contact_monitor = true
@@ -27,4 +28,15 @@ offset_right = 29.0
 offset_bottom = 10.0
 text = "money"
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_k6b2b")
+volume_db = 10.0
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]
