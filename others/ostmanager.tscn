@@ -1,18 +1,15 @@
 [gd_scene load_steps=7 format=3 uid="uid://cv2vbbpiuxcno"]
 
 [ext_resource type="Script" path="res://others/ostmanager.gd" id="1_fepu3"]
-[ext_resource type="AudioStream" uid="uid://c8aqn0iqmugy8" path="res://snd/remember_to_delete/A New Frontier.mp3" id="2_mityk"]
 [ext_resource type="AudioStream" uid="uid://bk6hm0qnj60dn" path="res://snd/remember_to_delete/All Systems, Go!.mp3" id="3_awi7l"]
 [ext_resource type="AudioStream" uid="uid://cb7bl43t824f5" path="res://snd/remember_to_delete/Base of the Titans.mp3" id="4_2vrav"]
 [ext_resource type="AudioStream" uid="uid://btkrrbdyk4q8q" path="res://snd/remember_to_delete/Every Day Is Night.mp3" id="5_mwh5q"]
 [ext_resource type="AudioStream" uid="uid://cljmhrawt0px" path="res://snd/remember_to_delete/Out of Orbit.mp3" id="6_vs08o"]
+[ext_resource type="AudioStream" uid="uid://dk46nocpywj7u" path="res://snd/ost/ai_core.mp3" id="7_extwd"]
 
 [node name="ostmanager" type="Node"]
+process_mode = 3
 script = ExtResource("1_fepu3")
-
-[node name="A New Frontier" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_mityk")
-volume_db = -20.0
 
 [node name="All Systems, Go!" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_awi7l")
@@ -30,8 +27,12 @@ volume_db = -20.0
 stream = ExtResource("6_vs08o")
 volume_db = -20.0
 
-[connection signal="finished" from="A New Frontier" to="." method="_on_song_finished"]
+[node name="AI Core" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_extwd")
+volume_db = -15.0
+
 [connection signal="finished" from="All Systems, Go!" to="." method="_on_song_finished"]
 [connection signal="finished" from="Base of the Titans" to="." method="_on_song_finished"]
 [connection signal="finished" from="Every Day Is Night" to="." method="_on_song_finished"]
 [connection signal="finished" from="Out of Orbit" to="." method="_on_song_finished"]
+[connection signal="finished" from="AI Core" to="." method="_on_song_finished"]

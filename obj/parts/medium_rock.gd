@@ -8,12 +8,17 @@ func _ready():
 	rng.randomize()
 	rotate(rng.randf_range(0.0,PI*2))
 	apply_force(Vector2(0,rng.randi_range(700000,1200000)).rotated(rng.randf_range(0.0,PI*2)))
+func sell():
+	queue_free()
 
 func hurt(ded):
 	$AnimationPlayer.play("tryaska")
 	hp -= 1;
 	hp -= ded;
 	if hp <= 0:
+		if rng.randi_range(1,100) == 1:
+			$Sprite2D.show()
+			return
 		for childmark in $children.get_children():
 			var bullet_inst = bullet_obj.instantiate()
 			bullet_inst.global_position = childmark.global_position

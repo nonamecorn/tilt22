@@ -9,6 +9,7 @@ var turn_speed: float = 70000.0;
 var hp = 30;
 var dead = false
 var bullet_obj = preload("res://obj/parts/ship_parts3.tscn")
+var victum
 @export var nav_agent: NavigationAgent2D
 
 enum stt {
@@ -118,4 +119,15 @@ func _on_area_2d_body_exited(_body):
 func _on_area_2d_3_body_entered(body):
 	if body.has_method("hurt"):
 		body.hurt(2)
+		victum = body
+		$drilltimer.start()
 		state = stt.RUN
+
+func _on_area_2d_3_body_exited(body):
+	if body == victum:
+		victum = null
+		$drilltimer.stop()
+
+func _on_drilltimer_timeout():
+	victum.hurt(2)
+

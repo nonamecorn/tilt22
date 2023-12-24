@@ -11,6 +11,7 @@ var gear2 = preload("res://obj/player/harpoongun.tscn")
 var gear3 = preload("res://obj/player/rocket_launcher.tscn")
 var state = ALIVE;
 var bullet_obj = preload("res://obj/parts/ship_parts4.tscn")
+var victum
 enum {
 	DEAD,
 	ALIVE
@@ -33,9 +34,32 @@ func _physics_process(_delta):
 func _on_area_2d_3_body_entered(body):
 	if body.has_method("hurt"):
 		body.hurt(2)
+		victum = body
+		$drilltimer.start()
+
+func _on_area_2d_3_body_exited(body):
+	if body == victum:
+		$drilltimer.stop()
+
+func _on_drilltimer_timeout():
+	victum.hurt(2)
 
 
 func move():
+	if Input.is_action_pressed("ui_q"):
+		linear_damp = 0.25
+		$Playership/torque1.show(); $Playership/torque4.show()
+		apply_force(Vector2(0.5 * force, 0).rotated(rotation));
+	elif !Input.is_action_pressed("ui_e"):
+		$Playership/torque1.hide(); $Playership/torque4.hide(); linear_damp = 0.75
+	else: $Playership/torque1.hide(); $Playership/torque4.hide(); 
+	if Input.is_action_pressed("ui_e"):
+		linear_damp = 0.25
+		$Playership/torque3.show(); $Playership/torque2.show()
+		apply_force(Vector2(-0.5 * force, 0).rotated(rotation));
+	elif !Input.is_action_pressed("ui_q"):
+		$Playership/torque3.hide(); $Playership/torque2.hide(); linear_damp = 0.75
+	else: $Playership/torque3.hide(); $Playership/torque2.hide();
 	if Input.is_action_pressed("ui_up"):
 		apply_force(Vector2(0, force).rotated(rotation));
 		apply_central_force(Vector2(0,0))
@@ -48,20 +72,23 @@ func move():
 		$Playership/damp1.show();$Playership/damp2.show();$Playership/engine.hide()
 		apply_force(Vector2(0, (force * -0.5)).rotated(rotation));
 		apply_central_force(Vector2(0,0))
-		linear_damp = 0
-	elif !Input.is_action_pressed("ui_up"):
+		linear_damp = 0.25
+	elif !Input.is_action_pressed("ui_up") and !Input.is_action_pressed("ui_q") and !Input.is_action_pressed("ui_q"):
 		$Playership/damp1.hide();$Playership/damp2.hide(); linear_damp = 0.75
 	else: $Playership/damp1.hide();$Playership/damp2.hide(); linear_damp = 0.25
 	if Input.is_action_pressed("ui_left"):
 		$Playership/torque1.show()
 		$Playership/torque3.show()
-		apply_torque(torque);
-	else: $Playership/torque1.hide(); $Playership/torque3.hide()
+		apply_torque(-70000);
+	elif !Input.is_action_pressed("ui_q") and !Input.is_action_pressed("ui_e"):
+		$Playership/torque1.hide(); $Playership/torque3.hide()
 	if Input.is_action_pressed("ui_right"):
 		$Playership/torque4.show()
 		$Playership/torque2.show()
-		apply_torque(torque * -1);
-	else: $Playership/torque2.hide(); $Playership/torque4.hide()
+		apply_torque(70000);
+	elif !Input.is_action_pressed("ui_q") and !Input.is_action_pressed("ui_e"):
+		$Playership/torque2.hide(); $Playership/torque4.hide()
+	
 	if Input.is_action_just_pressed("ui_1"):
 		$markers/Marker2D.get_child(0).switch()
 		$markers/Marker2D2.get_child(0).switch()
@@ -119,3 +146,6 @@ func deduct_money(amount):
 	#if state == DEAD or body.is_in_group("prj"): return
 	#if (body.linear_velocity - linear_velocity).length() > 120:
 		#die()
+
+
+

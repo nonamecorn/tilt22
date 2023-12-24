@@ -11,6 +11,8 @@ func _on_body_entered(body):
 		$Polygon2D.hide()
 		body.add_money(1000)
 
+func sell():
+	queue_free()
 
 func hurt(ded):
 	hp -= (1 + ded)

@@ -11,6 +11,8 @@ func _on_body_entered(body):
 			$CollisionShape2D.set_deferred("disabled", true)
 			body.hp += 5
 			body.updatehpbar()
+func sell():
+	queue_free()
 
 func hurt(ded):
 	hp -= (1 + ded)

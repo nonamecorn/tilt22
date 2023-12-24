@@ -3,7 +3,7 @@ extends Node
 var thrust_price = 500
 var armor_price = 500
 
-var money = 11000
+var money = 0
 var bought = [0]
 var current = 0
 

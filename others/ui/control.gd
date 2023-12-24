@@ -7,12 +7,14 @@ extends Control
 var dils = [
 	"did you know that in 1962 USSR scientists found out heaviest life form... ur mom",
 	"did you know that warp weapons is really busted but its not cool so nobody uses it",
-	"from the moment i understood the weakness of my flesh i... wented to the gym",
+	"from the moment i understood the weakness of my flesh i... went to the gym",
 	"this station is powered by a small black hole thats even heavier than your mom",
 	"did you know that because of europe, there are more submarines than spaceships in space",
 	"did you know that this digging site is abandoned because of drunk dwarfs",
 	"dont venture to abandoned moons without shovel",
-	"need money? try selling some scrap by pushing it into the red zone"
+	"need money? try selling some scrap by pushing it into the red zone",
+	"did you know that by pressing z and x you can create and destroy rat kings while using harpooner",
+	"did you know that by pressing 1 2 3 you can control different attachments of your ship"
 ]
 
 func set_text():
@@ -27,9 +29,11 @@ func _ready():
 
 func _process(_delta):
 	if Input.is_action_just_pressed("ui_esc"):
+		get_tree().paused = false
 		hide()
 
 func _on_esc_pressed():
+	get_tree().paused = false
 	hide()
 
 
@@ -54,6 +58,7 @@ func _on_offender_buy_pressed():
 		off_inst.global_position = spawn.global_position
 		off_inst.global_rotation = spawn.global_rotation
 		call_deferred("add", off_inst)
+		_on_esc_pressed()
 		get_tree().get_nodes_in_group("player")[0].queue_free()
 		return
 	elif hand.get_child(0).text == "current":
@@ -70,6 +75,7 @@ func _on_handyman_buy_pressed():
 		handy_inst.global_position = spawn.global_position
 		handy_inst.global_rotation = spawn.global_rotation
 		call_deferred("add", handy_inst)
+		_on_esc_pressed()
 		get_tree().get_nodes_in_group("player")[0].queue_free()
 		return
 	elif hand.get_child(0).text == "current":
@@ -91,6 +97,7 @@ func _on_handyman_buy_pressed():
 	handy_inst.global_position = spawn.global_position
 	handy_inst.global_rotation = spawn.global_rotation
 	call_deferred("add", handy_inst)
+	_on_esc_pressed()
 	get_tree().get_nodes_in_group("player")[0].queue_free()
 
 func _on_cruise_driller_pressed():
@@ -103,6 +110,7 @@ func _on_cruise_driller_pressed():
 		driller_inst.global_position = spawn.global_position
 		driller_inst.global_rotation = spawn.global_rotation
 		call_deferred("add", driller_inst)
+		_on_esc_pressed()
 		get_tree().get_nodes_in_group("player")[0].queue_free()
 		return
 	elif drill.get_child(0).text == "current":
@@ -124,6 +132,7 @@ func _on_cruise_driller_pressed():
 	driller_inst.global_position = spawn.global_position
 	driller_inst.global_rotation = spawn.global_rotation
 	call_deferred("add", driller_inst)
+	_on_esc_pressed()
 	get_tree().get_nodes_in_group("player")[0].queue_free()
 
 
@@ -132,7 +141,7 @@ func add(de_bullet_inst):
 
 
 func _on_better_thrusters_pressed():
-	if Global.money >= 500:
+	if Global.money >= Global.thrust_price:
 		match player.type:
 			"offender":
 				Global.offforce -= 1000
@@ -150,7 +159,7 @@ func _on_better_thrusters_pressed():
 
 
 func _on_better_armor_pressed():
-	if Global.money >= 500:
+	if Global.money >= Global.armor_price:
 		match player.type:
 			"offender":
 				Global.offmaxhp += 10

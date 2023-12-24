@@ -2,12 +2,14 @@ extends RigidBody2D
 var rng = RandomNumberGenerator.new()
 var hp = 5;
 var bullet_obj = preload("res://obj/other/explosion.tscn")
-var worth = 500
+var worth = 1000
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rng.randomize()
 	rotate(rng.randf_range(0.0,PI*2))
 	apply_force(Vector2(0,rng.randi_range(700000,1200000)).rotated(rng.randf_range(0.0,PI*2)))
+func sell():
+	queue_free()
 
 func hurt(ded):
 	$AnimationPlayer.play("tryaska")

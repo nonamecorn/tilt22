@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://b74ibfj5q0lfi"]
+[gd_scene load_steps=7 format=3 uid="uid://b74ibfj5q0lfi"]
 
 [ext_resource type="Script" path="res://obj/parts/medium_rock.gd" id="1_ntvq6"]
 [ext_resource type="Texture2D" uid="uid://d4csvaxd6cmla" path="res://img/rockmedium.png" id="2_4nhgl"]
+[ext_resource type="Texture2D" uid="uid://cf3vfhe1vvy4n" path="res://img/banambna.jpg" id="3_qgtxh"]
 
 [sub_resource type="Animation" id="Animation_ng8in"]
 length = 0.001
@@ -48,6 +49,10 @@ script = ExtResource("1_ntvq6")
 
 [node name="Rockmedium" type="Sprite2D" parent="."]
 texture = ExtResource("2_4nhgl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_qgtxh")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(-2, 1)

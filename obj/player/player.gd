@@ -26,6 +26,20 @@ func _physics_process(_delta):
 			move()
 
 func move():
+	if Input.is_action_pressed("ui_q"):
+		linear_damp = 0.25
+		$Playership/torque1.show(); $Playership/torque4.show()
+		apply_force(Vector2(0.5 * force, 0).rotated(rotation));
+	elif !Input.is_action_pressed("ui_e"):
+		$Playership/torque1.hide(); $Playership/torque4.hide(); linear_damp = 0.75
+	else: $Playership/torque1.hide(); $Playership/torque4.hide(); 
+	if Input.is_action_pressed("ui_e"):
+		linear_damp = 0.25
+		$Playership/torque3.show(); $Playership/torque2.show()
+		apply_force(Vector2(-0.5 * force, 0).rotated(rotation));
+	elif !Input.is_action_pressed("ui_q"):
+		$Playership/torque3.hide(); $Playership/torque2.hide(); linear_damp = 0.75
+	else: $Playership/torque3.hide(); $Playership/torque2.hide();
 	if Input.is_action_pressed("ui_up"):
 		apply_force(Vector2(0, force).rotated(rotation));
 		apply_central_force(Vector2(0,0))
@@ -38,20 +52,23 @@ func move():
 		$Playership/damp1.show();$Playership/damp2.show();$Playership/engine.hide()
 		apply_force(Vector2(0, (force * -0.5)).rotated(rotation));
 		apply_central_force(Vector2(0,0))
-		linear_damp = 0
-	elif !Input.is_action_pressed("ui_up"):
+		linear_damp = 0.25
+	elif !Input.is_action_pressed("ui_up") and !Input.is_action_pressed("ui_q") and !Input.is_action_pressed("ui_q"):
 		$Playership/damp1.hide();$Playership/damp2.hide(); linear_damp = 0.75
 	else: $Playership/damp1.hide();$Playership/damp2.hide(); linear_damp = 0.25
 	if Input.is_action_pressed("ui_left"):
 		$Playership/torque1.show()
 		$Playership/torque3.show()
-		apply_torque(-100000);
-	else: $Playership/torque1.hide(); $Playership/torque3.hide()
+		apply_torque(-70000);
+	elif !Input.is_action_pressed("ui_q") and !Input.is_action_pressed("ui_e"):
+		$Playership/torque1.hide(); $Playership/torque3.hide()
 	if Input.is_action_pressed("ui_right"):
 		$Playership/torque4.show()
 		$Playership/torque2.show()
-		apply_torque(100000);
-	else: $Playership/torque2.hide(); $Playership/torque4.hide()
+		apply_torque(70000);
+	elif !Input.is_action_pressed("ui_q") and !Input.is_action_pressed("ui_e"):
+		$Playership/torque2.hide(); $Playership/torque4.hide()
+	
 	if Input.is_action_just_pressed("ui_1"):
 		if $markers/Marker2D.get_child(0).active:
 			$markers/Marker2D.get_child(0).switch()

@@ -1,12 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://jtesh1ni1jmd"]
+[gd_scene load_steps=12 format=3 uid="uid://jtesh1ni1jmd"]
 
 [ext_resource type="PackedScene" uid="uid://cf2ascm2aqyew" path="res://obj/player/player.tscn" id="1_c6jsy"]
 [ext_resource type="Texture2D" uid="uid://bc8at8v04v1mq" path="res://img/space2.png" id="1_v2lvr"]
-[ext_resource type="PackedScene" uid="uid://yuy1qsp1j3mu" path="res://obj/parts/big_rock.tscn" id="2_hnh3m"]
 [ext_resource type="PackedScene" uid="uid://rqywnvoceedy" path="res://obj/ai/enemy.tscn" id="4_0my7x"]
 [ext_resource type="PackedScene" uid="uid://cikd7d1tj3wu4" path="res://obj/ai/cruiser.tscn" id="5_ayamy"]
+[ext_resource type="PackedScene" uid="uid://yuy1qsp1j3mu" path="res://obj/parts/magnetic_rock.tscn" id="5_c0pvr"]
+[ext_resource type="PackedScene" uid="uid://bfypmkjo3qjmh" path="res://obj/parts/big_rock.tscn" id="5_l0bp8"]
 [ext_resource type="PackedScene" uid="uid://cerx2bpq16yjo" path="res://obj/other/static_station.tscn" id="6_nixmj"]
+[ext_resource type="PackedScene" uid="uid://cogadpp4q7qxt" path="res://obj/parts/explosive_rock.tscn" id="6_ubqks"]
 [ext_resource type="PackedScene" uid="uid://7vjnl48toxav" path="res://obj/other/exit.tscn" id="7_7w5wf"]
+[ext_resource type="PackedScene" uid="uid://ctuykbqmgn2y3" path="res://obj/ai/enemy2.tscn" id="8_x2ipm"]
+[ext_resource type="PackedScene" uid="uid://b74ibfj5q0lfi" path="res://obj/parts/medium_rock.tscn" id="11_exxf4"]
 
 [node name="world" type="Node2D"]
 
@@ -28,28 +32,47 @@ position = Vector2(548, -536)
 [node name="Marker2D" type="Marker2D" parent="." groups=["ss"]]
 position = Vector2(548, -557)
 
-[node name="big_rock" parent="." instance=ExtResource("2_hnh3m")]
-position = Vector2(213, 154)
-
-[node name="big_rock2" parent="." instance=ExtResource("2_hnh3m")]
-position = Vector2(922, 450)
-
-[node name="big_rock3" parent="." instance=ExtResource("2_hnh3m")]
-position = Vector2(892, 68)
-
-[node name="big_rock4" parent="." instance=ExtResource("2_hnh3m")]
-position = Vector2(394, 542)
-
-[node name="enemy" parent="." instance=ExtResource("4_0my7x")]
-position = Vector2(945, 264)
-
-[node name="enemy2" parent="." instance=ExtResource("4_0my7x")]
-position = Vector2(66, 139)
-
-[node name="cruiser" parent="." instance=ExtResource("5_ayamy")]
-position = Vector2(434, 670)
-
 [node name="player" parent="." instance=ExtResource("1_c6jsy")]
+position = Vector2(348, 472)
 
 [node name="exit" parent="." instance=ExtResource("7_7w5wf")]
 position = Vector2(1761, 22536)
+
+[node name="big_rock" parent="." instance=ExtResource("5_c0pvr")]
+position = Vector2(189, 250)
+
+[node name="medium_rock" parent="." instance=ExtResource("6_ubqks")]
+position = Vector2(649, 455)
+
+[node name="medium_rock2" parent="." instance=ExtResource("6_ubqks")]
+position = Vector2(-39, 629)
+
+[node name="cruiser" parent="." instance=ExtResource("5_ayamy")]
+position = Vector2(544, 771)
+
+[node name="enemy2" parent="." instance=ExtResource("8_x2ipm")]
+position = Vector2(30, 702)
+
+[node name="enemy3" parent="." instance=ExtResource("8_x2ipm")]
+position = Vector2(912, 400)
+
+[node name="enemy" parent="." instance=ExtResource("4_0my7x")]
+position = Vector2(-151, 405)
+
+[node name="big_rock2" parent="." instance=ExtResource("5_l0bp8")]
+position = Vector2(604, 247)
+
+[node name="big_rock3" parent="." instance=ExtResource("5_l0bp8")]
+position = Vector2(225, 606)
+
+[node name="medium_rock3" parent="." instance=ExtResource("11_exxf4")]
+position = Vector2(873, 745)
+
+[node name="medium_rock4" parent="." instance=ExtResource("11_exxf4")]
+position = Vector2(87, 405)
+
+[node name="medium_rock5" parent="." instance=ExtResource("11_exxf4")]
+position = Vector2(497, 818)
+
+[node name="medium_rock6" parent="." instance=ExtResource("11_exxf4")]
+position = Vector2(-270, 618)

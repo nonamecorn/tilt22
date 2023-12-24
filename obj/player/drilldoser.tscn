@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dg8h761vel14l" path="res://img/mainenginefire.png" id="4_q1oui"]
 [ext_resource type="Texture2D" uid="uid://da5xc1oc65sjk" path="res://img/truster_anim.png" id="5_oj2sl"]
 [ext_resource type="Texture2D" uid="uid://dpmqhw32gbaff" path="res://img/explosion.png" id="6_mbrw4"]
-[ext_resource type="PackedScene" uid="uid://dchd4oc66lp6g" path="res://obj/player/harpoongun.tscn" id="7_cf8lh"]
+[ext_resource type="PackedScene" uid="uid://cxe7tkk6rycen" path="res://obj/player/hand.tscn" id="7_et5xp"]
 [ext_resource type="Script" path="res://obj/player/playerCamera2D.gd" id="9_x3s84"]
 [ext_resource type="Script" path="res://obj/player/Area2D.gd" id="10_i3edg"]
 [ext_resource type="Script" path="res://obj/player/Polygon2D.gd" id="11_cjy7v"]
@@ -294,7 +294,7 @@ shape = SubResource("CapsuleShape2D_oaldw")
 [node name="Marker2D" type="Marker2D" parent="markers"]
 position = Vector2(-9, -11)
 
-[node name="harpoongun" parent="markers/Marker2D" instance=ExtResource("7_cf8lh")]
+[node name="hand" parent="markers/Marker2D" instance=ExtResource("7_et5xp")]
 position = Vector2(1, 5)
 
 [node name="Marker2D2" type="Marker2D" parent="markers"]
@@ -432,7 +432,12 @@ offset_right = 576.0
 offset_bottom = 37.0
 text = "money: 0"
 
+[node name="drilltimer" type="Timer" parent="."]
+wait_time = 0.5
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="Area2D3" to="." method="_on_area_2d_3_body_entered"]
+[connection signal="body_exited" from="Area2D3" to="." method="_on_area_2d_3_body_exited"]
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
 [connection signal="timeout" from="Area2D/Timer" to="Area2D" method="_on_timer_timeout"]
+[connection signal="timeout" from="drilltimer" to="." method="_on_drilltimer_timeout"]

@@ -322,7 +322,6 @@ wait_time = 3.0
 autostart = true
 
 [node name="children" type="Node2D" parent="Area2D"]
-position = Vector2(-60, -66)
 scale = Vector2(0.7, 0.7)
 
 [node name="Marker2D" type="Marker2D" parent="Area2D/children"]
