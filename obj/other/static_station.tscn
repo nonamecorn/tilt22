@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cerx2bpq16yjo"]
+[gd_scene load_steps=9 format=3 uid="uid://cerx2bpq16yjo"]
 
 [ext_resource type="Script" path="res://obj/other/static_station.gd" id="1_ir4iu"]
 [ext_resource type="PackedScene" uid="uid://cxe7tkk6rycen" path="res://obj/player/hand.tscn" id="2_e4yf5"]
@@ -27,10 +27,13 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ksp07"]
-size = Vector2(132, 62)
+size = Vector2(52, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rbf7j"]
+size = Vector2(150, 68)
 
 [node name="StaticStation" type="StaticBody2D"]
-collision_layer = 2
+collision_layer = 32
 collision_mask = 31
 script = ExtResource("1_ir4iu")
 
@@ -62,7 +65,7 @@ color = Color(0.521569, 0.521569, 0.521569, 1)
 polygon = PackedVector2Array(-79, 303, -79, 381, 72, 382, 70, 305)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-2, 21)
+position = Vector2(-2, 5)
 shape = SubResource("RectangleShape2D_ksp07")
 
 [node name="sellingArea2D2" type="Area2D" parent="."]
@@ -70,8 +73,8 @@ position = Vector2(-166, 258)
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="sellingArea2D2"]
-position = Vector2(-2, 21)
-shape = SubResource("RectangleShape2D_ksp07")
+position = Vector2(3, 20)
+shape = SubResource("RectangleShape2D_rbf7j")
 
 [node name="Polygon2D2" type="Polygon2D" parent="sellingArea2D2"]
 position = Vector2(4, -322)
@@ -87,24 +90,31 @@ position = Vector2(-169, 278)
 
 [node name="hand" parent="hands/imlazy" instance=ExtResource("2_e4yf5")]
 position = Vector2(-284, 222)
+bullet_path = "res://obj/projs/stationbullet.tscn"
 
 [node name="hand2" parent="hands/imlazy" instance=ExtResource("2_e4yf5")]
 position = Vector2(261, 195)
+bullet_path = "res://obj/projs/stationbullet.tscn"
 
 [node name="hand3" parent="hands/imlazy" instance=ExtResource("2_e4yf5")]
 position = Vector2(259, -70)
+bullet_path = "res://obj/projs/stationbullet.tscn"
 
 [node name="hand4" parent="hands/imlazy" instance=ExtResource("2_e4yf5")]
 position = Vector2(309, -493)
+bullet_path = "res://obj/projs/stationbullet.tscn"
 
 [node name="hand5" parent="hands/imlazy" instance=ExtResource("2_e4yf5")]
 position = Vector2(37, -449)
+bullet_path = "res://obj/projs/stationbullet.tscn"
 
 [node name="hand6" parent="hands/imlazy" instance=ExtResource("2_e4yf5")]
 position = Vector2(-287, -500)
+bullet_path = "res://obj/projs/stationbullet.tscn"
 
 [node name="hand8" parent="hands/imlazy" instance=ExtResource("2_e4yf5")]
 position = Vector2(-366, -82)
+bullet_path = "res://obj/projs/stationbullet.tscn"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="sellingArea2D2" to="." method="_on_selling_area_2d_2_body_entered"]

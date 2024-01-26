@@ -14,6 +14,8 @@ func init(vec: Vector2):
 
 
 func _on_body_entered(body):
+	if body.has_method("anger"):
+		body.anger()
 	if body.has_method("hurt"):
 		body.hurt(0)
 		var bullet_inst = spark.instantiate()

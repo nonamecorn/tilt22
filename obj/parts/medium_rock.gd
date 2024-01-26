@@ -3,6 +3,7 @@ var rng = RandomNumberGenerator.new()
 var hp = 5;
 var bullet_obj = preload("res://obj/parts/smallrock.tscn")
 var worth = 1
+var dead = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rng.randomize()
@@ -12,11 +13,13 @@ func sell():
 	queue_free()
 
 func hurt(ded):
+	if dead: return
 	$AnimationPlayer.play("tryaska")
 	hp -= 1;
 	hp -= ded;
 	if hp <= 0:
-		if rng.randi_range(1,100) == 1:
+		dead = true
+		if rng.randi_range(1,10000) == 1:
 			$Sprite2D.show()
 			return
 		for childmark in $children.get_children():

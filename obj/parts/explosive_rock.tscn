@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cogadpp4q7qxt"]
 
 [ext_resource type="Script" path="res://obj/parts/explosive_rock.gd" id="1_o44lr"]
-[ext_resource type="Texture2D" uid="uid://d4csvaxd6cmla" path="res://img/rockmedium.png" id="2_c302a"]
+[ext_resource type="Texture2D" uid="uid://diqrlm4pjkqau" path="res://img/rockexp.png" id="2_342bj"]
 
 [sub_resource type="Animation" id="Animation_ng8in"]
 length = 0.001
@@ -42,7 +42,7 @@ _data = {
 }
 
 [node name="medium_rock" type="RigidBody2D" groups=["attachable"]]
-collision_mask = 31
+collision_mask = 63
 mass = 100.0
 script = ExtResource("1_o44lr")
 
@@ -51,8 +51,7 @@ position = Vector2(-2, 1)
 polygon = PackedVector2Array(-1, -27, 26, -12, 27, 17, -12, 26, -24, -9)
 
 [node name="Rockmedium" type="Sprite2D" parent="."]
-modulate = Color(1, 0.403922, 0.270588, 1)
-texture = ExtResource("2_c302a")
+texture = ExtResource("2_342bj")
 
 [node name="children" type="Node2D" parent="."]
 

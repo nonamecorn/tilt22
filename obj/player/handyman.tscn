@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://cfpy8yfo8rujf"]
+[gd_scene load_steps=40 format=3 uid="uid://cfpy8yfo8rujf"]
 
 [ext_resource type="Script" path="res://obj/player/handyman.gd" id="1_ccee8"]
 [ext_resource type="Texture2D" uid="uid://k8yuvuu55wn0" path="res://img/handyman.png" id="2_vom6m"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://obj/player/ProgressBar.gd" id="11_u7fnk"]
 [ext_resource type="PackedScene" uid="uid://cdcro6fmi27or" path="res://others/ui/control.tscn" id="12_bo5aq"]
 [ext_resource type="PackedScene" uid="uid://dchd4oc66lp6g" path="res://obj/player/harpoongun.tscn" id="13_a5obo"]
+[ext_resource type="PackedScene" uid="uid://cudcicye0rrir" path="res://others/ui/menu.tscn" id="14_3o1s6"]
 
 [sub_resource type="NavigationPolygon" id="1"]
 vertices = PackedVector2Array(3878, 2797, -3141, 2741, -3255, -1919, 3784, -2090)
@@ -207,7 +208,7 @@ _data = {
 
 [node name="player" type="RigidBody2D" groups=["attachable", "killable", "player"]]
 collision_layer = 2
-collision_mask = 23
+collision_mask = 55
 mass = 80.0
 max_contacts_reported = 1
 contact_monitor = true
@@ -417,6 +418,9 @@ offset_top = 14.0
 offset_right = 576.0
 offset_bottom = 37.0
 text = "money: 0"
+
+[node name="menu" parent="CanvasLayer" instance=ExtResource("14_3o1s6")]
+visible = false
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

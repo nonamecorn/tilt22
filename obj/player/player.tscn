@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://cf2ascm2aqyew"]
+[gd_scene load_steps=40 format=3 uid="uid://cf2ascm2aqyew"]
 
 [ext_resource type="Script" path="res://obj/player/player.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://c1ae2myj2p6tg" path="res://img/playership.png" id="2"]
@@ -10,8 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://cxe7tkk6rycen" path="res://obj/player/hand.tscn" id="7_5dgn7"]
 [ext_resource type="Script" path="res://obj/player/playerCamera2D.gd" id="7_84sue"]
 [ext_resource type="Script" path="res://obj/player/Polygon2D.gd" id="10_m71gl"]
+[ext_resource type="Script" path="res://obj/player/stationes.gd" id="10_vx30m"]
 [ext_resource type="Script" path="res://obj/player/ProgressBar.gd" id="11_w6n1q"]
 [ext_resource type="PackedScene" uid="uid://cdcro6fmi27or" path="res://others/ui/control.tscn" id="12_awe17"]
+[ext_resource type="PackedScene" uid="uid://cudcicye0rrir" path="res://others/ui/menu.tscn" id="14_b4myk"]
 
 [sub_resource type="NavigationPolygon" id="1"]
 vertices = PackedVector2Array(3878, 2797, -3141, 2741, -3255, -1919, 3784, -2090)
@@ -22,15 +24,15 @@ source_geometry_group_name = &"navigation_polygon_source_group"
 [sub_resource type="RectangleShape2D" id="2"]
 size = Vector2(26, 38)
 
-[sub_resource type="AtlasTexture" id="3"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_f7pw2"]
 atlas = ExtResource("3")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="4"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ly7l8"]
 atlas = ExtResource("3")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_wnwhm"]
 atlas = ExtResource("3")
 region = Rect2(64, 0, 32, 32)
 
@@ -38,13 +40,13 @@ region = Rect2(64, 0, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("3")
+"texture": SubResource("AtlasTexture_f7pw2")
 }, {
 "duration": 1.0,
-"texture": SubResource("4")
+"texture": SubResource("AtlasTexture_ly7l8")
 }, {
 "duration": 1.0,
-"texture": SubResource("5")
+"texture": SubResource("AtlasTexture_wnwhm")
 }],
 "loop": true,
 "name": &"default",
@@ -205,8 +207,9 @@ _data = {
 }
 
 [node name="player" type="RigidBody2D" groups=["attachable", "killable", "player"]]
+process_mode = 1
 collision_layer = 2
-collision_mask = 23
+collision_mask = 55
 mass = 80.0
 max_contacts_reported = 1
 contact_monitor = true
@@ -372,15 +375,35 @@ position = Vector2(-2578.57, 668.571)
 [node name="Marker2D16" type="Marker2D" parent="Area2D/children"]
 position = Vector2(-1602, 1042)
 
+[node name="stationes" type="Node2D" parent="Area2D"]
+script = ExtResource("10_vx30m")
+
+[node name="Marker2D" type="Marker2D" parent="Area2D/stationes"]
+position = Vector2(4982, 5575)
+
+[node name="Marker2D3" type="Marker2D" parent="Area2D/stationes"]
+position = Vector2(-8319, 701)
+
+[node name="Marker2D5" type="Marker2D" parent="Area2D/stationes"]
+position = Vector2(3268, -6486)
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_ddkqm")
 }
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
+[node name="marker" type="Polygon2D" parent="."]
 color = Color(0.862745, 0.862745, 0.862745, 1)
 polygon = PackedVector2Array(46, -16, 61, 0, 46, 14, 50, 0)
 script = ExtResource("10_m71gl")
+group = "spawn"
+
+[node name="marker2" type="Polygon2D" parent="."]
+visible = false
+color = Color(0.921569, 0.878431, 0.458824, 1)
+polygon = PackedVector2Array(46, -16, 61, 0, 46, 14, 50, 0)
+script = ExtResource("10_m71gl")
+group = "neutral_station"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -410,6 +433,9 @@ offset_top = 14.0
 offset_right = 576.0
 offset_bottom = 37.0
 text = "money: 0"
+
+[node name="menu" parent="CanvasLayer" instance=ExtResource("14_b4myk")]
+visible = false
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

@@ -1,10 +1,12 @@
-[gd_scene load_steps=23 format=3 uid="uid://cikd7d1tj3wu4"]
+[gd_scene load_steps=33 format=3 uid="uid://cikd7d1tj3wu4"]
 
 [ext_resource type="Script" path="res://obj/ai/cruiser.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://b1il6rtrkxoje" path="res://img/cruiser.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://dg8h761vel14l" path="res://img/mainenginefire.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://dpmqhw32gbaff" path="res://img/explosion.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://da5xc1oc65sjk" path="res://img/truster_anim.png" id="4_0tbm1"]
 [ext_resource type="PackedScene" uid="uid://4cjmvwdfjtym" path="res://obj/ai/cruiserhand.tscn" id="5"]
+[ext_resource type="Texture2D" uid="uid://d2ubeqcafy8a2" path="res://img/dampanim.png" id="5_7k8mw"]
 
 [sub_resource type="CircleShape2D" id="1"]
 radius = 286.175
@@ -43,14 +45,72 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="7"]
+atlas = ExtResource("4_0tbm1")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="8"]
+atlas = ExtResource("4_0tbm1")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="9"]
+atlas = ExtResource("4_0tbm1")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kn8t0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("7")
+}, {
+"duration": 1.0,
+"texture": SubResource("8")
+}, {
+"duration": 1.0,
+"texture": SubResource("9")
+}],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f7pw2"]
+atlas = ExtResource("5_7k8mw")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ly7l8"]
+atlas = ExtResource("5_7k8mw")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wnwhm"]
+atlas = ExtResource("5_7k8mw")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jaijp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f7pw2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ly7l8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wnwhm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ikd73"]
 atlas = ExtResource("4")
 region = Rect2(0, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="8"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_sum51"]
 atlas = ExtResource("4")
 region = Rect2(64, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="9"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_lwlps"]
 atlas = ExtResource("4")
 region = Rect2(128, 0, 64, 64)
 
@@ -74,13 +134,13 @@ region = Rect2(384, 0, 64, 64)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("7")
+"texture": SubResource("AtlasTexture_ikd73")
 }, {
 "duration": 1.0,
-"texture": SubResource("8")
+"texture": SubResource("AtlasTexture_sum51")
 }, {
 "duration": 1.0,
-"texture": SubResource("9")
+"texture": SubResource("AtlasTexture_lwlps")
 }, {
 "duration": 1.0,
 "texture": SubResource("10")
@@ -137,13 +197,14 @@ _data = {
 "tryaska": SubResource("Animation_malec")
 }
 
-[node name="cruiser" type="RigidBody2D" groups=["cruiser", "killable"]]
+[node name="cruiser" type="RigidBody2D" node_paths=PackedStringArray("nav_agent") groups=["cruiser", "killable", "neutral"]]
 collision_layer = 16
-collision_mask = 31
+collision_mask = 63
 mass = 100.0
-linear_damp = 1.0
+linear_damp = 0.75
 angular_damp = 1.0
 script = ExtResource("1")
+nav_agent = NodePath("NavigationAgent2D")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
@@ -151,6 +212,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("1")
+debug_color = Color(0, 0.541176, 0.960784, 0.101961)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
@@ -171,8 +233,61 @@ position = Vector2(8, 44)
 sprite_frames = SubResource("6")
 autoplay = "default"
 
+[node name="torque1" type="AnimatedSprite2D" parent="Playership"]
+visible = false
+position = Vector2(20, -37)
+sprite_frames = SubResource("SpriteFrames_kn8t0")
+autoplay = "default"
+
+[node name="torque4" type="AnimatedSprite2D" parent="Playership"]
+visible = false
+position = Vector2(20, 29)
+sprite_frames = SubResource("SpriteFrames_kn8t0")
+autoplay = "default"
+
+[node name="torque2" type="AnimatedSprite2D" parent="Playership"]
+visible = false
+position = Vector2(-19, -37)
+scale = Vector2(-1, 1)
+sprite_frames = SubResource("SpriteFrames_kn8t0")
+autoplay = "default"
+
+[node name="torque3" type="AnimatedSprite2D" parent="Playership"]
+visible = false
+position = Vector2(-20, 29)
+scale = Vector2(-1, 1)
+sprite_frames = SubResource("SpriteFrames_kn8t0")
+autoplay = "default"
+
+[node name="damp1" type="AnimatedSprite2D" parent="Playership"]
+visible = false
+position = Vector2(22, 13)
+sprite_frames = SubResource("SpriteFrames_jaijp")
+autoplay = "default"
+
+[node name="damp2" type="AnimatedSprite2D" parent="Playership"]
+visible = false
+position = Vector2(-22, 13)
+scale = Vector2(-1, 1)
+sprite_frames = SubResource("SpriteFrames_jaijp")
+autoplay = "default"
+
+[node name="damp3" type="AnimatedSprite2D" parent="Playership"]
+visible = false
+position = Vector2(22, 21)
+sprite_frames = SubResource("SpriteFrames_jaijp")
+autoplay = "default"
+
+[node name="damp4" type="AnimatedSprite2D" parent="Playership"]
+visible = false
+position = Vector2(-22, 21)
+scale = Vector2(-1, 1)
+sprite_frames = SubResource("SpriteFrames_jaijp")
+autoplay = "default"
+
 [node name="makepath" type="Timer" parent="."]
 wait_time = 0.5
+autostart = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(1.5, 1.5)
@@ -220,5 +335,18 @@ libraries = {
 "": SubResource("AnimationLibrary_ddkqm")
 }
 
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(0, -42)
+target_position = Vector2(0, -61)
+collision_mask = 51
+
+[node name="colltim" type="Timer" parent="."]
+autostart = true
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-31, -61)
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="makepath" to="." method="_on_makepath_timeout"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="colltim" to="." method="_on_colltim_timeout"]

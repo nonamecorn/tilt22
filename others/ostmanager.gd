@@ -1,13 +1,28 @@
 extends Node
 var rng = RandomNumberGenerator.new()
+var current_song_index = 0
 
 func _ready():
 	rng.randomize()
-	play()
-func play():
-	get_child(rng.randi_range(0,get_children().size() - 1)).play()
+	playbgm()
+func playbgm():
+	if $bgm.get_children().size() == 0:
+		print("no ost in node")
+		return
+	current_song_index = rng.randi_range(0,$bgm.get_children().size() - 1)
+	$bgm.get_child(current_song_index).play()
 
+func pause():
+	$bgm.get_child(current_song_index).stream_paused = true
+
+func resume():
+	$bgm.get_child(current_song_index).stream_paused = false
+
+func play(song_index):
+	for child in $bgm.get_children():
+		child.stop()
+	$ost.get_child(song_index).play()
 
 func _on_song_finished():
-	play()
+	playbgm()
 

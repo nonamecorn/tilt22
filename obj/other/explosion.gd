@@ -1,7 +1,7 @@
 extends Area2D
 
 var exp_scale = 1
-var damage = 2
+var damage = 5
 
 func _ready():
 	$AudioStreamPlayer2D.play()

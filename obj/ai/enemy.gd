@@ -9,13 +9,16 @@ var turn_speed: float = 100000.0;
 var hp = 20;
 var dead = false
 var bullet_obj = preload("res://obj/parts/ship_parts.tscn")
+var reputation = -1
+var collider
 @export var nav_agent: NavigationAgent2D
 
 enum stt {
 	IDLE,
 	ATTACK,
 	RUN,
-	SCOUT
+	SCOUT,
+	BACK,
 }
 func _ready():
 	rng.randomize()
@@ -24,6 +27,10 @@ func _ready():
 func genrnforce():
 	force = Vector2(0,rng.randi_range(-10000,-12000))
 
+func check():
+	if $Area2D.get_overlapping_bodies().size() != 0:
+		_on_area_2d_body_entered($Area2D.get_overlapping_bodies()[0])
+
 func set_movement_target(target_point: Vector2):
 	nav_agent.target_position = target_point
 
@@ -31,6 +38,9 @@ func _physics_process(_delta):
 	match  state:
 		stt.IDLE:
 			pass
+		stt.BACK:
+			apply_force((force*-0.5).rotated(rotation));
+			face_point($Marker2D.global_position);
 		stt.ATTACK:
 			if nav_agent.is_navigation_finished():
 				return
@@ -38,7 +48,7 @@ func _physics_process(_delta):
 			apply_force(force.rotated(rotation));
 			var target_pos = next_path;
 			face_point(target_pos);
-			if hp < 6:
+			if hp < 10:
 				state = stt.RUN;
 		stt.RUN:
 			apply_force(force.rotated(rotation));
@@ -113,3 +123,17 @@ func _on_animated_sprite_2d_animation_finished():
 	#if dead or body.is_in_group("prj"): return
 	#if (body.linear_velocity - linear_velocity).length() > 100:
 		#die()
+
+
+func _on_colltim_timeout():
+	if $RayCast2D.get_collider() == null:
+		$Playership/damp1.hide()
+		$Playership/damp2.hide()
+		state = stt.SCOUT
+		check()
+		return
+	if collider == $RayCast2D.get_collider():
+		$Playership/damp1.show()
+		$Playership/damp2.show()
+		state = stt.BACK
+	collider = $RayCast2D.get_collider()

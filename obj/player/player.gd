@@ -6,12 +6,15 @@ var maxhp = Global.offmaxhp;
 var force = Global.offforce
 var state = ALIVE;
 var bullet_obj = preload("res://obj/parts/ship_parts4.tscn")
+var reputation = Global.reputation
 enum {
 	DEAD,
 	ALIVE
 }
 
+
 func _ready():
+	Global.reputation_change.connect(_on_rep_change)
 	$CanvasLayer/Label.text = "money: " + str(Global.money)
 	updatehpbar()
 
@@ -75,6 +78,8 @@ func move():
 		else:
 			$markers/Marker2D.get_child(0).switch()
 		
+func _on_rep_change(rep):
+	reputation -= rep
 
 func hurt(death):
 	$AnimationPlayer.play("tryaska")

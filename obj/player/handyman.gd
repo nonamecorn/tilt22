@@ -10,6 +10,7 @@ var gear2 = preload("res://obj/player/harpoongun.tscn")
 var gear3 = preload("res://obj/player/rocket_launcher.tscn")
 var state = ALIVE;
 var bullet_obj = preload("res://obj/parts/ship_parts4.tscn")
+var reputation = Global.reputation
 enum {
 	DEAD,
 	ALIVE

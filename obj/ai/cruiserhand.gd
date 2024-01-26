@@ -26,21 +26,22 @@ func fire():
 	bullet_inst.init(get_parent().linear_velocity)
 	get_tree().current_scene.add_child.call_deferred(bullet_inst)
 
+func check():
+	if $Area2D.get_overlapping_bodies().size() != 0:
+		_on_area_2d_body_entered($Area2D.get_overlapping_bodies()[0])
+
 func _on_area_2d_body_entered(body):
-	$Timer.start()
-	player = body
+	if body.reputation < 0:
+		$Timer.start()
+		player = body
 
 func _on_timer_timeout():
-	if $Area2D.get_overlapping_bodies().size() != 0:
-		player = $Area2D.get_overlapping_bodies()[0]
-		fire()
-	else:
-		$Timer.stop()
-	
-
-
-
-
+	for body in  $Area2D.get_overlapping_bodies():
+		if body.reputation < 0:
+			player = body
+			fire()
+			return
+	$Timer.stop()
 
 
 func _on_area_2d_body_exited(_body):

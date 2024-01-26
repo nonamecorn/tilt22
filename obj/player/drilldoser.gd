@@ -12,6 +12,7 @@ var gear3 = preload("res://obj/player/rocket_launcher.tscn")
 var state = ALIVE;
 var bullet_obj = preload("res://obj/parts/ship_parts4.tscn")
 var victum
+var reputation = Global.reputation
 enum {
 	DEAD,
 	ALIVE
@@ -43,6 +44,7 @@ func _on_area_2d_3_body_exited(body):
 
 func _on_drilltimer_timeout():
 	victum.hurt(2)
+	victum = $Area2D3.get_overlapping_bodies()[0]
 
 
 func move():

@@ -1,10 +1,11 @@
-[gd_scene load_steps=28 format=3 uid="uid://rqywnvoceedy"]
+[gd_scene load_steps=33 format=3 uid="uid://rqywnvoceedy"]
 
 [ext_resource type="Script" path="res://obj/ai/enemy.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://yea6vukyyyvt" path="res://img/enemy1.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://dg8h761vel14l" path="res://img/mainenginefire.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://da5xc1oc65sjk" path="res://img/truster_anim.png" id="4"]
 [ext_resource type="PackedScene" uid="uid://c6xmxlaug5ylu" path="res://obj/ai/enemyhand.tscn" id="5_ap81i"]
+[ext_resource type="Texture2D" uid="uid://d2ubeqcafy8a2" path="res://img/dampanim.png" id="5_mm6y8"]
 [ext_resource type="Texture2D" uid="uid://dpmqhw32gbaff" path="res://img/explosion.png" id="7"]
 
 [sub_resource type="CircleShape2D" id="1"]
@@ -66,6 +67,35 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("9")
+}],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f7pw2"]
+atlas = ExtResource("5_mm6y8")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ly7l8"]
+atlas = ExtResource("5_mm6y8")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wnwhm"]
+atlas = ExtResource("5_mm6y8")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_snijk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f7pw2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ly7l8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wnwhm")
 }],
 "loop": true,
 "name": &"default",
@@ -169,11 +199,9 @@ _data = {
 
 [node name="enemy" type="RigidBody2D" node_paths=PackedStringArray("nav_agent") groups=["attachable", "enemy", "killable"]]
 collision_layer = 4
-collision_mask = 31
+collision_mask = 63
 mass = 80.0
-max_contacts_reported = 1
-contact_monitor = true
-linear_damp = 0.75
+linear_damp = 0.5
 script = ExtResource("1")
 nav_agent = NodePath("NavigationAgent2D")
 
@@ -183,6 +211,7 @@ collision_mask = 18
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("1")
+debug_color = Color(0, 0.6, 0.701961, 0.121569)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
@@ -224,6 +253,19 @@ scale = Vector2(-1, 1)
 sprite_frames = SubResource("10")
 autoplay = "default"
 
+[node name="damp1" type="AnimatedSprite2D" parent="Playership"]
+visible = false
+position = Vector2(19, 13)
+sprite_frames = SubResource("SpriteFrames_snijk")
+autoplay = "default"
+
+[node name="damp2" type="AnimatedSprite2D" parent="Playership"]
+visible = false
+position = Vector2(-19, 13)
+scale = Vector2(-1, 1)
+sprite_frames = SubResource("SpriteFrames_snijk")
+autoplay = "default"
+
 [node name="hand" parent="." instance=ExtResource("5_ap81i")]
 position = Vector2(-8, -10)
 
@@ -255,7 +297,19 @@ libraries = {
 "": SubResource("AnimationLibrary_ddkqm")
 }
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(0, -10)
+target_position = Vector2(0, -61)
+collision_mask = 51
+
+[node name="colltim" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-31, -42)
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="makepath" to="." method="_on_makepath_timeout"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="colltim" to="." method="_on_colltim_timeout"]

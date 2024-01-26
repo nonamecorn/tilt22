@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://yuy1qsp1j3mu"]
+[gd_scene load_steps=6 format=3 uid="uid://yuy1qsp1j3mu"]
 
 [ext_resource type="Script" path="res://obj/parts/magnetic_rock.gd" id="1_h51n0"]
 [ext_resource type="Texture2D" uid="uid://bse8x6et2voqn" path="res://img/bigrock.png" id="2_evnmd"]
@@ -41,11 +41,8 @@ _data = {
 "tryaska": SubResource("Animation_isgni")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_d8kfc"]
-radius = 244.0
-
 [node name="big_rock" type="RigidBody2D" groups=["attachable"]]
-collision_mask = 31
+collision_mask = 63
 mass = 200.0
 linear_damp = -0.1
 script = ExtResource("1_h51n0")
@@ -75,18 +72,3 @@ position = Vector2(6, 18)
 libraries = {
 "": SubResource("AnimationLibrary_0qa7b")
 }
-
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 31
-gravity_space_override = 3
-gravity_point = true
-gravity_point_center = Vector2(0, 0)
-gravity_direction = Vector2(0, 0)
-gravity = 70.0
-linear_damp_space_override = 1
-linear_damp = 0.5
-angular_damp = 0.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_d8kfc")

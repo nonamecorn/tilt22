@@ -6,10 +6,10 @@ var hp = 20
 func _on_body_entered(body):
 	if body.is_in_group("player"):
 		$AudioStreamPlayer2D.play()
-		$Label.hide()
-		$CollisionShape2D.set_deferred("disabled", true)
-		$Polygon2D.hide()
+		$Sprite2D.hide()
+		$CollisionShape2D.queue_free()
 		body.add_money(1000)
+		
 
 func sell():
 	queue_free()

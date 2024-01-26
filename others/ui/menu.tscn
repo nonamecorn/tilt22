@@ -1,0 +1,59 @@
+[gd_scene load_steps=2 format=3 uid="uid://cudcicye0rrir"]
+
+[ext_resource type="Script" path="res://others/ui/menu.gd" id="1_rtsed"]
+
+[node name="menu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rtsed")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 290.0
+offset_top = 85.0
+offset_right = 887.0
+offset_bottom = 525.0
+color = Color(0.223529, 0.254902, 0.309804, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 370.0
+offset_top = 157.0
+offset_right = 416.0
+offset_bottom = 180.0
+theme_override_font_sizes/font_size = 32
+text = "music"
+
+[node name="CheckBox" type="CheckBox" parent="."]
+layout_mode = 0
+offset_left = 479.0
+offset_top = 171.0
+offset_right = 503.0
+offset_bottom = 195.0
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 532.0
+offset_top = 90.0
+offset_right = 652.0
+offset_bottom = 145.0
+theme_override_font_sizes/font_size = 40
+text = "MENU"
+
+[node name="Button" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 568.0
+offset_top = 438.0
+offset_right = 621.0
+offset_bottom = 491.0
+theme_override_font_sizes/font_size = 32
+text = "OK"
+
+[connection signal="toggled" from="CheckBox" to="." method="_on_check_box_toggled"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

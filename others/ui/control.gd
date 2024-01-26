@@ -5,15 +5,15 @@ extends Control
 @onready var drill = $cars/cars/VBoxContainer/PanelContainer2
 
 var dils = [
-	"did you know that in 1962 USSR scientists found out heaviest life form... ur mom",
+	#"did you know that in 1962 USSR scientists found out heaviest life form... ur mom",
+	#"this station is powered by a small black hole thats even heavier than your mom",
 	"did you know that warp weapons is really busted but its not cool so nobody uses it",
 	"from the moment i understood the weakness of my flesh i... went to the gym",
-	"this station is powered by a small black hole thats even heavier than your mom",
 	"did you know that because of europe, there are more submarines than spaceships in space",
-	"did you know that this digging site is abandoned because of drunk dwarfs",
+	"did you know that there are more explosive minerals than on Hoxxes IV?",
 	"dont venture to abandoned moons without shovel",
 	"need money? try selling some scrap by pushing it into the red zone",
-	"did you know that by pressing z and x you can create and destroy rat kings while using harpooner",
+	"did you know that by pressing z and x you can create and destroy rat kings while using harpoon",
 	"did you know that by pressing 1 2 3 you can control different attachments of your ship"
 ]
 
@@ -28,7 +28,7 @@ func _ready():
 	set_text()
 
 func _process(_delta):
-	if Input.is_action_just_pressed("ui_esc"):
+	if Input.is_action_just_pressed("ui_esc") and visible:
 		get_tree().paused = false
 		hide()
 
@@ -178,6 +178,18 @@ func _on_better_armor_pressed():
 		$RichTextLabel.text = "done"
 	else:
 		$RichTextLabel.text = "you cant afford that, sorry"
+
+func _on_iffchange_pressed():
+	if Global.money >= 500:
+		Global.reputation = 10
+		player.reputation = 10
+		player.deduct_money(500)
+		$RichTextLabel.text = "done"
+	else:
+		$RichTextLabel.text = "you cant afford that, sorry"
+	
+
+
 
 
 

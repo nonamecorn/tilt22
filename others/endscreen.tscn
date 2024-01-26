@@ -1,0 +1,75 @@
+[gd_scene load_steps=2 format=3 uid="uid://bb4nwtpkbj1sk"]
+
+[ext_resource type="Script" path="res://others/endscreen.gd" id="1_nrktr"]
+
+[node name="endscreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nrktr")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.121569, 0.156863, 0.2, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 57.0
+offset_right = 517.0
+offset_bottom = 112.0
+theme_override_font_sizes/font_size = 40
+text = "Thank you for playing!"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 108.0
+offset_top = 128.0
+offset_right = 276.0
+offset_bottom = 151.0
+theme_override_font_sizes/font_size = 32
+text = "ART - antonbaton"
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 0
+offset_left = 106.0
+offset_top = 175.0
+offset_right = 347.0
+offset_bottom = 220.0
+theme_override_font_sizes/font_size = 32
+text = "OST - greeninvu"
+
+[node name="Label4" type="Label" parent="."]
+layout_mode = 0
+offset_left = 103.0
+offset_top = 224.0
+offset_right = 561.0
+offset_bottom = 269.0
+theme_override_font_sizes/font_size = 32
+text = "CODE and station girl art - me"
+
+[node name="Label5" type="Label" parent="."]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 271.0
+offset_right = 613.0
+offset_bottom = 316.0
+theme_override_font_sizes/font_size = 32
+text = "space background - Bonsaiheldin"
+
+[node name="Label6" type="Label" parent="."]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 548.0
+offset_right = 609.0
+offset_bottom = 593.0
+theme_override_font_sizes/font_size = 32
+text = "press any button to exit"

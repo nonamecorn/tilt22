@@ -24,6 +24,10 @@ Global="*res://others/global.gd"
 
 window/stretch/mode="viewport"
 
+[filesystem]
+
+import/blender/enabled=false
+
 [input]
 
 ui_left={

@@ -2,7 +2,7 @@ extends StaticBody2D
 
 var turn_speed = 500000
 var linear_velocity = Vector2.ZERO
-
+var reputation = 1
 func _on_area_2d_body_entered(body):
 	if body.has_method("shop"):
 		body.shop()
@@ -17,3 +17,8 @@ func apply_impulse(_vector):
 func _on_selling_area_2d_2_body_entered(body):
 	get_tree().get_nodes_in_group("player")[0].add_money(body.worth)
 	body.sell()
+
+
+func _on_new_task_body_entered(body):
+	if body.has_method("reroute"):
+		body.reroute()

@@ -1,6 +1,6 @@
 extends Node2D
 
-var bullet_path = "res://obj/projs/piercebullet.tscn"
+@export var bullet_path = "res://obj/projs/basicbullet.tscn"
 var look_vec
 var dead = false
 @export var active = false
@@ -57,12 +57,13 @@ func _on_timer_timeout():
 	fire()
 	if active: return
 	if $Area2D.get_overlapping_bodies().size() != 0:
-		enemy = $Area2D.get_overlapping_bodies()[0]
-	elif $Area2D.get_overlapping_bodies().size() == 0: 
-		$Timer.stop()
+		_on_area_2d_body_entered($Area2D.get_overlapping_bodies()[0])
+		return
+	$Timer.stop()
 
 
 func _on_area_2d_body_entered(body):
+	if body.is_in_group("neutral") and Global.reputation >= 0: return; 
 	enemy = body
 	if !active:
 		$Timer.start()

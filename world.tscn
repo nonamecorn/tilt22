@@ -1,28 +1,31 @@
-[gd_scene load_steps=12 format=3 uid="uid://jtesh1ni1jmd"]
+[gd_scene load_steps=7 format=3 uid="uid://jtesh1ni1jmd"]
 
 [ext_resource type="PackedScene" uid="uid://cf2ascm2aqyew" path="res://obj/player/player.tscn" id="1_c6jsy"]
-[ext_resource type="Texture2D" uid="uid://bc8at8v04v1mq" path="res://img/space2.png" id="1_v2lvr"]
-[ext_resource type="PackedScene" uid="uid://rqywnvoceedy" path="res://obj/ai/enemy.tscn" id="4_0my7x"]
-[ext_resource type="PackedScene" uid="uid://cikd7d1tj3wu4" path="res://obj/ai/cruiser.tscn" id="5_ayamy"]
-[ext_resource type="PackedScene" uid="uid://yuy1qsp1j3mu" path="res://obj/parts/magnetic_rock.tscn" id="5_c0pvr"]
-[ext_resource type="PackedScene" uid="uid://bfypmkjo3qjmh" path="res://obj/parts/big_rock.tscn" id="5_l0bp8"]
+[ext_resource type="Texture2D" uid="uid://cl24pe0uw1rg0" path="res://img/spr_stars01.png" id="1_g4wvl"]
+[ext_resource type="Script" path="res://world.gd" id="1_xs38p"]
+[ext_resource type="Texture2D" uid="uid://bwndms0mmt3aq" path="res://img/spr_stars01backback.png" id="2_cmbkj"]
 [ext_resource type="PackedScene" uid="uid://cerx2bpq16yjo" path="res://obj/other/static_station.tscn" id="6_nixmj"]
-[ext_resource type="PackedScene" uid="uid://cogadpp4q7qxt" path="res://obj/parts/explosive_rock.tscn" id="6_ubqks"]
 [ext_resource type="PackedScene" uid="uid://7vjnl48toxav" path="res://obj/other/exit.tscn" id="7_7w5wf"]
-[ext_resource type="PackedScene" uid="uid://ctuykbqmgn2y3" path="res://obj/ai/enemy2.tscn" id="8_x2ipm"]
-[ext_resource type="PackedScene" uid="uid://b74ibfj5q0lfi" path="res://obj/parts/medium_rock.tscn" id="11_exxf4"]
 
 [node name="world" type="Node2D"]
+script = ExtResource("1_xs38p")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 scroll_offset = Vector2(134.949, 100.44)
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1281, 640)
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+texture_repeat = 2
+texture = ExtResource("2_cmbkj")
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_mirroring = Vector2(1281, 640)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 position = Vector2(524, 267)
-texture = ExtResource("1_v2lvr")
+texture = ExtResource("1_g4wvl")
 region_enabled = true
 region_rect = Rect2(-1419.17, -703.787, 3607.63, 1819)
 
@@ -36,43 +39,4 @@ position = Vector2(548, -557)
 position = Vector2(348, 472)
 
 [node name="exit" parent="." instance=ExtResource("7_7w5wf")]
-position = Vector2(1761, 22536)
-
-[node name="big_rock" parent="." instance=ExtResource("5_c0pvr")]
-position = Vector2(189, 250)
-
-[node name="medium_rock" parent="." instance=ExtResource("6_ubqks")]
-position = Vector2(649, 455)
-
-[node name="medium_rock2" parent="." instance=ExtResource("6_ubqks")]
-position = Vector2(-39, 629)
-
-[node name="cruiser" parent="." instance=ExtResource("5_ayamy")]
-position = Vector2(544, 771)
-
-[node name="enemy2" parent="." instance=ExtResource("8_x2ipm")]
-position = Vector2(30, 702)
-
-[node name="enemy3" parent="." instance=ExtResource("8_x2ipm")]
-position = Vector2(912, 400)
-
-[node name="enemy" parent="." instance=ExtResource("4_0my7x")]
-position = Vector2(-151, 405)
-
-[node name="big_rock2" parent="." instance=ExtResource("5_l0bp8")]
-position = Vector2(604, 247)
-
-[node name="big_rock3" parent="." instance=ExtResource("5_l0bp8")]
-position = Vector2(225, 606)
-
-[node name="medium_rock3" parent="." instance=ExtResource("11_exxf4")]
-position = Vector2(873, 745)
-
-[node name="medium_rock4" parent="." instance=ExtResource("11_exxf4")]
-position = Vector2(87, 405)
-
-[node name="medium_rock5" parent="." instance=ExtResource("11_exxf4")]
-position = Vector2(497, 818)
-
-[node name="medium_rock6" parent="." instance=ExtResource("11_exxf4")]
-position = Vector2(-270, 618)
+position = Vector2(1304, 29089)

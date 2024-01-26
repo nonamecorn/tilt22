@@ -10,13 +10,16 @@ var hp = 30;
 var dead = false
 var bullet_obj = preload("res://obj/parts/ship_parts3.tscn")
 var victum
+var reputation = -1
+var collider
 @export var nav_agent: NavigationAgent2D
 
 enum stt {
 	IDLE,
 	ATTACK,
 	RUN,
-	SCOUT
+	SCOUT,
+	BACK
 }
 func _ready():
 	rng.randomize()
@@ -32,6 +35,9 @@ func _physics_process(_delta):
 	match  state:
 		stt.IDLE:
 			pass
+		stt.BACK:
+			apply_force((force*-0.5).rotated(rotation));
+			face_point($Marker2D.global_position);
 		stt.ATTACK:
 			if nav_agent.is_navigation_finished():
 				return
@@ -40,7 +46,7 @@ func _physics_process(_delta):
 			apply_force(force.rotated(rotation));
 			var target_pos = next_path;
 			face_point(target_pos);
-			if hp < 6:
+			if hp < 10:
 				state = stt.RUN;
 		stt.RUN:
 			apply_force(force.rotated(rotation));
@@ -69,6 +75,10 @@ func face_point(point: Vector2):
 #	if angle < turn_amnt:
 #		turn_amnt = angle
 	apply_torque(turn_amnt * turn_dir)
+
+func check():
+	if $Area2D.get_overlapping_bodies().size() != 0:
+		_on_area_2d_2_body_entered($Area2D.get_overlapping_bodies()[0])
 
 func hurt(ded):
 	if dead: return
@@ -126,8 +136,22 @@ func _on_area_2d_3_body_entered(body):
 func _on_area_2d_3_body_exited(body):
 	if body == victum:
 		victum = null
-		$drilltimer.stop()
 
 func _on_drilltimer_timeout():
-	victum.hurt(2)
+	if $Area2D3.get_overlapping_bodies().size() != 0:
+		victum = $Area2D3.get_overlapping_bodies()[0]
+		victum.hurt(2)
+		
 
+func _on_colltim_timeout():
+	if $RayCast2D.get_collider() == null:
+		$Playership/damp1.hide()
+		$Playership/damp2.hide()
+		state = stt.SCOUT
+		check()
+		return
+	if collider == $RayCast2D.get_collider():
+		$Playership/damp1.show()
+		$Playership/damp2.show()
+		state = stt.BACK
+	collider = $RayCast2D.get_collider()

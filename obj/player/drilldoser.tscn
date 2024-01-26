@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://b261v5i8615pc"]
+[gd_scene load_steps=42 format=3 uid="uid://b261v5i8615pc"]
 
 [ext_resource type="Script" path="res://obj/player/drilldoser.gd" id="1_sdcpi"]
 [ext_resource type="Texture2D" uid="uid://clemqfix8w0xg" path="res://img/drilldoser.png" id="2_vwwuk"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://obj/player/Polygon2D2.gd" id="12_phd3l"]
 [ext_resource type="PackedScene" uid="uid://cs8kp3j4b8ful" path="res://obj/player/rocket_launcher.tscn" id="13_41m7s"]
 [ext_resource type="PackedScene" uid="uid://cdcro6fmi27or" path="res://others/ui/control.tscn" id="13_326ro"]
+[ext_resource type="PackedScene" uid="uid://cudcicye0rrir" path="res://others/ui/menu.tscn" id="15_m281g"]
 
 [sub_resource type="NavigationPolygon" id="1"]
 vertices = PackedVector2Array(3878, 2797, -3141, 2741, -3255, -1919, 3784, -2090)
@@ -211,7 +212,7 @@ _data = {
 
 [node name="player" type="RigidBody2D" groups=["attachable", "killable", "player"]]
 collision_layer = 2
-collision_mask = 23
+collision_mask = 55
 mass = 100.0
 max_contacts_reported = 1
 contact_monitor = true
@@ -431,6 +432,9 @@ offset_top = 14.0
 offset_right = 576.0
 offset_bottom = 37.0
 text = "money: 0"
+
+[node name="menu" parent="CanvasLayer" instance=ExtResource("15_m281g")]
+visible = false
 
 [node name="drilltimer" type="Timer" parent="."]
 wait_time = 0.5

@@ -28,10 +28,10 @@ color = Color(0.454902, 0.0352941, 0.247059, 1)
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 100.0
-offset_top = 148.0
-offset_right = 343.0
-offset_bottom = 336.0
+offset_left = 99.0
+offset_top = 109.0
+offset_right = 342.0
+offset_bottom = 297.0
 texture = ExtResource("1_b3ly3")
 expand_mode = 1
 
@@ -220,6 +220,14 @@ offset_right = 466.0
 offset_bottom = 338.0
 text = "repair all: 500"
 
+[node name="iffchange" type="Button" parent="."]
+layout_mode = 0
+offset_left = 161.0
+offset_top = 307.0
+offset_right = 316.0
+offset_bottom = 338.0
+text = "change IFF tag: 500"
+
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 0
 offset_left = 350.0
@@ -243,4 +251,5 @@ text = "esc"
 [connection signal="pressed" from="uppgrades/upgrades/VBoxContainer/PanelContainer2/better armor" to="." method="_on_better_armor_pressed"]
 [connection signal="pressed" from="talk" to="." method="_on_talk_pressed"]
 [connection signal="pressed" from="repair" to="." method="_on_repair_pressed"]
+[connection signal="pressed" from="iffchange" to="." method="_on_iffchange_pressed"]
 [connection signal="pressed" from="esc" to="." method="_on_esc_pressed"]

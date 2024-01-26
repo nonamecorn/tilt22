@@ -14,26 +14,28 @@ var bullet_objs = [
 	"res://obj/parts/big_rock.tscn",
 	"res://obj/parts/explosive_rock.tscn",
 	"res://obj/parts/explosive_rock.tscn",
-	"res://obj/parts/magnetic_rock.tscn",
+	"res://obj/ai/scout.tscn",
 	"res://obj/ai/enemy.tscn",
 	"res://obj/ai/enemy.tscn",
 	"res://obj/ai/enemy2.tscn",
 	"res://obj/ai/enemy2.tscn",
 	"res://obj/ai/cruiser.tscn"
 ]
-
+@export var on = true
 var rng = RandomNumberGenerator.new()
+@onready var station = "res://obj/other/mini_static_station.tscn"
 
 func _ready():
 	rng.randomize()
+	
 func _on_body_entered(body):
 	if body.is_in_group("killable"):
 		body.queue_free()
 
 
 func _on_timer_timeout():
+	if !on: return
 	for child in $children.get_children():
-		
 		if rng.randi_range(0,1) == 0 or Geometry2D.is_point_in_circle(child.global_position, Vector2(430.0,-670.0), 1000.0):
 			continue
 		bullet_objs.shuffle()

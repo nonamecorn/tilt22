@@ -1,13 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://ciwejjal4p8p2"]
+[gd_scene load_steps=5 format=3 uid="uid://ciwejjal4p8p2"]
 
 [ext_resource type="Script" path="res://obj/parts/money.gd" id="1_b7wfi"]
 [ext_resource type="AudioStream" uid="uid://cckkq5egtor8d" path="res://snd/sfx/money.wav" id="2_k6b2b"]
+[ext_resource type="Texture2D" uid="uid://c4q25per7vnfr" path="res://img/money.png" id="3_ctbi6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_npkyw"]
 size = Vector2(34, 31)
 
 [node name="medium_rock" type="RigidBody2D" groups=["attachable"]]
-collision_mask = 31
+collision_mask = 63
 mass = 100.0
 max_contacts_reported = 1
 contact_monitor = true
@@ -18,10 +19,12 @@ position = Vector2(1, 0.5)
 shape = SubResource("RectangleShape2D_npkyw")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
+visible = false
 color = Color(0.631373, 0.45098, 0.145098, 1)
 polygon = PackedVector2Array(-16, -15, 18, -15, 18, 16, -16, 16)
 
 [node name="Label" type="Label" parent="."]
+visible = false
 offset_left = -25.0
 offset_top = -13.0
 offset_right = 29.0
@@ -36,6 +39,10 @@ autostart = true
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_k6b2b")
 volume_db = 10.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_ctbi6")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
