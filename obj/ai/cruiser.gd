@@ -87,8 +87,8 @@ func _on_area_2d_body_entered(body):
 	if dead: return
 	player = body;
 
-func anger():
-	Global.anger(1)
+func anger(ammount):
+	Global.anger(ammount)
 	$hand.check()
 	$hand2.check()
 	

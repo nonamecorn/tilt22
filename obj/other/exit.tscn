@@ -1,16 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://7vjnl48toxav"]
+[gd_scene load_steps=11 format=3 uid="uid://7vjnl48toxav"]
 
 [ext_resource type="Script" path="res://obj/other/exit.gd" id="1_piisa"]
+[ext_resource type="Texture2D" uid="uid://t0iullvydjlp" path="res://img/portal.png" id="2_5phau"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_42xjf"]
-radius = 73.0069
+radius = 57.0088
 
 [sub_resource type="Animation" id="Animation_wk1uu"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Polygon2D:rotation")
+tracks/0/path = NodePath("AnimatedSprite2D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -26,7 +27,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Polygon2D:rotation")
+tracks/0/path = NodePath("AnimatedSprite2D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -42,14 +43,48 @@ _data = {
 "wooo": SubResource("Animation_cwwsf")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_wh3po"]
+atlas = ExtResource("2_5phau")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d6aqu"]
+atlas = ExtResource("2_5phau")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_drft8"]
+atlas = ExtResource("2_5phau")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lcssm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wh3po")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d6aqu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_drft8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_drft8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d6aqu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wh3po")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="exit" type="Area2D" groups=["exit"]]
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_piisa")
-
-[node name="Polygon2D" type="Polygon2D" parent="."]
-color = Color(0, 0, 0.258824, 1)
-polygon = PackedVector2Array(-23, -76, 43, -72, 81, 2, 63, 50, 18, 86, -31, 76, -63, 61, -85, 9, -70, -46)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_42xjf")
@@ -59,5 +94,9 @@ libraries = {
 "": SubResource("AnimationLibrary_bq1jw")
 }
 autoplay = "wooo"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_lcssm")
+frame_progress = 0.515335
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

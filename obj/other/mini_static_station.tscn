@@ -1,30 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://der5mbu6plqew"]
+[gd_scene load_steps=5 format=3 uid="uid://der5mbu6plqew"]
 
 [ext_resource type="Script" path="res://obj/other/static_station.gd" id="1_dmvu2"]
-[ext_resource type="Texture2D" uid="uid://crqjf88kpd4e8" path="res://img/ss1.png" id="2_xv8c5"]
+[ext_resource type="Texture2D" uid="uid://b6e333ypk2yql" path="res://img/ministation.png" id="2_1hmk6"]
 [ext_resource type="PackedScene" uid="uid://4cjmvwdfjtym" path="res://obj/ai/cruiserhand.tscn" id="3_47t4o"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_i6j5m"]
-atlas = ExtResource("2_xv8c5")
-region = Rect2(0, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_s0hhc"]
-atlas = ExtResource("2_xv8c5")
-region = Rect2(256, 0, 256, 256)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_wo8mp"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_i6j5m")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_s0hhc")
-}],
-"loop": true,
-"name": &"default",
-"speed": 1.0
-}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hn3vg"]
 size = Vector2(259, 287)
@@ -34,34 +12,15 @@ collision_layer = 16
 collision_mask = 31
 script = ExtResource("1_dmvu2")
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-visible = false
-color = Color(0.388235, 0.231373, 0.12549, 1)
-polygon = PackedVector2Array(-488, -525, -123, -551, 191, -517, 466, -528, 472, 318, 153, 332, -358, 309, -490, 314, -521, -212)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-scale = Vector2(0.295, 0.295)
-polygon = PackedVector2Array(41, 314, -23, 316, -25, 202, -83, 202, -85, 242, -302, 241, -300, 30, -374, 29, -375, -220, -299, -223, -298, -516, -112, -516, -111, -452, -43, -449, -43, -463, 110, -464, 112, -361, 151, -361, 153, -513, 328, -513, 327, -190, 247, -188, 246, -89, 277, -88, 277, 204, 157, 209, 153, 228, 46, 233)
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-2, -36)
-rotation = -1.5708
-scale = Vector2(1, 0.872)
-sprite_frames = SubResource("SpriteFrames_wo8mp")
-autoplay = "default"
-frame_progress = 0.170267
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(103, -15)
+texture = ExtResource("2_1hmk6")
 
 [node name="hand" parent="." instance=ExtResource("3_47t4o")]
-position = Vector2(-65, 42)
+position = Vector2(-115, -49)
 
 [node name="hand2" parent="." instance=ExtResource("3_47t4o")]
-position = Vector2(80, -139)
-
-[node name="hand3" parent="." instance=ExtResource("3_47t4o")]
-position = Vector2(-68, -138)
-
-[node name="hand4" parent="." instance=ExtResource("3_47t4o")]
-position = Vector2(67, 36)
+position = Vector2(223, 43)
 
 [node name="new_task" type="Area2D" parent="."]
 position = Vector2(4, -43)

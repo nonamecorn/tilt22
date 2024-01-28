@@ -278,11 +278,13 @@ sprite_frames = SubResource("11")
 autoplay = "default"
 
 [node name="damp1" type="AnimatedSprite2D" parent="Playership"]
+visible = false
 position = Vector2(19, 13)
 sprite_frames = SubResource("SpriteFrames_d1tqw")
 autoplay = "default"
 
 [node name="damp2" type="AnimatedSprite2D" parent="Playership"]
+visible = false
 position = Vector2(-19, 13)
 scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_d1tqw")

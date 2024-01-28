@@ -58,12 +58,21 @@ text = "CODE and station girl art - me"
 
 [node name="Label5" type="Label" parent="."]
 layout_mode = 0
-offset_left = 104.0
-offset_top = 271.0
-offset_right = 613.0
-offset_bottom = 316.0
+offset_left = 105.0
+offset_top = 339.0
+offset_right = 614.0
+offset_bottom = 384.0
 theme_override_font_sizes/font_size = 32
 text = "space background - Bonsaiheldin"
+
+[node name="Label7" type="Label" parent="."]
+layout_mode = 0
+offset_left = 276.0
+offset_top = 283.0
+offset_right = 785.0
+offset_bottom = 328.0
+theme_override_font_sizes/font_size = 32
+text = "Art used:"
 
 [node name="Label6" type="Label" parent="."]
 layout_mode = 0
@@ -72,4 +81,4 @@ offset_top = 548.0
 offset_right = 609.0
 offset_bottom = 593.0
 theme_override_font_sizes/font_size = 32
-text = "press any button to exit"
+text = "press esc to exit"

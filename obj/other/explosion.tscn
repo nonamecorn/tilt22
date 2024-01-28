@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://pvcgvcuxic2h"]
+[gd_scene load_steps=11 format=3 uid="uid://pvcgvcuxic2h"]
 
 [ext_resource type="Script" path="res://obj/other/explosion.gd" id="1_u61it"]
 [ext_resource type="Texture2D" uid="uid://ckwr85fde3fui" path="res://img/explosion2.png" id="2_m4r4c"]
@@ -27,10 +27,6 @@ region = Rect2(192, 0, 64, 64)
 atlas = ExtResource("2_m4r4c")
 region = Rect2(256, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yvidf"]
-atlas = ExtResource("2_m4r4c")
-region = Rect2(320, 0, 64, 64)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_sq5c2"]
 animations = [{
 "frames": [{
@@ -48,9 +44,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_v22dv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yvidf")
 }],
 "loop": false,
 "name": &"default",
@@ -69,7 +62,7 @@ shape = SubResource("CircleShape2D_ki18t")
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_sq5c2")
 autoplay = "default"
-frame = 5
+frame = 4
 frame_progress = 1.0
 
 [node name="Timer" type="Timer" parent="."]

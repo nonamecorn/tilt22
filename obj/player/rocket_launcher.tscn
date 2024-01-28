@@ -63,11 +63,11 @@ frame = 4
 frame_progress = 1.0
 
 [node name="delay" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 5.0
 one_shot = true
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 5.0
 
 [connection signal="timeout" from="delay" to="." method="_on_delay_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

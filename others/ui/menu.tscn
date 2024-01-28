@@ -20,21 +20,23 @@ offset_right = 887.0
 offset_bottom = 525.0
 color = Color(0.223529, 0.254902, 0.309804, 1)
 
-[node name="Label" type="Label" parent="."]
+[node name="CheckBox" type="CheckBox" parent="."]
 layout_mode = 0
-offset_left = 370.0
-offset_top = 157.0
-offset_right = 416.0
-offset_bottom = 180.0
+offset_left = 365.0
+offset_top = 175.0
+offset_right = 439.0
+offset_bottom = 206.0
 theme_override_font_sizes/font_size = 32
 text = "music"
 
-[node name="CheckBox" type="CheckBox" parent="."]
+[node name="fulcreen" type="CheckBox" parent="."]
 layout_mode = 0
-offset_left = 479.0
-offset_top = 171.0
-offset_right = 503.0
-offset_bottom = 195.0
+offset_left = 372.0
+offset_top = 236.0
+offset_right = 472.0
+offset_bottom = 267.0
+theme_override_font_sizes/font_size = 32
+text = "fulscreen"
 
 [node name="Label2" type="Label" parent="."]
 layout_mode = 0
@@ -56,4 +58,5 @@ theme_override_font_sizes/font_size = 32
 text = "OK"
 
 [connection signal="toggled" from="CheckBox" to="." method="_on_check_box_toggled"]
+[connection signal="toggled" from="fulcreen" to="." method="_on_fulcreen_toggled"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

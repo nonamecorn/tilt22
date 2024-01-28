@@ -21,9 +21,6 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-3266, -1929, -3151, 2751, 3889, 2808, 3794, -2101)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 
-[sub_resource type="RectangleShape2D" id="2"]
-size = Vector2(26, 38)
-
 [sub_resource type="AtlasTexture" id="3"]
 atlas = ExtResource("3_m7sge")
 region = Rect2(0, 0, 32, 32)
@@ -168,6 +165,9 @@ animations = [{
 "speed": 15.0
 }]
 
+[sub_resource type="RectangleShape2D" id="2"]
+size = Vector2(26, 50)
+
 [sub_resource type="Animation" id="Animation_gwfnt"]
 length = 0.001
 tracks/0/type = "value"
@@ -218,9 +218,6 @@ script = ExtResource("1_ccee8")
 navigation_polygon = SubResource("1")
 
 [node name="Node2D" type="Node2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("2")
 
 [node name="Playership" type="Sprite2D" parent="."]
 texture = ExtResource("2_vom6m")
@@ -281,6 +278,9 @@ frame_progress = 0.42834
 sprite_frames = SubResource("22")
 frame = 6
 frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("2")
 
 [node name="markers" type="Node2D" parent="."]
 
@@ -385,10 +385,11 @@ libraries = {
 "": SubResource("AnimationLibrary_ddkqm")
 }
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
+[node name="Polygon2D" type="Polygon2D" parent="." groups=["player"]]
 color = Color(0.862745, 0.862745, 0.862745, 1)
 polygon = PackedVector2Array(46, -16, 61, 0, 46, 14, 50, 0)
 script = ExtResource("10_qlhum")
+group = "spawn"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

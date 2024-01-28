@@ -19,6 +19,7 @@ func resume():
 	$bgm.get_child(current_song_index).stream_paused = false
 
 func play(song_index):
+	if $bgm.get_child(current_song_index).stream_paused: return
 	for child in $bgm.get_children():
 		child.stop()
 	$ost.get_child(song_index).play()

@@ -8,7 +8,7 @@ var target;
 var turn_speed: float = 100000.0;
 var hp = 20;
 var dead = false
-var bullet_obj = preload("res://obj/parts/ship_parts.tscn")
+var bullet_obj = preload("res://obj/parts/ship_parts5.tscn")
 var reputation = -1
 var collider
 @export var nav_agent: NavigationAgent2D
@@ -27,8 +27,8 @@ func _ready():
 func genrnforce():
 	force = Vector2(0,rng.randi_range(-10000,-12000))
 
-func anger():
-	Global.anger(1)
+func anger(ammount):
+	Global.anger(ammount)
 	check()
 	$hand.check()
 
@@ -40,7 +40,7 @@ func _physics_process(_delta):
 		stt.IDLE:
 			pass
 		stt.BACK:
-			apply_force((force*-0.5).rotated(rotation));
+			apply_force((force*-1).rotated(rotation));
 			face_point($Marker2D.global_position);
 		stt.ATTACK:
 			if nav_agent.is_navigation_finished():
@@ -128,14 +128,17 @@ func _on_colltim_timeout():
 	if $RayCast2D.get_collider() == null:
 		$Playership/damp1.hide()
 		$Playership/damp2.hide()
+		$Playership/engine.show()
 		state = stt.SCOUT
 		check()
 		return
 	if collider == $RayCast2D.get_collider():
 		$Playership/damp1.show()
 		$Playership/damp2.show()
+		$Playership/engine.hide()
 		state = stt.BACK
 	collider = $RayCast2D.get_collider()
+	
 
 #func _on_body_entered(body):
 	#if dead or body.is_in_group("prj"): return

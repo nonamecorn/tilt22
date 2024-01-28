@@ -17,15 +17,16 @@ angular_damp = 1.0
 script = ExtResource("1_kgwr8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -3)
+position = Vector2(0, -7)
 texture = ExtResource("3_ou3a6")
 hframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
 shape = SubResource("CapsuleShape2D_li4mw")
 
 [node name="PinJoint2D3" type="PinJoint2D" parent="."]
-position = Vector2(0, -7)
+position = Vector2(0, -9)
 node_b = NodePath("..")
 
 [node name="Timer" type="Timer" parent="."]

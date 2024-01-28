@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-var turn_speed: float = 1000.0;
+var turn_speed: float = 10000.0;
 var dead = false
 var rng = RandomNumberGenerator.new()
 var chain = preload("res://obj/projs/big_chain.tscn")
@@ -35,6 +35,7 @@ func face_point(point: Vector2):
 func _physics_process(_delta):
 	if dead: return
 	face_point(get_global_mouse_position());
+	apply_force(Vector2(0,-700).rotated(rotation))
 	if Input.is_action_just_pressed("ui_z"):
 		if is_instance_valid(inst):
 			inst.queue_free()

@@ -34,6 +34,7 @@ func _physics_process(_delta):
 
 func _on_area_2d_3_body_entered(body):
 	if body.has_method("hurt"):
+		if body.has_method("anger"): body.anger(3)
 		body.hurt(2)
 		victum = body
 		$drilltimer.start()

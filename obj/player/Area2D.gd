@@ -19,7 +19,7 @@ var bullet_objs = [
 	"res://obj/ai/enemy.tscn",
 	"res://obj/ai/enemy2.tscn",
 	"res://obj/ai/enemy2.tscn",
-	"res://obj/ai/cruiser.tscn"
+	"res://obj/ai/cruiser.tscn",
 ]
 @export var on = true
 var rng = RandomNumberGenerator.new()

@@ -60,15 +60,17 @@ func _on_thump_timeout():
 		state = stt.ATTACK
 
 
-func _on_body_entered(_body):
+func _on_body_entered(body):
 	if !$thump.is_stopped():
 		return
 	if dead: return
+	if body.has_method("anger"):
+		body.anger(20)
 	dead = true
 	hurt(0)
 func _on_area_2d_body_entered(body):
 	if dead: return
-	if locked and body != player:
+	if (locked and body != player) or (Global.reputation >= 0 and body.is_in_group("neutral")):
 		return
 	#$makepath.start()
 	player = body;
@@ -82,8 +84,8 @@ func hurt(_ded):
 	dead = true
 	var bullet_inst = explosion.instantiate()
 	bullet_inst.global_position = global_position
-	bullet_inst.exp_scale = 1
-	bullet_inst.damage = 8
+	bullet_inst.exp_scale = 1.5
+	bullet_inst.damage = 21
 	get_tree().current_scene.add_child.call_deferred(bullet_inst)
 	queue_free()
 

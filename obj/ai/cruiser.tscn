@@ -197,7 +197,7 @@ _data = {
 "tryaska": SubResource("Animation_malec")
 }
 
-[node name="cruiser" type="RigidBody2D" node_paths=PackedStringArray("nav_agent") groups=["cruiser", "killable", "neutral"]]
+[node name="cruiser" type="RigidBody2D" node_paths=PackedStringArray("nav_agent") groups=["attachable", "cruiser", "killable", "neutral"]]
 collision_layer = 16
 collision_mask = 63
 mass = 100.0

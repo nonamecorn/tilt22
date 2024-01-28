@@ -110,7 +110,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="2"]
-size = Vector2(36, 61)
+size = Vector2(36, 62)
 
 [sub_resource type="AtlasTexture" id="15"]
 atlas = ExtResource("6_mbrw4")
@@ -272,7 +272,6 @@ autoplay = "default"
 frame_progress = 0.42834
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1.5)
 shape = SubResource("2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -394,10 +393,11 @@ libraries = {
 "": SubResource("AnimationLibrary_ddkqm")
 }
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
+[node name="Polygon2D" type="Polygon2D" parent="." groups=["player"]]
 color = Color(0.862745, 0.862745, 0.862745, 1)
 polygon = PackedVector2Array(46, -16, 61, 0, 46, 14, 50, 0)
 script = ExtResource("11_cjy7v")
+group = "spawn"
 
 [node name="Polygon2D2" type="Polygon2D" parent="."]
 color = Color(0.945098, 0.337255, 0.396078, 1)

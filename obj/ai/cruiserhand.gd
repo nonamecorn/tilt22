@@ -31,16 +31,17 @@ func check():
 		_on_area_2d_body_entered($Area2D.get_overlapping_bodies()[0])
 
 func _on_area_2d_body_entered(body):
-	if body.reputation < 0:
-		$Timer.start()
-		player = body
+	if Global.reputation >= 0 and body.is_in_group("player"):
+		return
+	$Timer.start()
+	player = body
 
 func _on_timer_timeout():
-	for body in  $Area2D.get_overlapping_bodies():
-		if body.reputation < 0:
-			player = body
-			fire()
-			return
+	for body in $Area2D.get_overlapping_bodies():
+		if Global.reputation >= 0 and body.is_in_group("player"): continue
+		player = body
+		fire()
+		return
 	$Timer.stop()
 
 

@@ -1,8 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://cerx2bpq16yjo"]
+[gd_scene load_steps=11 format=3 uid="uid://cerx2bpq16yjo"]
 
 [ext_resource type="Script" path="res://obj/other/static_station.gd" id="1_ir4iu"]
 [ext_resource type="PackedScene" uid="uid://cxe7tkk6rycen" path="res://obj/player/hand.tscn" id="2_e4yf5"]
 [ext_resource type="Texture2D" uid="uid://crqjf88kpd4e8" path="res://img/ss1.png" id="2_gsa1d"]
+[ext_resource type="Texture2D" uid="uid://8phtm6nuq0oo" path="res://img/newstaion.png" id="4_31lov"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_75yjn"]
+size = Vector2(339, 252)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i6j5m"]
 atlas = ExtResource("2_gsa1d")
@@ -27,25 +31,32 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ksp07"]
-size = Vector2(52, 30)
+size = Vector2(29, 21)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rbf7j"]
-size = Vector2(150, 68)
+size = Vector2(106, 35)
 
 [node name="StaticStation" type="StaticBody2D"]
 collision_layer = 32
 collision_mask = 31
 script = ExtResource("1_ir4iu")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2, -1)
+texture = ExtResource("4_31lov")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(9.5, 1)
+shape = SubResource("RectangleShape2D_75yjn")
+debug_color = Color(0, 0.6, 0.701961, 0.14902)
+
 [node name="Polygon2D" type="Polygon2D" parent="."]
 visible = false
 color = Color(0.388235, 0.231373, 0.12549, 1)
 polygon = PackedVector2Array(-488, -525, -123, -551, 191, -517, 466, -528, 472, 318, 153, 332, -358, 309, -490, 314, -521, -212)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(41, 314, -23, 316, -25, 202, -83, 202, -85, 242, -302, 241, -300, 30, -374, 29, -375, -220, -299, -223, -298, -516, -112, -516, -111, -452, -43, -449, -43, -463, 110, -464, 112, -361, 151, -361, 153, -513, 328, -513, 327, -190, 247, -188, 246, -89, 277, -88, 277, 204, 157, 209, 153, 228, 46, 233)
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
 position = Vector2(-17, -102.5)
 rotation = -1.5708
 scale = Vector2(3.69531, 3.22266)
@@ -54,7 +65,7 @@ autoplay = "default"
 frame_progress = 0.170267
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2(10, 327)
+position = Vector2(62, 160)
 collision_layer = 0
 collision_mask = 2
 
@@ -65,55 +76,48 @@ color = Color(0.521569, 0.521569, 0.521569, 1)
 polygon = PackedVector2Array(-79, 303, -79, 381, 72, 382, 70, 305)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-2, 5)
+position = Vector2(-2.5, 0.5)
 shape = SubResource("RectangleShape2D_ksp07")
 
 [node name="sellingArea2D2" type="Area2D" parent="."]
-position = Vector2(-166, 258)
+position = Vector2(-93, 163)
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="sellingArea2D2"]
-position = Vector2(3, 20)
+position = Vector2(3, 3.5)
 shape = SubResource("RectangleShape2D_rbf7j")
 
 [node name="Polygon2D2" type="Polygon2D" parent="sellingArea2D2"]
-position = Vector2(4, -322)
+position = Vector2(21.1589, -273.41)
+scale = Vector2(1.13113, 0.810657)
 color = Color(0.941176, 0.152941, 0.231373, 0.466667)
-polygon = PackedVector2Array(-79, 303, -79, 381, 72, 382, 72, 303)
+polygon = PackedVector2Array(-62.9098, 320, -62.9098, 361.941, 29.918, 361.941, 29.918, 320)
 
 [node name="Marker2D" type="Marker2D" parent="." groups=["spawn"]]
-position = Vector2(-169, 278)
+position = Vector2(-89, 183)
 
 [node name="hands" type="Node2D" parent="."]
 
 [node name="imlazy" type="Node2D" parent="hands"]
 
 [node name="hand" parent="hands/imlazy" instance=ExtResource("2_e4yf5")]
-position = Vector2(-284, 222)
+position = Vector2(-136, 109)
 bullet_path = "res://obj/projs/stationbullet.tscn"
 
 [node name="hand2" parent="hands/imlazy" instance=ExtResource("2_e4yf5")]
-position = Vector2(261, 195)
+position = Vector2(106, 110)
 bullet_path = "res://obj/projs/stationbullet.tscn"
 
 [node name="hand3" parent="hands/imlazy" instance=ExtResource("2_e4yf5")]
-position = Vector2(259, -70)
+position = Vector2(157, -101)
 bullet_path = "res://obj/projs/stationbullet.tscn"
 
 [node name="hand4" parent="hands/imlazy" instance=ExtResource("2_e4yf5")]
-position = Vector2(309, -493)
+position = Vector2(-13, -122)
 bullet_path = "res://obj/projs/stationbullet.tscn"
 
 [node name="hand5" parent="hands/imlazy" instance=ExtResource("2_e4yf5")]
-position = Vector2(37, -449)
-bullet_path = "res://obj/projs/stationbullet.tscn"
-
-[node name="hand6" parent="hands/imlazy" instance=ExtResource("2_e4yf5")]
-position = Vector2(-287, -500)
-bullet_path = "res://obj/projs/stationbullet.tscn"
-
-[node name="hand8" parent="hands/imlazy" instance=ExtResource("2_e4yf5")]
-position = Vector2(-366, -82)
+position = Vector2(-138, -100)
 bullet_path = "res://obj/projs/stationbullet.tscn"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
