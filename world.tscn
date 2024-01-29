@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://jtesh1ni1jmd"]
+[gd_scene load_steps=7 format=3 uid="uid://jtesh1ni1jmd"]
 
 [ext_resource type="PackedScene" uid="uid://cf2ascm2aqyew" path="res://obj/player/player.tscn" id="1_c6jsy"]
 [ext_resource type="Texture2D" uid="uid://cl24pe0uw1rg0" path="res://img/spr_stars01.png" id="1_g4wvl"]
@@ -6,11 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://bwndms0mmt3aq" path="res://img/spr_stars01backback.png" id="2_cmbkj"]
 [ext_resource type="PackedScene" uid="uid://cerx2bpq16yjo" path="res://obj/other/static_station.tscn" id="6_nixmj"]
 [ext_resource type="PackedScene" uid="uid://7vjnl48toxav" path="res://obj/other/exit.tscn" id="7_7w5wf"]
-[ext_resource type="PackedScene" uid="uid://cikd7d1tj3wu4" path="res://obj/ai/cruiser.tscn" id="7_grdky"]
-[ext_resource type="PackedScene" uid="uid://ctuykbqmgn2y3" path="res://obj/ai/enemy2.tscn" id="8_e45l6"]
-[ext_resource type="PackedScene" uid="uid://dhow7etv0u2gr" path="res://obj/ai/scout.tscn" id="9_4xw27"]
-[ext_resource type="PackedScene" uid="uid://bfypmkjo3qjmh" path="res://obj/parts/big_rock.tscn" id="10_7wnrw"]
-[ext_resource type="PackedScene" uid="uid://b74ibfj5q0lfi" path="res://obj/parts/medium_rock.tscn" id="11_cm4so"]
 
 [node name="world" type="Node2D"]
 script = ExtResource("1_xs38p")
@@ -45,21 +40,3 @@ position = Vector2(348, 472)
 
 [node name="exit" parent="." instance=ExtResource("7_7w5wf")]
 position = Vector2(1546, 5651)
-
-[node name="cruiser" parent="." instance=ExtResource("7_grdky")]
-position = Vector2(674, 602)
-
-[node name="enemy2" parent="." instance=ExtResource("8_e45l6")]
-position = Vector2(9, 432)
-
-[node name="scout" parent="." instance=ExtResource("9_4xw27")]
-position = Vector2(207, 611)
-
-[node name="big_rock" parent="." instance=ExtResource("10_7wnrw")]
-position = Vector2(350, 665)
-
-[node name="big_rock2" parent="." instance=ExtResource("10_7wnrw")]
-position = Vector2(-63, 575)
-
-[node name="medium_rock" parent="." instance=ExtResource("11_cm4so")]
-position = Vector2(-179, 333)

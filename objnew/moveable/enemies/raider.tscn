@@ -1,0 +1,171 @@
+[gd_scene load_steps=23 format=3 uid="uid://b4necldgx3r8k"]
+
+[ext_resource type="PackedScene" uid="uid://c1lspst5juyo" path="res://objnew/moveable/aiship.tscn" id="1_wuej5"]
+[ext_resource type="Script" path="res://objnew/moveable/enemies/raider.gd" id="2_afibq"]
+[ext_resource type="Texture2D" uid="uid://dwx5lfyucugb0" path="res://img/mess1.png" id="3_64sy1"]
+[ext_resource type="Texture2D" uid="uid://yea6vukyyyvt" path="res://img/enemy1.png" id="3_frosx"]
+[ext_resource type="Texture2D" uid="uid://dg8h761vel14l" path="res://img/mainenginefire.png" id="4_q21iy"]
+[ext_resource type="Texture2D" uid="uid://da5xc1oc65sjk" path="res://img/truster_anim.png" id="5_rjcyn"]
+[ext_resource type="Texture2D" uid="uid://d2ubeqcafy8a2" path="res://img/dampanim.png" id="6_6kt4x"]
+[ext_resource type="PackedScene" uid="uid://c6xmxlaug5ylu" path="res://obj/ai/enemyhand.tscn" id="7_edyrh"]
+
+[sub_resource type="AtlasTexture" id="3"]
+atlas = ExtResource("4_q21iy")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="4"]
+atlas = ExtResource("4_q21iy")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="5"]
+atlas = ExtResource("4_q21iy")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4y1sh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("3")
+}, {
+"duration": 1.0,
+"texture": SubResource("4")
+}, {
+"duration": 1.0,
+"texture": SubResource("5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="AtlasTexture" id="7"]
+atlas = ExtResource("5_rjcyn")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="8"]
+atlas = ExtResource("5_rjcyn")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="9"]
+atlas = ExtResource("5_rjcyn")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dugo0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("7")
+}, {
+"duration": 1.0,
+"texture": SubResource("8")
+}, {
+"duration": 1.0,
+"texture": SubResource("9")
+}],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f7pw2"]
+atlas = ExtResource("6_6kt4x")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ly7l8"]
+atlas = ExtResource("6_6kt4x")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wnwhm"]
+atlas = ExtResource("6_6kt4x")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nrlwk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f7pw2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ly7l8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wnwhm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0ch6h"]
+radius = 16.0
+height = 52.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jwxln"]
+radius = 300.0
+
+[node name="raider" instance=ExtResource("1_wuej5")]
+collision_layer = 4
+collision_mask = 63
+mass = 80.0
+linear_damp = 10.0
+script = ExtResource("2_afibq")
+scrap_texture = ExtResource("3_64sy1")
+frame_array = [4, 1]
+turn_speed = 100.0
+hp = 20
+
+[node name="Playership" parent="." index="0"]
+texture = ExtResource("3_frosx")
+
+[node name="engine" type="AnimatedSprite2D" parent="Playership" index="0"]
+position = Vector2(0, 27)
+sprite_frames = SubResource("SpriteFrames_4y1sh")
+autoplay = "default"
+
+[node name="torque1" type="AnimatedSprite2D" parent="Playership" index="1"]
+visible = false
+position = Vector2(17, -15)
+sprite_frames = SubResource("SpriteFrames_dugo0")
+autoplay = "default"
+
+[node name="torque4" type="AnimatedSprite2D" parent="Playership" index="2"]
+visible = false
+position = Vector2(17, 21)
+sprite_frames = SubResource("SpriteFrames_dugo0")
+autoplay = "default"
+
+[node name="torque2" type="AnimatedSprite2D" parent="Playership" index="3"]
+visible = false
+position = Vector2(-17, -15)
+scale = Vector2(-1, 1)
+sprite_frames = SubResource("SpriteFrames_dugo0")
+autoplay = "default"
+
+[node name="torque3" type="AnimatedSprite2D" parent="Playership" index="4"]
+visible = false
+position = Vector2(-17, 21)
+scale = Vector2(-1, 1)
+sprite_frames = SubResource("SpriteFrames_dugo0")
+autoplay = "default"
+
+[node name="damp1" type="AnimatedSprite2D" parent="Playership" index="5"]
+visible = false
+position = Vector2(19, 13)
+sprite_frames = SubResource("SpriteFrames_nrlwk")
+autoplay = "default"
+
+[node name="damp2" type="AnimatedSprite2D" parent="Playership" index="6"]
+visible = false
+position = Vector2(-19, 13)
+scale = Vector2(-1, 1)
+sprite_frames = SubResource("SpriteFrames_nrlwk")
+autoplay = "default"
+
+[node name="CollisionShape2D" parent="." index="2"]
+shape = SubResource("CapsuleShape2D_0ch6h")
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("CircleShape2D_jwxln")
+
+[node name="hand" parent="." index="12" instance=ExtResource("7_edyrh")]
+position = Vector2(-8, -10)

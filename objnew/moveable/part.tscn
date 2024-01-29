@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://diwpsojja5irr"]
+
+[ext_resource type="PackedScene" uid="uid://boeg4bbii1h0f" path="res://objnew/moveable/object.tscn" id="1_bk05p"]
+[ext_resource type="Script" path="res://objnew/moveable/part.gd" id="2_ilwa2"]
+
+[node name="part" instance=ExtResource("1_bk05p")]
+script = ExtResource("2_ilwa2")
+worth = 0

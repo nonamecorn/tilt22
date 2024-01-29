@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1lspst5juyo"]
+
+[ext_resource type="PackedScene" uid="uid://da5geiicqgiit" path="res://objnew/moveable/ship.tscn" id="1_egn41"]
+[ext_resource type="Script" path="res://objnew/moveable/aiship.gd" id="2_p7cpu"]
+
+[node name="aiship" node_paths=PackedStringArray("nav_agent") instance=ExtResource("1_egn41")]
+mass = 80.0
+angular_damp = 0.0
+script = ExtResource("2_p7cpu")
+nav_agent = NodePath("NavigationAgent2D")
+
+[node name="Area2D" type="Area2D" parent="." index="6"]
+collision_layer = 0
+collision_mask = 18
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+debug_color = Color(0, 0.6, 0.701961, 0.121569)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="7"]
+
+[node name="makepath" type="Timer" parent="." index="8"]
+wait_time = 0.5
+
+[node name="RayCast2D" type="RayCast2D" parent="." index="9"]
+position = Vector2(0, -10)
+target_position = Vector2(0, -61)
+collision_mask = 51
+
+[node name="colltim" type="Timer" parent="." index="10"]
+wait_time = 0.5
+autostart = true
+
+[node name="Marker2D" type="Marker2D" parent="." index="11"]
+position = Vector2(-31, -42)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="makepath" to="." method="_on_makepath_timeout"]
+[connection signal="timeout" from="colltim" to="." method="_on_colltim_timeout"]

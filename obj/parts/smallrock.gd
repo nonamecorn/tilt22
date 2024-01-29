@@ -18,9 +18,6 @@ func hurt(ded):
 	hp -= ded;
 	if hp <= 0:
 		queue_free()
-func add(de_bullet_inst):
-	get_tree().current_scene.add_child(de_bullet_inst)
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

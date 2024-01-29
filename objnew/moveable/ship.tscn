@@ -1,0 +1,83 @@
+[gd_scene load_steps=13 format=3 uid="uid://da5geiicqgiit"]
+
+[ext_resource type="PackedScene" uid="uid://boeg4bbii1h0f" path="res://objnew/moveable/object.tscn" id="1_4h2ff"]
+[ext_resource type="Script" path="res://objnew/moveable/ship.gd" id="2_572f7"]
+[ext_resource type="Texture2D" uid="uid://dpmqhw32gbaff" path="res://img/explosion.png" id="3_2qloj"]
+[ext_resource type="AudioStream" uid="uid://c0q28spj0ob" path="res://snd/sfx/explosion_ship.wav" id="4_s4u7k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ikd73"]
+atlas = ExtResource("3_2qloj")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sum51"]
+atlas = ExtResource("3_2qloj")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lwlps"]
+atlas = ExtResource("3_2qloj")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="10"]
+atlas = ExtResource("3_2qloj")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="11"]
+atlas = ExtResource("3_2qloj")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="12"]
+atlas = ExtResource("3_2qloj")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="13"]
+atlas = ExtResource("3_2qloj")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ed7yn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ikd73")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sum51")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lwlps")
+}, {
+"duration": 1.0,
+"texture": SubResource("10")
+}, {
+"duration": 1.0,
+"texture": SubResource("11")
+}, {
+"duration": 1.0,
+"texture": SubResource("12")
+}, {
+"duration": 1.0,
+"texture": SubResource("13")
+}],
+"loop": false,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="ship" instance=ExtResource("1_4h2ff")]
+script = ExtResource("2_572f7")
+scrap_texture = null
+frame_array = [0, 0]
+turn_speed = 0.0
+
+[node name="scrap_points" type="Node2D" parent="." index="3"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="4"]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_ed7yn")
+frame = 6
+frame_progress = 1.0
+
+[node name="death_audio" type="AudioStreamPlayer2D" parent="." index="5"]
+stream = ExtResource("4_s4u7k")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="finished" from="death_audio" to="." method="_on_death_audio_finished"]

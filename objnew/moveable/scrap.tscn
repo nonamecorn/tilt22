@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dasg2ho01bibt"]
+
+[ext_resource type="PackedScene" uid="uid://diwpsojja5irr" path="res://objnew/moveable/part.tscn" id="1_osnlr"]
+[ext_resource type="Script" path="res://objnew/moveable/scrap.gd" id="2_fcqt4"]
+
+[node name="scrap" instance=ExtResource("1_osnlr")]
+mass = 1.0
+angular_damp = 0.0
+script = ExtResource("2_fcqt4")
+worth = 0

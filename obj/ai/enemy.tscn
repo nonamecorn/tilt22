@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dpmqhw32gbaff" path="res://img/explosion.png" id="7"]
 
 [sub_resource type="CircleShape2D" id="1"]
-radius = 286.175
+radius = 300.0
 
 [sub_resource type="CapsuleShape2D" id="2"]
 radius = 15.5
