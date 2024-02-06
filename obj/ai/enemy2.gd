@@ -1,5 +1,7 @@
 extends RigidBody2D
 
+signal died
+
 var state: stt = stt.SCOUT;
 var rng = RandomNumberGenerator.new();
 var force: Vector2 = Vector2.ZERO;
@@ -89,6 +91,7 @@ func hurt(ded):
 		die()
 
 func die():
+	emit_signal("died")
 	$CollisionShape2D.set_deferred("disabled",true)
 	$AnimatedSprite2D.play()
 	for childmark in $children.get_children():

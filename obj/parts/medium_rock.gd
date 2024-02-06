@@ -1,4 +1,7 @@
 extends RigidBody2D
+
+signal died
+
 var rng = RandomNumberGenerator.new()
 var hp = 5;
 var bullet_obj = preload("res://obj/parts/smallrock.tscn")
@@ -18,6 +21,7 @@ func hurt(ded):
 	hp -= 1;
 	hp -= ded;
 	if hp <= 0:
+		emit_signal("died")
 		dead = true
 		if rng.randi_range(1,10000) == 1:
 			$Sprite2D.show()

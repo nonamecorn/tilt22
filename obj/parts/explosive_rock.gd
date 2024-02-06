@@ -1,4 +1,7 @@
 extends RigidBody2D
+
+signal died
+
 var rng = RandomNumberGenerator.new()
 var hp = 5;
 var bullet_obj = preload("res://obj/other/explosion.tscn")
@@ -16,6 +19,7 @@ func hurt(ded):
 	hp -= 1;
 	hp -= ded;
 	if hp <= 0:
+		emit_signal("died")
 		var bullet_inst = bullet_obj.instantiate()
 		bullet_inst.global_position = global_position
 		call_deferred("add", bullet_inst)

@@ -23,6 +23,8 @@ var bullet_objs = [
 ]
 @export var on = true
 var rng = RandomNumberGenerator.new()
+var count = 0;
+@export var maximum_meat_capacity = 5;
 @onready var station = "res://obj/other/mini_static_station.tscn"
 
 func _ready():
@@ -32,15 +34,20 @@ func _ready():
 	#if body.is_in_group("killable"):
 		#body.queue_free()
 
+func on_death():
+	count -= 1;
+
 
 func _on_timer_timeout():
-	if !on: return
+	if !on or count >= maximum_meat_capacity: return
 	for child in $children.get_children():
-		if rng.randi_range(0,1) == 0 or Geometry2D.is_point_in_circle(child.global_position, Vector2(430.0,-670.0), 1000.0):
+		if count >= maximum_meat_capacity or rng.randi_range(0,1) == 0 or Geometry2D.is_point_in_circle(child.global_position, Vector2(430.0,-670.0), 1000.0):
 			continue
+		count += 1;
 		bullet_objs.shuffle()
 		var bullet_obj = load(bullet_objs[0])
 		var bullet_inst = bullet_obj.instantiate()
+		bullet_inst.died.connect(on_death)
 		bullet_inst.global_position = child.global_position
 		bullet_inst.global_rotation = child.global_rotation
 		call_deferred("add", bullet_inst)

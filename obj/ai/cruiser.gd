@@ -1,5 +1,7 @@
 extends RigidBody2D
 
+signal died
+
 var state: stt = stt.SCOUT;
 var rng = RandomNumberGenerator.new();
 var force: Vector2 = Vector2.ZERO;
@@ -101,6 +103,7 @@ func hurt(ded):
 		die()
 
 func die():
+	emit_signal("died")
 	dead = true
 	$AnimatedSprite2D.play()
 	loot.shuffle()
