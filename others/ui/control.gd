@@ -171,7 +171,6 @@ func _on_better_armor_pressed():
 				Global.drilmaxhp += 10
 				Global.drilhp = Global.drilmaxhp
 		player.maxhp += 10
-		player.repair()
 		player.deduct_money(Global.armor_price)
 		Global.armor_price += 500
 		$uppgrades/upgrades/VBoxContainer/PanelContainer2/Label.text = str(Global.armor_price) + " credits"

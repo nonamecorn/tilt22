@@ -14,12 +14,13 @@ enum {
 
 
 func _ready():
+	$RemoteTransform2D.remote_path = get_parent().get_child(1).get_path()
 	Global.reputation_change.connect(_on_rep_change)
 	$CanvasLayer/Label.text = "money: " + str(Global.money)
 	updatehpbar()
 
 func _physics_process(_delta):
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("ui_r"):
 		Global.restore()
 		get_tree().reload_current_scene()
 	match state:
@@ -62,15 +63,23 @@ func move():
 	if Input.is_action_pressed("ui_left"):
 		$Playership/torque1.show()
 		$Playership/torque3.show()
-		apply_torque(-70000);
+		angular_damp = 0;
+		apply_torque(-100000);
 	elif !Input.is_action_pressed("ui_q") and !Input.is_action_pressed("ui_e"):
+		angular_damp = 7;
 		$Playership/torque1.hide(); $Playership/torque3.hide()
+	else:
+		angular_damp = 7;
 	if Input.is_action_pressed("ui_right"):
 		$Playership/torque4.show()
 		$Playership/torque2.show()
-		apply_torque(70000);
-	elif !Input.is_action_pressed("ui_q") and !Input.is_action_pressed("ui_e"):
+		angular_damp = 0;
+		apply_torque(100000);
+	elif !Input.is_action_pressed("ui_q") and !Input.is_action_pressed("ui_e") and !Input.is_action_pressed("ui_left"):
+		angular_damp = 7;
 		$Playership/torque2.hide(); $Playership/torque4.hide()
+	else:
+		angular_damp = 7;
 	
 	if Input.is_action_just_pressed("ui_1"):
 		if $markers/Marker2D.get_child(0).active:
@@ -127,3 +136,5 @@ func deduct_money(amount):
 	#if state == DEAD or body.is_in_group("prj"): return
 	#if (body.linear_velocity - linear_velocity).length() > 120:
 		#die()
+
+

@@ -17,11 +17,12 @@ enum {
 }
 
 func _ready():
+	$RemoteTransform2D.remote_path = get_parent().get_child(1).get_path()
 	$CanvasLayer/Label.text = "money: " + str(Global.money)
 	updatehpbar()
 
 func _physics_process(_delta):
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("ui_r"):
 		Global.restore()
 		get_tree().reload_current_scene()
 	match state:
@@ -64,13 +65,13 @@ func move():
 	if Input.is_action_pressed("ui_left"):
 		$Playership/torque1.show()
 		$Playership/torque3.show()
-		apply_torque(-70000);
+		apply_torque(-120000);
 	elif !Input.is_action_pressed("ui_q") and !Input.is_action_pressed("ui_e"):
 		$Playership/torque1.hide(); $Playership/torque3.hide()
 	if Input.is_action_pressed("ui_right"):
 		$Playership/torque4.show()
 		$Playership/torque2.show()
-		apply_torque(70000);
+		apply_torque(120000);
 	elif !Input.is_action_pressed("ui_q") and !Input.is_action_pressed("ui_e"):
 		$Playership/torque2.hide(); $Playership/torque4.hide()
 	

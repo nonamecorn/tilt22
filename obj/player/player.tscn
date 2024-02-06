@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://cf2ascm2aqyew"]
+[gd_scene load_steps=38 format=3 uid="uid://cf2ascm2aqyew"]
 
 [ext_resource type="Script" path="res://obj/player/player.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://c1ae2myj2p6tg" path="res://img/playership.png" id="2"]
@@ -6,19 +6,17 @@
 [ext_resource type="Texture2D" uid="uid://dg8h761vel14l" path="res://img/mainenginefire.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://da5xc1oc65sjk" path="res://img/truster_anim.png" id="5"]
 [ext_resource type="Texture2D" uid="uid://dpmqhw32gbaff" path="res://img/explosion.png" id="6"]
-[ext_resource type="Script" path="res://obj/player/Area2D.gd" id="7"]
 [ext_resource type="PackedScene" uid="uid://cxe7tkk6rycen" path="res://obj/player/hand.tscn" id="7_5dgn7"]
 [ext_resource type="Script" path="res://obj/player/playerCamera2D.gd" id="7_84sue"]
 [ext_resource type="Script" path="res://obj/player/Polygon2D.gd" id="10_m71gl"]
-[ext_resource type="Script" path="res://obj/player/stationes.gd" id="10_vx30m"]
 [ext_resource type="Script" path="res://obj/player/ProgressBar.gd" id="11_w6n1q"]
 [ext_resource type="PackedScene" uid="uid://cdcro6fmi27or" path="res://others/ui/control.tscn" id="12_awe17"]
 [ext_resource type="PackedScene" uid="uid://cudcicye0rrir" path="res://others/ui/menu.tscn" id="14_b4myk"]
 
 [sub_resource type="NavigationPolygon" id="1"]
-vertices = PackedVector2Array(3784, -2091, 3878, 2797, -3141, 2741, -3163, -2100)
+vertices = PackedVector2Array(3878, 2797, -3166, 2786, -3164, -2101, 3878, -2110)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-3174, -2111, -3151, 2751, 3889, 2808, 3794, -2101)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-3174, -2111, -3177, 2796, 3889, 2808, 3888, -2121)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="RectangleShape2D" id="2"]
@@ -213,6 +211,7 @@ collision_mask = 55
 mass = 80.0
 max_contacts_reported = 1
 contact_monitor = true
+angular_damp = 5.0
 script = ExtResource("1")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
@@ -312,81 +311,6 @@ drag_right_margin = 0.03
 drag_bottom_margin = 0.03
 script = ExtResource("7_84sue")
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 255
-script = ExtResource("7")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-polygon = PackedVector2Array(-3306, -2179, 3923, -2168, 3999, 2910, -3281, 2874, -3310, -2682, -3761, -2675, -3749, 3329, 4518, 3342, 4349, -2600, -3313, -2681)
-
-[node name="Timer" type="Timer" parent="Area2D"]
-wait_time = 3.0
-autostart = true
-
-[node name="children" type="Node2D" parent="Area2D"]
-scale = Vector2(0.7, 0.7)
-
-[node name="Marker2D" type="Marker2D" parent="Area2D/children"]
-position = Vector2(-1981.43, 2051.43)
-
-[node name="Marker2D2" type="Marker2D" parent="Area2D/children"]
-position = Vector2(-804.286, 1802.86)
-
-[node name="Marker2D3" type="Marker2D" parent="Area2D/children"]
-position = Vector2(662.857, 2491.43)
-
-[node name="Marker2D4" type="Marker2D" parent="Area2D/children"]
-position = Vector2(1252.86, 1635.71)
-
-[node name="Marker2D5" type="Marker2D" parent="Area2D/children"]
-position = Vector2(2342.86, 1312.86)
-
-[node name="Marker2D6" type="Marker2D" parent="Area2D/children"]
-position = Vector2(2353, 272)
-
-[node name="Marker2D7" type="Marker2D" parent="Area2D/children"]
-position = Vector2(3018.57, -737.143)
-
-[node name="Marker2D8" type="Marker2D" parent="Area2D/children"]
-position = Vector2(1933, -1173)
-
-[node name="Marker2D9" type="Marker2D" parent="Area2D/children"]
-position = Vector2(1595.71, -2194.29)
-
-[node name="Marker2D10" type="Marker2D" parent="Area2D/children"]
-position = Vector2(591, -1615)
-
-[node name="Marker2D11" type="Marker2D" parent="Area2D/children"]
-position = Vector2(-524.286, -2170)
-
-[node name="Marker2D12" type="Marker2D" parent="Area2D/children"]
-position = Vector2(-1331, -1228)
-
-[node name="Marker2D13" type="Marker2D" parent="Area2D/children"]
-position = Vector2(-2514.29, -825.714)
-
-[node name="Marker2D14" type="Marker2D" parent="Area2D/children"]
-position = Vector2(-1831, -48)
-
-[node name="Marker2D15" type="Marker2D" parent="Area2D/children"]
-position = Vector2(-2578.57, 668.571)
-
-[node name="Marker2D16" type="Marker2D" parent="Area2D/children"]
-position = Vector2(-1602, 1042)
-
-[node name="stationes" type="Node2D" parent="Area2D"]
-script = ExtResource("10_vx30m")
-
-[node name="Marker2D" type="Marker2D" parent="Area2D/stationes"]
-position = Vector2(4982, 5575)
-
-[node name="Marker2D3" type="Marker2D" parent="Area2D/stationes"]
-position = Vector2(-8319, 701)
-
-[node name="Marker2D5" type="Marker2D" parent="Area2D/stationes"]
-position = Vector2(3268, -6486)
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_ddkqm")
@@ -437,6 +361,8 @@ text = "money: 0"
 [node name="menu" parent="CanvasLayer" instance=ExtResource("14_b4myk")]
 visible = false
 
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
+update_rotation = false
+update_scale = false
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
-[connection signal="timeout" from="Area2D/Timer" to="Area2D" method="_on_timer_timeout"]

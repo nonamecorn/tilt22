@@ -1,0 +1,121 @@
+[gd_scene load_steps=6 format=3 uid="uid://prb57fo60dli"]
+
+[ext_resource type="Script" path="res://obj/player/Area2D.gd" id="1_d02oa"]
+[ext_resource type="Script" path="res://obj/player/stationes.gd" id="2_qd6m6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sqqyl"]
+size = Vector2(7077, 200)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_glj1o"]
+size = Vector2(200, 5079.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lj2a8"]
+size = Vector2(200, 5079.5)
+
+[node name="Area2D" type="Node2D"]
+script = ExtResource("1_d02oa")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="children" type="Node2D" parent="."]
+scale = Vector2(0.7, 0.7)
+
+[node name="Marker2D" type="Marker2D" parent="children"]
+position = Vector2(-1981.43, 2051.43)
+
+[node name="Marker2D2" type="Marker2D" parent="children"]
+position = Vector2(-804.286, 1802.86)
+
+[node name="Marker2D3" type="Marker2D" parent="children"]
+position = Vector2(662.857, 2491.43)
+
+[node name="Marker2D4" type="Marker2D" parent="children"]
+position = Vector2(1252.86, 1635.71)
+
+[node name="Marker2D5" type="Marker2D" parent="children"]
+position = Vector2(2342.86, 1312.86)
+
+[node name="Marker2D6" type="Marker2D" parent="children"]
+position = Vector2(2353, 272)
+
+[node name="Marker2D7" type="Marker2D" parent="children"]
+position = Vector2(3018.57, -737.143)
+
+[node name="Marker2D8" type="Marker2D" parent="children"]
+position = Vector2(1933, -1173)
+
+[node name="Marker2D9" type="Marker2D" parent="children"]
+position = Vector2(1595.71, -2194.29)
+
+[node name="Marker2D10" type="Marker2D" parent="children"]
+position = Vector2(591, -1615)
+
+[node name="Marker2D11" type="Marker2D" parent="children"]
+position = Vector2(-524.286, -2170)
+
+[node name="Marker2D12" type="Marker2D" parent="children"]
+position = Vector2(-1331, -1228)
+
+[node name="Marker2D13" type="Marker2D" parent="children"]
+position = Vector2(-2514.29, -825.714)
+
+[node name="Marker2D14" type="Marker2D" parent="children"]
+position = Vector2(-1831, -48)
+
+[node name="Marker2D15" type="Marker2D" parent="children"]
+position = Vector2(-2578.57, 668.571)
+
+[node name="Marker2D16" type="Marker2D" parent="children"]
+position = Vector2(-1602, 1042)
+
+[node name="stationes" type="Node2D" parent="."]
+script = ExtResource("2_qd6m6")
+
+[node name="Marker2D" type="Marker2D" parent="stationes"]
+position = Vector2(4982, 5575)
+
+[node name="Marker2D3" type="Marker2D" parent="stationes"]
+position = Vector2(-8319, 701)
+
+[node name="Marker2D5" type="Marker2D" parent="stationes"]
+position = Vector2(3268, -6486)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(306, 2935)
+shape = SubResource("RectangleShape2D_sqqyl")
+
+[node name="Area2D3" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3"]
+position = Vector2(377.5, -2243)
+shape = SubResource("RectangleShape2D_sqqyl")
+
+[node name="Area2D2" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(-3311, 254.25)
+shape = SubResource("RectangleShape2D_glj1o")
+
+[node name="Area2D4" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D4"]
+position = Vector2(4001, 374)
+shape = SubResource("RectangleShape2D_lj2a8")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Area2D3" to="." method="_on_area_2d_3_body_entered"]
+[connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_2_body_entered"]
+[connection signal="body_entered" from="Area2D4" to="." method="_on_area_2d_4_body_entered"]

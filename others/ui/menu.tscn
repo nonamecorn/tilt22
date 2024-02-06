@@ -36,7 +36,7 @@ offset_top = 236.0
 offset_right = 472.0
 offset_bottom = 267.0
 theme_override_font_sizes/font_size = 32
-text = "fulscreen"
+text = "fullscreen"
 
 [node name="Label2" type="Label" parent="."]
 layout_mode = 0

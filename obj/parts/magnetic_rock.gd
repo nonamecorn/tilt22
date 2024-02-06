@@ -17,24 +17,23 @@ func sell():
 func hurt(ded):
 	$AnimationPlayer.play("tryaska")
 	if ded >= 4:
-		$Area2D.set_deferred("gravity",0)
-		for childmark in $children.get_children():
-			var bullet_inst = bullet_obj.instantiate()
-			bullet_inst.global_position = childmark.global_position
-			call_deferred("add", bullet_inst)
+		die()
+		return
 	hp -= 1;
 	hp -= ded;
 	if hp <= 0:
-		$Area2D.set_deferred("gravity",0)
-		for childmark in $children.get_children():
-			var bullet_inst = bullet_obj.instantiate()
-			bullet_inst.global_position = childmark.global_position
-			call_deferred("add", bullet_inst)
+		die()
+		return
 func add(de_bullet_inst):
 	get_tree().current_scene.add_child(de_bullet_inst)
 
 func die():
-	pass
+	$Area2D.set_deferred("gravity",0)
+	for childmark in $children.get_children():
+		var bullet_inst = bullet_obj.instantiate()
+		bullet_inst.global_position = childmark.global_position
+		call_deferred("add", bullet_inst)
+	queue_free()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func  _physics_process(_delta):

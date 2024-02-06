@@ -12,6 +12,9 @@ collision_layer = 16
 collision_mask = 31
 script = ExtResource("1_dmvu2")
 
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-124, -53, -114, -10, -111, 103, 80, 112, 98, 55, 232, 55, 233, -34, 105, -38, 107, -94, 39, -96, 39, -181, -50, -177, -52, -89, -55, -75, -67, -68)
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(103, -15)
 texture = ExtResource("2_1hmk6")

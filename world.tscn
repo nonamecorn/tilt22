@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://jtesh1ni1jmd"]
+[gd_scene load_steps=8 format=3 uid="uid://jtesh1ni1jmd"]
 
 [ext_resource type="PackedScene" uid="uid://cf2ascm2aqyew" path="res://obj/player/player.tscn" id="1_c6jsy"]
 [ext_resource type="Texture2D" uid="uid://cl24pe0uw1rg0" path="res://img/spr_stars01.png" id="1_g4wvl"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bwndms0mmt3aq" path="res://img/spr_stars01backback.png" id="2_cmbkj"]
 [ext_resource type="PackedScene" uid="uid://cerx2bpq16yjo" path="res://obj/other/static_station.tscn" id="6_nixmj"]
 [ext_resource type="PackedScene" uid="uid://7vjnl48toxav" path="res://obj/other/exit.tscn" id="7_7w5wf"]
+[ext_resource type="PackedScene" uid="uid://prb57fo60dli" path="res://obj/other/npcmanager.tscn" id="7_etb8j"]
 
 [node name="world" type="Node2D"]
 script = ExtResource("1_xs38p")
@@ -14,20 +15,22 @@ script = ExtResource("1_xs38p")
 scroll_offset = Vector2(134.949, 100.44)
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_mirroring = Vector2(1281, 640)
+motion_mirroring = Vector2(2560, 2560)
 
 [node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
 texture_repeat = 2
 texture = ExtResource("2_cmbkj")
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_mirroring = Vector2(1281, 640)
+motion_mirroring = Vector2(2560, 2560)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 position = Vector2(524, 267)
 texture = ExtResource("1_g4wvl")
-region_enabled = true
 region_rect = Rect2(-1419.17, -703.787, 3607.63, 1819)
+
+[node name="Area2D" parent="." instance=ExtResource("7_etb8j")]
+position = Vector2(469, 145)
 
 [node name="StaticStation" parent="." instance=ExtResource("6_nixmj")]
 position = Vector2(469, 137)

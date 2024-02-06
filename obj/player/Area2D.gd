@@ -1,4 +1,4 @@
-extends Area2D
+extends Node2D
 
 
 # Called when the node enters the scene tree for the first time.
@@ -28,9 +28,9 @@ var rng = RandomNumberGenerator.new()
 func _ready():
 	rng.randomize()
 	
-func _on_body_entered(body):
-	if body.is_in_group("killable"):
-		body.queue_free()
+#func _on_body_entered(body):
+	#if body.is_in_group("killable"):
+		#body.queue_free()
 
 
 func _on_timer_timeout():
@@ -47,3 +47,22 @@ func _on_timer_timeout():
 
 func add(de_bullet_inst):
 	get_tree().current_scene.add_child(de_bullet_inst)
+
+func _on_area_2d_body_entered(body):
+	print("hmm1")
+	body.global_position.y -= 4900
+
+
+func _on_area_2d_3_body_entered(body):
+	print("hmm2")
+	body.global_position.y += 4900
+
+
+func _on_area_2d_2_body_entered(body):
+	print("hmm3")
+	body.global_position.x += 6900
+
+
+func _on_area_2d_4_body_entered(body):
+	print("hmm4")
+	body.global_position.x -= 6900
