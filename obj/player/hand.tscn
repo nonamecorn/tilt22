@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://obj/player/playerhand.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://ydglk0ma4x0m" path="res://img/turret1.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://dnfsrrw3ce65m" path="res://img/muzzle.png" id="3_45vja"]
-[ext_resource type="AudioStream" uid="uid://nm2qhehxc66j" path="res://snd/sfx/pew.wav" id="4_egm2f"]
+[ext_resource type="AudioStream" uid="uid://dtwy7vs1qqdyh" path="res://snd/sfx/explosion_dull.mp3" id="4_avg1h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y8wj1"]
 atlas = ExtResource("3_45vja")
@@ -82,7 +82,7 @@ shape = SubResource("CircleShape2D_wwmm5")
 debug_color = Color(0.862745, 0.298039, 0.521569, 0.0470588)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_egm2f")
+stream = ExtResource("4_avg1h")
 volume_db = -10.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

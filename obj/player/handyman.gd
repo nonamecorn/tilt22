@@ -22,9 +22,6 @@ func _ready():
 	updatehpbar()
 
 func _physics_process(_delta):
-	if Input.is_action_just_pressed("ui_r"):
-		Global.restore()
-		get_tree().reload_current_scene()
 	match state:
 		DEAD:
 			pass

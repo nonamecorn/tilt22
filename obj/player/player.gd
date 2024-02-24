@@ -7,6 +7,7 @@ var force = Global.offforce
 var state = ALIVE;
 var bullet_obj = preload("res://obj/parts/ship_parts4.tscn")
 var reputation = Global.reputation
+
 enum {
 	DEAD,
 	ALIVE
@@ -20,9 +21,6 @@ func _ready():
 	updatehpbar()
 
 func _physics_process(_delta):
-	if Input.is_action_just_pressed("ui_r"):
-		Global.restore()
-		get_tree().reload_current_scene()
 	match state:
 		DEAD:
 			pass
@@ -63,23 +61,19 @@ func move():
 	if Input.is_action_pressed("ui_left"):
 		$Playership/torque1.show()
 		$Playership/torque3.show()
-		angular_damp = 0;
+		angular_damp = 0.5;
 		apply_torque(-100000);
 	elif !Input.is_action_pressed("ui_q") and !Input.is_action_pressed("ui_e"):
-		angular_damp = 7;
+		angular_damp = 4;
 		$Playership/torque1.hide(); $Playership/torque3.hide()
-	else:
-		angular_damp = 7;
 	if Input.is_action_pressed("ui_right"):
 		$Playership/torque4.show()
 		$Playership/torque2.show()
-		angular_damp = 0;
+		angular_damp = 0.5;
 		apply_torque(100000);
 	elif !Input.is_action_pressed("ui_q") and !Input.is_action_pressed("ui_e") and !Input.is_action_pressed("ui_left"):
-		angular_damp = 7;
+		angular_damp = 4;
 		$Playership/torque2.hide(); $Playership/torque4.hide()
-	else:
-		angular_damp = 7;
 	
 	if Input.is_action_just_pressed("ui_1"):
 		if $markers/Marker2D.get_child(0).active:

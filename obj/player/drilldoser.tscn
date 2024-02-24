@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://b261v5i8615pc"]
+[gd_scene load_steps=42 format=3 uid="uid://b261v5i8615pc"]
 
 [ext_resource type="Script" path="res://obj/player/drilldoser.gd" id="1_sdcpi"]
 [ext_resource type="Texture2D" uid="uid://clemqfix8w0xg" path="res://img/drilldoser.png" id="2_vwwuk"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://obj/player/Polygon2D2.gd" id="12_phd3l"]
 [ext_resource type="PackedScene" uid="uid://cs8kp3j4b8ful" path="res://obj/player/rocket_launcher.tscn" id="13_41m7s"]
 [ext_resource type="PackedScene" uid="uid://cdcro6fmi27or" path="res://others/ui/control.tscn" id="13_326ro"]
+[ext_resource type="PackedScene" uid="uid://cgrt3ovkbiyyt" path="res://others/ui/areyousure.tscn" id="15_5y4x0"]
 [ext_resource type="PackedScene" uid="uid://cudcicye0rrir" path="res://others/ui/menu.tscn" id="15_m281g"]
 
 [sub_resource type="NavigationPolygon" id="1"]
@@ -370,6 +371,9 @@ offset_bottom = 37.0
 text = "money: 0"
 
 [node name="menu" parent="CanvasLayer" instance=ExtResource("15_m281g")]
+visible = false
+
+[node name="Control2" parent="CanvasLayer" instance=ExtResource("15_5y4x0")]
 visible = false
 
 [node name="drilltimer" type="Timer" parent="."]

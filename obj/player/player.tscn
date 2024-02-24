@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://cf2ascm2aqyew"]
+[gd_scene load_steps=41 format=3 uid="uid://cf2ascm2aqyew"]
 
 [ext_resource type="Script" path="res://obj/player/player.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://c1ae2myj2p6tg" path="res://img/playership.png" id="2"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://obj/player/Polygon2D.gd" id="10_m71gl"]
 [ext_resource type="Script" path="res://obj/player/ProgressBar.gd" id="11_w6n1q"]
 [ext_resource type="PackedScene" uid="uid://cdcro6fmi27or" path="res://others/ui/control.tscn" id="12_awe17"]
+[ext_resource type="PackedScene" uid="uid://cgrt3ovkbiyyt" path="res://others/ui/areyousure.tscn" id="13_hqb2o"]
 [ext_resource type="PackedScene" uid="uid://cudcicye0rrir" path="res://others/ui/menu.tscn" id="14_b4myk"]
 
 [sub_resource type="NavigationPolygon" id="1"]
@@ -204,6 +205,19 @@ _data = {
 "tryaska": SubResource("Animation_malec")
 }
 
+[sub_resource type="Gradient" id="Gradient_jil6y"]
+interpolation_mode = 2
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_321mm"]
+gradient = SubResource("Gradient_jil6y")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+metadata/_snap_enabled = true
+
 [node name="player" type="RigidBody2D" groups=["killable", "player"]]
 process_mode = 1
 collision_layer = 2
@@ -211,7 +225,7 @@ collision_mask = 55
 mass = 80.0
 max_contacts_reported = 1
 contact_monitor = true
-angular_damp = 5.0
+angular_damp = 4.0
 script = ExtResource("1")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
@@ -361,8 +375,19 @@ text = "money: 0"
 [node name="menu" parent="CanvasLayer" instance=ExtResource("14_b4myk")]
 visible = false
 
+[node name="are_you_sure?" parent="CanvasLayer" instance=ExtResource("13_hqb2o")]
+visible = false
+
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
 update_rotation = false
 update_scale = false
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(1.19209e-07, -1.00001)
+rotation = 3.14159
+scale = Vector2(0.1, 0.1)
+enabled = false
+texture = SubResource("GradientTexture2D_321mm")
+texture_scale = 10.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://jtesh1ni1jmd"]
+[gd_scene load_steps=9 format=3 uid="uid://jtesh1ni1jmd"]
 
 [ext_resource type="PackedScene" uid="uid://cf2ascm2aqyew" path="res://obj/player/player.tscn" id="1_c6jsy"]
 [ext_resource type="Texture2D" uid="uid://cl24pe0uw1rg0" path="res://img/spr_stars01.png" id="1_g4wvl"]
@@ -7,6 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://cerx2bpq16yjo" path="res://obj/other/static_station.tscn" id="6_nixmj"]
 [ext_resource type="PackedScene" uid="uid://7vjnl48toxav" path="res://obj/other/exit.tscn" id="7_7w5wf"]
 [ext_resource type="PackedScene" uid="uid://prb57fo60dli" path="res://obj/other/npcmanager.tscn" id="7_etb8j"]
+
+[sub_resource type="Environment" id="Environment_hvfx1"]
+background_mode = 3
+glow_normalized = true
+glow_intensity = 1.14
+glow_bloom = 0.14
+glow_blend_mode = 0
 
 [node name="world" type="Node2D"]
 script = ExtResource("1_xs38p")
@@ -43,3 +50,12 @@ position = Vector2(348, 472)
 
 [node name="exit" parent="." instance=ExtResource("7_7w5wf")]
 position = Vector2(1546, 5651)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_hvfx1")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+position = Vector2(0, 3)
+enabled = false
+color = Color(0.541176, 0.541176, 0.541176, 1)
+blend_mode = 2

@@ -1,16 +1,33 @@
-[gd_scene load_steps=4 format=3 uid="uid://b8gpwj17xsieg"]
+[gd_scene load_steps=7 format=3 uid="uid://b8gpwj17xsieg"]
 
 [ext_resource type="Script" path="res://obj/parts/smallrock.gd" id="1_guwtj"]
 [ext_resource type="Texture2D" uid="uid://chlbsvjsxbqcx" path="res://img/smallrocks.png" id="2_d34xn"]
+[ext_resource type="Texture2D" uid="uid://h3484jix3g4c" path="res://img/particlesrock.png" id="3_jraox"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o0b2b"]
 radius = 13.0384
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_36qc8"]
+particles_animation = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g2axi"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 66.29
+initial_velocity_max = 100.0
+gravity = Vector3(0, 0, 0)
+anim_offset_max = 1.0
 
 [node name="smallrock" type="RigidBody2D" groups=["attachable"]]
 collision_mask = 63
 mass = 30.0
 script = ExtResource("1_guwtj")
 worth = 0
+useparticles = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_d34xn")
@@ -18,3 +35,14 @@ vframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_o0b2b")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_36qc8")
+emitting = false
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_g2axi")
+texture = ExtResource("3_jraox")
+one_shot = true
+explosiveness = 0.86
+
+[connection signal="finished" from="GPUParticles2D" to="." method="_on_gpu_particles_2d_finished"]

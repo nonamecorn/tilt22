@@ -3,7 +3,6 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 var bullet_objs = [
-	"res://obj/parts/smallrock.tscn",
 	"res://obj/parts/medium_rock.tscn",
 	"res://obj/parts/big_rock.tscn",
 	"res://obj/parts/medium_rock.tscn",
@@ -24,7 +23,7 @@ var bullet_objs = [
 @export var on = true
 var rng = RandomNumberGenerator.new()
 var count = 0;
-@export var maximum_meat_capacity = 5;
+@export var maximum_meat_capacity = 100;
 @onready var station = "res://obj/other/mini_static_station.tscn"
 
 func _ready():
@@ -56,20 +55,16 @@ func add(de_bullet_inst):
 	get_tree().current_scene.add_child(de_bullet_inst)
 
 func _on_area_2d_body_entered(body):
-	print("hmm1")
 	body.global_position.y -= 4900
 
 
 func _on_area_2d_3_body_entered(body):
-	print("hmm2")
 	body.global_position.y += 4900
 
 
 func _on_area_2d_2_body_entered(body):
-	print("hmm3")
 	body.global_position.x += 6900
 
 
 func _on_area_2d_4_body_entered(body):
-	print("hmm4")
 	body.global_position.x -= 6900
